@@ -3,34 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Persona Selector</title>
+  <title>Zenstores Personas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main>
-    <h1>Zenstores Persona & Case Studies</h1>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="https://cdn.zenstores.com/zenstores/zenstores-logo-white.svg" alt="Zenstores Logo" />
+      </div>
+      <h1 class="sidebar-title">Fulfilment Simplified</h1>
+      <p class="sidebar-subtitle">Helping e-commerce brands grow smarter</p>
+    </aside>
 
-    <section class="category-buttons">
-      <button class="category-btn selected" data-category="Fashion">Fashion</button>
-      <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
-      <button class="category-btn" data-category="Beauty & Fitness">Beauty & Fitness</button>
-      <button class="category-btn" data-category="Other">Other</button>
-    </section>
+    <main class="main-content">
+      <section class="categories-section">
+        <h2 class="section-title">Which best describes your business?</h2>
+        <div class="categories-buttons" id="categories-buttons">
+          <!-- Buttons inserted by JS -->
+        </div>
+      </section>
 
-    <section class="order-input">
-      <label for="orders">Monthly Orders:</label>
-      <input type="range" id="orders" min="100" max="10000" step="100" value="1000" />
-      <output id="orderValue">1,000</output>
-    </section>
+      <section class="persona-section" id="persona-section" style="display:none;">
+        <h3 class="persona-title">Your Zenstores Persona</h3>
+        <p class="persona-copy" id="persona-copy"></p>
+      </section>
 
-    <section class="persona-message">
-      <p id="personaMessage"></p>
-    </section>
-
-    <section id="similarBusinesses" aria-label="Example businesses">
-      <!-- Business boxes inserted here dynamically -->
-    </section>
-  </main>
+      <section class="businesses-section">
+        <h2 class="section-title">Businesses We've Helped</h2>
+        <div class="businesses-cards" id="businesses-cards">
+          <!-- Cards inserted by JS -->
+        </div>
+      </section>
+    </main>
+  </div>
 
   <script src="script.js"></script>
 </body>
