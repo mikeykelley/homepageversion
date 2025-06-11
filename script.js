@@ -110,7 +110,7 @@ function updateCalculator() {
   const persona = data.find(p => orderCount <= p.maxOrders);
 
   // Update persona message with quote
-  personaMessage.innerHTML = `You're a <strong>${persona.persona}</strong><br/><em>"${persona.quote}"</em>`;
+  personaMessage.innerHTML = You're a <strong>${persona.persona}</strong><br/><em>"${persona.quote}"</em>;
 
   // Update challenges
   challengesContainer.innerHTML = "";
