@@ -1,60 +1,65 @@
-// Data for personas by category and order count
-const personaData = {
-  Fashion: [
-    { maxOrders: 1000, persona: "Style Starter", businessExamples: ["DressCo", "Trendline"] },
-    { maxOrders: 5000, persona: "Fashion Enthusiast", businessExamples: ["UrbanVogue", "ShoeBuzz"] },
-    { maxOrders: 10000, persona: "Retail Pro", businessExamples: ["ClothWorks", "ModaMart"] },
-    { maxOrders: Infinity, persona: "Fashion Powerhouse", businessExamples: ["GlamHaus", "EliteStyles"] }
-  ],
-  "Food & Drink": [
-    { maxOrders: 1000, persona: "Foodie Newbie", businessExamples: ["SnackJoy", "BrewMaster"] },
-    { maxOrders: 5000, persona: "Taste Explorer", businessExamples: ["Sip & Savor", "FreshFeast"] },
-    { maxOrders: 10000, persona: "Culinary Pro", businessExamples: ["GourmetGoods", "DailyDelights"] },
-    { maxOrders: Infinity, persona: "Food Industry Leader", businessExamples: ["Epicurean", "FlavorFactory"] }
-  ],
-  "Beauty & Fitness": [
-    { maxOrders: 1000, persona: "Beauty Beginner", businessExamples: ["GlowUp", "FitFam"] },
-    { maxOrders: 5000, persona: "Health Enthusiast", businessExamples: ["ZenWell", "Radiance"] },
-    { maxOrders: 10000, persona: "Beauty Pro", businessExamples: ["PureEssence", "ActiveLife"] },
-    { maxOrders: Infinity, persona: "Industry Icon", businessExamples: ["VitalGlow", "PowerFit"] }
-  ],
-  Other: [
-    { maxOrders: 1000, persona: "Starter", businessExamples: ["HomeBasics", "DailyNeeds"] },
-    { maxOrders: 5000, persona: "Growing Business", businessExamples: ["EcoGoods", "CraftSpace"] },
-    { maxOrders: 10000, persona: "Established Brand", businessExamples: ["ProSolutions", "MarketLeaders"] },
-    { maxOrders: Infinity, persona: "Enterprise", businessExamples: ["GlobalCorp", "MegaBrands"] }
-  ]
+const categories = {
+  "Fashion": {
+    cases: ["Alex's Aprons", "Tom's Tees", "Mikey's Mittens"],
+    personas: {
+      low: "👗 Starting out? Fashion brands often juggle packaging & stock. Zenstores simplifies it so you can focus on trends.",
+      mid: "🧵 Scaling up? Zenstores streamlines fashion fulfilment so you can stay on top of demand.",
+      high: "🛍️ Shipping thousands? Zenstores keeps your seasonal stock moving and customers coming back."
+    }
+  },
+  "Food & Drink": {
+    cases: ["Alex's Apples", "Tom's Tomatoes", "Mikey's Munch"],
+    personas: {
+      low: "🍏 Fresh start? Small food businesses need reliability — we’ve got your back.",
+      mid: "🥦 Mid-growth? Zenstores keeps perishable orders precise and on-time.",
+      high: "🚚 High-volume? Zenstores helps you ship fast and scale fearlessly."
+    }
+  },
+  "Beauty & Fitness": {
+    cases: ["Alex's Algae", "Tom's Training", "Mikey's Mascara"],
+    personas: {
+      low: "💄 New brand? We help beauty businesses look polished from the first parcel.",
+      mid: "📦 Growing? Zenstores makes fulfilment seamless as orders rise.",
+      high: "💪 Big brand? Get speed, automation, and reliability at scale."
+    }
+  },
+  "Other": {
+    cases: ["Alex's Antiques", "Tom's Tools", "Mikey's Machines"],
+    personas: {
+      low: "🛠️ Just starting? Zenstores gets your operation off the ground.",
+      mid: "⚙️ Growing brand? We simplify shipping and save you hours.",
+      high: "🏭 High-volume? Zenstores powers your next stage of growth."
+    }
+  }
 };
 
 const categoryButtons = document.querySelectorAll('.category-btn');
 const personaMessage = document.getElementById('personaMessage');
 const orderSlider = document.getElementById('orders');
 const orderValueDisplay = document.getElementById('orderValue');
-const aovInput = document.getElementById('aov');
 const similarBusinessesContainer = document.getElementById('similarBusinesses');
 
 let selectedCategory = 'Fashion';
 
-// Update persona message and examples based on category and orders
+function getOrderTier(orders) {
+  if (orders < 1000) return 'low';
+  if (orders < 5000) return 'mid';
+  return 'high';
+}
+
 function updatePersonaAndBusinesses() {
   const orders = Number(orderSlider.value);
   orderValueDisplay.textContent = orders.toLocaleString();
 
-  const categoryArray = personaData[selectedCategory];
-  let personaObj = categoryArray.find(item => orders <= item.maxOrders);
+  const cat = categories[selectedCategory];
+  const tier = getOrderTier(orders);
 
-  if (!personaObj) {
-    personaObj = categoryArray[categoryArray.length - 1];
-  }
+  // Update persona text
+  personaMessage.textContent = cat.personas[tier];
 
-  personaMessage.textContent = `You’re a "${personaObj.persona}". Similar businesses:`;
-  renderSimilarBusinesses(personaObj.businessExamples);
-}
-
-// Render similar business examples
-function renderSimilarBusinesses(businesses) {
+  // Update example businesses
   similarBusinessesContainer.innerHTML = '';
-  businesses.forEach(biz => {
+  cat.cases.forEach(biz => {
     const div = document.createElement('div');
     div.className = 'business-box';
     div.textContent = biz;
@@ -72,11 +77,8 @@ categoryButtons.forEach(button => {
   });
 });
 
-// Input change handlers
+// Input change handler
 orderSlider.addEventListener('input', updatePersonaAndBusinesses);
-aovInput.addEventListener('input', () => {
-  // Could add logic if needed based on AOV input
-});
 
 // Initialize on load
 updatePersonaAndBusinesses();
