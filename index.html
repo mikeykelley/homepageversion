@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zenstores Demo</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
@@ -26,6 +26,7 @@
         step="250"
         value="0"
         list="tickmarks"
+        aria-label="Order volume"
       />
       <datalist id="tickmarks">
         <option value="0" label="0"></option>
@@ -34,10 +35,10 @@
         <option value="15000"></option>
         <option value="20000" label="20,000+"></option>
       </datalist>
-      <div>Orders: <span id="orderValue">0</span></div>
+      <div class="orders-display">Orders: <span id="orderValue">0</span></div>
 
       <label for="aov">Average Order Value (£)</label>
-      <input type="number" id="aov" value="50" min="0" />
+      <input type="number" id="aov" value="50" min="0" aria-label="Average order value" />
 
       <button class="cta">Get Started</button>
       <button class="cta see-action">See it in action</button>
@@ -49,9 +50,7 @@
       </div>
       <div class="case-studies">
         <h3>Similar businesses we've helped</h3>
-        <div class="case-cards" id="caseCards">
-          <!-- dynamically populated -->
-        </div>
+        <div class="case-cards" id="caseCards"></div>
       </div>
     </div>
   </div>
