@@ -37,7 +37,7 @@ function updatePersonaAndBusinesses() {
     personaObj = categoryArray[categoryArray.length - 1];
   }
 
-  personaMessage.textContent = `You’re a "${personaObj.persona}". Similar business:`;
+  personaMessage.textContent = `You’re a "${personaObj.persona}".`;
 
   // Clear previous content
   similarBusinessesContainer.innerHTML = '';
