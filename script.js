@@ -1,35 +1,39 @@
 const categories = {
   "Fashion": {
-    cases: ["Alex's Aprons", "Tom's Tees", "Mikey's Mitten's"],
-    personas: {
-      low: "👗 Starting out? Fashion brands often juggle packaging & stock. Zenstores simplifies it so you can focus on trends.",
-      mid: "🧵 Scaling up? Zenstores streamlines fashion fulfilment so you can stay on top of demand.",
-      high: "🛍️ Shipping thousands? Zenstores keeps your seasonal stock moving and customers coming back."
-    }
+    baseText: "Fashion businesses often deal with fast-moving trends and seasonal stock. Optimise your fulfilment to keep customers happy and returns low.",
+    volumeTexts: [
+      "Small-scale fashion shops focusing on niche items with steady seasonal demand.",
+      "Mid-volume fashion brands juggling multiple product lines and seasonal spikes.",
+      "High-demand fashion businesses managing large-scale stock and quick turnaround times."
+    ],
+    caseStudies: ["Alex's Aprons", "Tom's Tees", "Mikey's Mittens"]
   },
   "Food & Drink": {
-    cases: ["Alex's Apples", "Tom's Tomatoes", "Mikey's Munch"],
-    personas: {
-      low: "🍏 Fresh start? Small food businesses need reliability — we’ve got your back.",
-      mid: "🥦 Mid-growth? Zenstores keeps perishable orders precise and on-time.",
-      high: "🚚 High-volume? Zenstores helps you ship fast and scale fearlessly."
-    }
+    baseText: "Food & Drink requires precision and speed to maintain freshness. Zenstores helps you deliver on time, every time.",
+    volumeTexts: [
+      "Local food vendors ensuring fresh delivery with small batch orders.",
+      "Mid-size food & drink brands managing inventory and seasonal trends.",
+      "Large-scale fresh food businesses needing streamlined cold-chain fulfilment."
+    ],
+    caseStudies: ["Alex's Apples", "Tom's Tomatoes", "Mikey's Munch"]
   },
   "Beauty & Fitness": {
-    cases: ["Alex's Algae", "Tom's Training", "Mikey's Mascara"],
-    personas: {
-      low: "💄 New brand? We help beauty businesses look polished from the first parcel.",
-      mid: "📦 Growing? Zenstores makes fulfilment seamless as orders rise.",
-      high: "💪 Big brand? Get speed, automation, and reliability at scale."
-    }
+    baseText: "Beauty & Fitness brands benefit from streamlined packaging and tracking to enhance customer loyalty.",
+    volumeTexts: [
+      "Small beauty startups focusing on organic and handmade products.",
+      "Growing fitness brands with expanding product ranges and memberships.",
+      "Major beauty & fitness companies balancing high order volumes with personalised service."
+    ],
+    caseStudies: ["Alex's Algae", "Tom's Training", "Mikey's Mascara"]
   },
   "Other": {
-    cases: ["Alex's Antiques", "Tom's Tools", "Mikey's Machines"],
-    personas: {
-      low: "🛠️ Just starting? Zenstores gets your operation off the ground.",
-      mid: "⚙️ Growing brand? We simplify shipping and save you hours.",
-      high: "🏭 High-volume? Zenstores powers your next stage of growth."
-    }
+    baseText: "Various businesses with unique fulfilment needs. Zenstores adapts to keep your operations smooth.",
+    volumeTexts: [
+      "Small businesses with tailored, hands-on fulfilment requirements.",
+      "Mid-sized companies balancing complexity and efficiency in orders.",
+      "Large operations with diverse product ranges and high order volumes."
+    ],
+    caseStudies: ["Business A", "Business B", "Business C"]
   }
 };
 
@@ -37,30 +41,37 @@ const categoryButtons = document.querySelectorAll(".category-btn");
 const personaMessage = document.getElementById("personaMessage");
 const ordersInput = document.getElementById("orders");
 const orderValue = document.getElementById("orderValue");
-const case1 = document.getElementById("case1");
-const case2 = document.getElementById("case2");
-const case3 = document.getElementById("case3");
+const caseCardsContainer = document.getElementById("caseCards");
 
 let selectedCategory = "Fashion";
 
 function getVolumeTier(orders) {
-  if (orders <= 2000) return "low";
-  if (orders <= 10000) return "mid";
-  return "high";
+  if (orders < 5000) return 0;
+  if (orders < 15000) return 1;
+  return 2;
 }
 
 function updatePersona() {
   const orders = parseInt(ordersInput.value, 10);
-  const tier = getVolumeTier(orders);
-  const persona = categories[selectedCategory].personas[tier];
-  personaMessage.textContent = persona;
+  const categoryData = categories[selectedCategory];
+  if (!categoryData) {
+    personaMessage.textContent = "";
+    return;
+  }
+  const volumeTier = getVolumeTier(orders);
+  const volumeText = categoryData.volumeTexts[volumeTier];
+  personaMessage.textContent = volumeText || categoryData.baseText;
 }
 
-function updateCases() {
-  const cases = categories[selectedCategory].cases;
-  case1.textContent = cases[0];
-  case2.textContent = cases[1];
-  case3.textContent = cases[2];
+function updateCaseStudies() {
+  caseCardsContainer.innerHTML = "";
+  const caseStudies = categories[selectedCategory]?.caseStudies || [];
+  caseStudies.forEach(name => {
+    const div = document.createElement("div");
+    div.className = "case-box";
+    div.textContent = name;
+    caseCardsContainer.appendChild(div);
+  });
 }
 
 categoryButtons.forEach(button => {
@@ -69,15 +80,16 @@ categoryButtons.forEach(button => {
     button.classList.add("selected");
     selectedCategory = button.getAttribute("data-category");
     updatePersona();
-    updateCases();
+    updateCaseStudies();
   });
 });
 
 ordersInput.addEventListener("input", () => {
-  orderValue.textContent = ordersInput.value >= 20000 ? "20,000+" : ordersInput.value;
+  orderValue.textContent = Number(ordersInput.value).toLocaleString();
   updatePersona();
 });
 
-// Initial setup
+// Set initial display
+orderValue.textContent = Number(ordersInput.value).toLocaleString();
 updatePersona();
-updateCases();
+updateCaseStudies();
