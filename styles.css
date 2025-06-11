@@ -1,5 +1,3 @@
-/* style.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 body {
@@ -53,8 +51,29 @@ body {
 input[type="range"] {
   width: 100%;
   margin-top: 8px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   cursor: pointer;
+}
+
+#orders::-webkit-slider-thumb {
+  cursor: pointer;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .cta {
@@ -69,10 +88,23 @@ input[type="range"] {
   transition: background-color 0.3s ease;
   width: 100%;
   font-family: 'Inter', sans-serif;
+  margin-top: 20px;
 }
 
 .cta:hover {
   background-color: #1f2acb;
+}
+
+.see-action {
+  background-color: transparent;
+  color: #052424; /* Zen Black */
+  border: 2px solid #052424;
+  margin-top: 10px;
+}
+
+.see-action:hover {
+  background-color: #052424;
+  color: white;
 }
 
 .results {
