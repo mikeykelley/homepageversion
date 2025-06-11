@@ -47,7 +47,7 @@ function updatePersonaAndBusinesses() {
     personaObj = categoryArray[categoryArray.length - 1];
   }
 
-  personaMessage.textContent = You’re a "${personaObj.persona}". Similar businesses:;
+  personaMessage.textContent = `You’re a "${personaObj.persona}". Similar businesses:`;
   renderSimilarBusinesses(personaObj.businessExamples);
 }
 
@@ -74,8 +74,9 @@ categoryButtons.forEach(button => {
 
 // Input change handlers
 orderSlider.addEventListener('input', updatePersonaAndBusinesses);
+
 aovInput.addEventListener('input', () => {
-  // Could add logic if needed based on AOV input
+  // You can add logic here if needed based on AOV input
 });
 
 // Initialize on load
