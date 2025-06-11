@@ -221,18 +221,4 @@ input[type="number"]:focus {
 
 .business-box {
   background-color: var(--zen-pink-standard);
-  border-radius: 10px;
-  padding: 14px 18px;
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--zen-black);
-  box-shadow: 0 3px 10px rgba(5, 36, 36, 0.12);
-  flex: 1 1 140px;
-  text-align: center;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-
-.business-box:hover {
-  background-color: var(--zen-pink);
-}
+  border-radius: 10px
