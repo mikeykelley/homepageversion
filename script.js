@@ -1,36 +1,88 @@
-// Update displayed orders and recalc
-function updateOrderValue() {
-  const orders = parseInt(document.getElementById('orders').value);
-  document.getElementById('orderValue').textContent = orders.toLocaleString();
-  calculateAll();
+// Elements
+const categoryButtons = document.querySelectorAll('.category-btn');
+const personaMessage = document.getElementById('personaMessage');
+const ordersInput = document.getElementById('orders');
+const orderValueSpan = document.getElementById('orderValue');
+const aovInput = document.getElementById('aov');
+
+const errorsCostSpan = document.getElementById('errorsCost');
+const timeCostSpan = document.getElementById('timeCost');
+const missedRevenueSpan = document.getElementById('missedRevenue');
+const totalSpan = document.getElementById('total');
+
+// Persona messages data
+const personaMessages = {
+  "Fashion": "Small independent clothing, shoe and accessories brands. High volume, fast shipping, and easy returns are key to keeping your customers happy.",
+  "Food & Drink": "Food & drink brands with perishable goods needing fast, reliable delivery and clear communication.",
+  "Beauty & Fitness": "Brands focused on beauty, wellness, and fitness products. Customers expect personalisation and fast shipping.",
+  "Home & Garden": "Homewares and garden supplies retailers, with varied product sizes and shipping needs."
+};
+
+// Selected category (default)
+let selectedCategory = "Fashion";
+
+// Update selected category styling and persona message
+function updateCategory(category) {
+  selectedCategory = category;
+  categoryButtons.forEach(btn => {
+    btn.classList.toggle('selected', btn.dataset.category === category);
+  });
+  personaMessage.textContent = personaMessages[category];
+  calculateSavings();
 }
 
-// Calculate the cheapest Zenstores plan price
-function calculateZenstoresPrice(orders) {
-  const planA = 79 + orders * 0.07;
-  const planB = 159 + orders * 0.04;
-  return Math.min(planA, planB);
-}
+// Calculate and update savings outputs
+function calculateSavings() {
+  const orders = Number(ordersInput.value);
+  const aov = Number(aovInput.value);
 
-// Determine persona tier and message based on orders and category
-function getPersonaMessage(orders, category) {
-  let baseMsg = '';
-  if (orders < 2000) {
-    baseMsg = "You're running a startup-level business, focusing on establishing your operations and optimizing early growth.";
-  } else if (orders < 10000) {
-    baseMsg = "Your business is growing steadily. With more orders to manage, efficiency and error prevention are crucial.";
-  } else {
-    baseMsg = "You operate at enterprise scale with high order volumes. Zenstores offers advanced automation and insights to maximize ROI and keep fulfilment seamless at scale.";
+  // Prevent invalid input
+  if (aov <= 0) {
+    errorsCostSpan.textContent = '0';
+    timeCostSpan.textContent = '0';
+    missedRevenueSpan.textContent = '0';
+    totalSpan.textContent = '0';
+    return;
   }
 
-  let categoryMsg = '';
-  switch (category) {
-    case 'fashion':
-      categoryMsg = "Fashion businesses often deal with seasonal trends and returns — automation helps keep your supply chain agile.";
-      break;
-    case 'food':
-      categoryMsg = "Food & Drink requires fast, accurate fulfilment with temperature controls and expiry date tracking.";
-      break;
-    case 'beauty':
-      categoryMsg = "Beauty & Fitness brands benefit from streamlined inventory and multi-channel sales management.";
-      break
+  // Constants & assumptions
+  const errorRate = 0.005; // 0.5% packing errors
+  const wagePerHour = 12;
+  const processTimeMinutes = 3;
+  const margin = 0.5; // 50%
+  const baselineConversion = 0.03;
+  const upliftConversion = 0.10; // 10% uplift on baseline
+
+  // Error cost: orders * errorRate * AOV * margin
+  const errorsCost = orders * errorRate * aov * margin;
+
+  // Time saved: orders * processTime / 60 (hours) * wage per hour
+  const timeCost = orders * (processTimeMinutes / 60) * wagePerHour;
+
+  // Missed revenue: orders * aov * baselineConversion * upliftConversion
+  const missedRevenue = orders * aov * baselineConversion * upliftConversion;
+
+  // Total
+  const total = errorsCost + timeCost + missedRevenue;
+
+  // Update UI
+  errorsCostSpan.textContent = errorsCost.toFixed(0);
+  timeCostSpan.textContent = timeCost.toFixed(0);
+  missedRevenueSpan.textContent = missedRevenue.toFixed(0);
+  totalSpan.textContent = total.toFixed(0);
+}
+
+// Event listeners
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', () => updateCategory(btn.dataset.category));
+});
+ordersInput.addEventListener('input', () => {
+  orderValueSpan.textContent = ordersInput.value;
+  calculateSavings();
+});
+aovInput.addEventListener('input', calculateSavings);
+
+// Initialize
+updateCategory(selectedCategory);
+calculateSavings();
+
