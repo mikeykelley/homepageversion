@@ -1,18 +1,63 @@
 const personaData = {
   "Food & Drink": [
-    { maxOrders: 1000, persona: "Food & Drink Startup", businessExample: "Alex's Apples" },
-    { maxOrders: 5000, persona: "Taste Explorer", businessExample: "Tom's Tomatoes" },
-    { maxOrders: Infinity, persona: "Food Industry Leader", businessExample: "Mikey's Munch" }
+    {
+      maxOrders: 1000,
+      persona: "Food & Drink Startup",
+      businessExample: "Alex's Apples",
+      challenges: ["📦 Challenge 1", "⏱ Challenge 2", "💰 Challenge 3"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Taste Explorer",
+      businessExample: "Tom's Tomatoes",
+      challenges: ["📦 Challenge 4", "⏱ Challenge 5", "💰 Challenge 6"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Food Industry Leader",
+      businessExample: "Mikey's Munch",
+      challenges: ["📦 Challenge 7", "⏱ Challenge 8", "💰 Challenge 9"]
+    }
   ],
   "Beauty & Fitness": [
-    { maxOrders: 1000, persona: "Beauty Beginner", businessExample: "Alex's Algae" },
-    { maxOrders: 5000, persona: "Health Enthusiast", businessExample: "Tom's Training" },
-    { maxOrders: Infinity, persona: "Industry Icon", businessExample: "Mikey's Mascara" }
+    {
+      maxOrders: 1000,
+      persona: "Beauty Beginner",
+      businessExample: "Alex's Algae",
+      challenges: ["🧴 Challenge 1", "🚚 Challenge 2", "📊 Challenge 3"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Health Enthusiast",
+      businessExample: "Tom's Training",
+      challenges: ["🧴 Challenge 4", "🚚 Challenge 5", "📊 Challenge 6"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Industry Icon",
+      businessExample: "Mikey's Mascara",
+      challenges: ["🧴 Challenge 7", "🚚 Challenge 8", "📊 Challenge 9"]
+    }
   ],
   "Fashion": [
-    { maxOrders: 1000, persona: "Style Starter", businessExample: "Alex's Aprons" },
-    { maxOrders: 5000, persona: "Fashion Enthusiast", businessExample: "Tom's Tees" },
-    { maxOrders: Infinity, persona: "Fashion Powerhouse", businessExample: "Mikey's Mittens" }
+    {
+      maxOrders: 1000,
+      persona: "Style Starter",
+      businessExample: "Alex's Aprons",
+      challenges: ["👕 Challenge 1", "📦 Challenge 2", "💸 Challenge 3"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Fashion Enthusiast",
+      businessExample: "Tom's Tees",
+      challenges: ["👕 Challenge 4", "📦 Challenge 5", "💸 Challenge 6"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Fashion Powerhouse",
+      businessExample: "Mikey's Mittens",
+      challenges: ["👕 Challenge 7", "📦 Challenge 8", "💸 Challenge 9"]
+    }
   ]
 };
 
