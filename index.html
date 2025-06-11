@@ -3,67 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Homepage with Calculator</title>
+  <title>Zenstores Demo</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page-container">
-    <!-- Left side: simplified homepage intro -->
-    <section class="homepage-intro">
-      <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
-      <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
 
-      <div class="buttons-row">
-        <button class="btn get-started">Get Started</button>
-        <button class="btn see-action">See it in action</button>
-      </div>
+  <div class="container">
 
-      <div class="reviews-row">
+    <div class="left-panel">
+      <button class="btn btn-primary">Get Started</button>
+      <button class="btn btn-outline">See it in action</button>
+
+      <div class="reviews">
         <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify App Store Reviews" />
         <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
       </div>
-    </section>
+    </div>
 
-    <!-- Right side: calculator widget -->
-    <section class="calculator-container">
-      <div class="calculator current-logic">
-        <h2>What's the opportunity?</h2>
+    <div class="right-panel">
 
-        <!-- Business category selector -->
-        <div class="business-category">
-          <p>Select your business category:</p>
-          <div class="category-buttons">
-            <button data-category="Fashion" class="category-btn selected" title="Fashion">
-              👗<br /><span>Fashion</span>
-            </button>
-            <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
-              🍔<br /><span>Food & Drink</span>
-            </button>
-            <button data-category="Beauty & Fitness" class="category-btn" title="Beauty & Fitness">
-              💄<br /><span>Beauty & Fitness</span>
-            </button>
-            <button data-category="Other" class="category-btn" title="Other">
-              🏡<br /><span>Other</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Persona message below category -->
-        <div id="personaMessage" class="persona-box"></div>
-
-        <!-- Monthly orders slider -->
-        <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
-        <input type="range" id="orders" min="250" max="20000" value="250" step="250" />
-
-        <!-- Average order value -->
-        <label for="aov">Average Order Value (£):</label>
-        <input type="number" id="aov" value="50" min="0" />
-
-        <!-- Similar businesses we've helped -->
-        <h3>Similar businesses we've helped</h3>
-        <div id="similarBusinesses" class="similar-businesses-container"></div>
+      <div class="category-selection">
+        <button class="category-btn selected" data-category="Fashion">Fashion</button>
+        <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
+        <button class="category-btn" data-category="Beauty & Fitness">Beauty & Fitness</button>
+        <button class="category-btn" data-category="Other">Other</button>
       </div>
-    </section>
+
+      <p id="personaMessage" class="persona-message"></p>
+
+      <label for="orders" class="orders-label">Order volume:</label>
+      <input type="range" min="1000" max="20000" value="1000" step="250" id="orders" />
+      <div class="order-value-display">Orders: <span id="orderValue">1,000</span></div>
+
+      <h3>Similar businesses we've helped</h3>
+      <div id="similarBusinesses" class="businesses-container"></div>
+
+    </div>
+
   </div>
 
   <script src="script.js"></script>
