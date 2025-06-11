@@ -2,10 +2,10 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #FFEFEB; /* Zenstores pink light */
+  background-color: #FFEFEB; /* Zen pink light */
   margin: 0;
   padding: 20px;
-  color: #052424; /* Zen Black */
+  color: #052424; /* Zen black */
 }
 
 .container {
@@ -29,7 +29,7 @@ body {
 
 .category-btn {
   background-color: transparent;
-  border: 2px solid #283CFF; /* Zen Blue */
+  border: 2px solid #283CFF; /* Zen blue */
   color: #283CFF;
   font-weight: 600;
   padding: 10px 15px;
@@ -38,7 +38,6 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 16px;
-  font-family: 'Inter', sans-serif;
 }
 
 .category-btn.selected,
@@ -48,36 +47,38 @@ body {
   border-color: #283CFF;
 }
 
-input[type="range"] {
-  width: 100%;
-  margin-top: 8px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
-
-#orders::-webkit-slider-thumb {
-  cursor: pointer;
-}
-
 label {
   font-weight: 600;
   display: block;
   margin-top: 10px;
   margin-bottom: 5px;
+  font-size: 16px;
+}
+
+input[type="range"] {
+  width: 100%;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.orders-display {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 16px;
 }
 
 input[type="number"] {
   width: 100%;
   padding: 8px;
   font-size: 16px;
-  font-family: 'Inter', sans-serif;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
 .cta {
-  background-color: #283CFF; /* Zen Blue */
+  background-color: #283CFF; /* Zen blue */
   border: none;
   color: white;
   font-weight: 700;
@@ -87,7 +88,6 @@ input[type="number"] {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
-  font-family: 'Inter', sans-serif;
   margin-top: 20px;
 }
 
@@ -97,7 +97,7 @@ input[type="number"] {
 
 .see-action {
   background-color: transparent;
-  color: #052424; /* Zen Black */
+  color: #052424; /* Zen black */
   border: 2px solid #052424;
   margin-top: 10px;
 }
@@ -113,6 +113,9 @@ input[type="number"] {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(40, 60, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .persona-section p {
@@ -121,14 +124,13 @@ input[type="number"] {
   font-weight: 400;
   color: #052424;
   margin-bottom: 25px;
-  font-family: 'Inter', sans-serif;
 }
 
 .case-studies h3 {
   font-weight: 700;
   color: #283CFF;
   margin-bottom: 15px;
-  font-family: 'Inter', sans-serif;
+  font-size: 22px;
 }
 
 .case-cards {
@@ -141,7 +143,7 @@ input[type="number"] {
   background-color: white;
   border-radius: 10px;
   padding: 20px;
-  flex: 1;
+  flex-basis: calc(33.33% - 10px);
   box-shadow: 0 2px 6px rgba(5, 36, 36, 0.15);
   color: #052424;
   font-weight: 600;
@@ -154,7 +156,6 @@ input[type="number"] {
   user-select: none;
   border: 2px solid transparent;
   transition: border-color 0.3s ease;
-  font-family: 'Inter', sans-serif;
 }
 
 .case-box:hover {
