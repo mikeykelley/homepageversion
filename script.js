@@ -1,19 +1,35 @@
 const categories = {
   "Fashion": {
-    persona: "Fashion businesses often deal with fast-moving trends and seasonal stock. Optimise your fulfilment to keep customers happy and returns low.",
-    examples: ["Alex's Aprons", "Tom's Tees", "Mikey's Mittens"]
+    cases: ["Alex's Aprons", "Tom's Tees", "Mikey's Mitten's"],
+    personas: {
+      low: "Fashion brands just starting out often deal with stock organisation and basic fulfilment. We help streamline those first steps.",
+      mid: "Scaling fashion brands often find fulfilment eats time. Zenstores frees you up to grow.",
+      high: "Established fashion businesses rely on speed and seasonal flexibility. Zenstores keeps you agile."
+    }
   },
   "Food & Drink": {
-    persona: "Food & Drink requires precision and speed to maintain freshness. Zenstores helps you deliver on time, every time.",
-    examples: ["Alex's Apples", "Tom's Tomatoes", "Mikey's Munch"]
+    cases: ["Alex's Apples", "Tom's Tomatoes", "Mikey's Munch"],
+    personas: {
+      low: "Smaller food businesses need to nail freshness and timings. Zenstores ensures on-time delivery.",
+      mid: "At mid-scale, keeping perishable orders accurate becomes harder. Zenstores gives you precision.",
+      high: "For high volume food brands, efficiency is everything. Zenstores helps you scale without slipping."
+    }
   },
   "Beauty & Fitness": {
-    persona: "Beauty & Fitness brands benefit from streamlined packaging and tracking to enhance customer loyalty.",
-    examples: ["Alex's Algae", "Tom's Training", "Mikey's Mascara"]
+    cases: ["Alex's Algae", "Tom's Training", "Mikey's Mascara"],
+    personas: {
+      low: "Early-stage beauty brands benefit from polished packaging and fast fulfilment. Zenstores has you covered.",
+      mid: "As demand grows, managing shipments gets trickier. Zenstores makes it seamless.",
+      high: "High-volume health and beauty brands rely on automation. Zenstores delivers reliability at scale."
+    }
   },
   "Other": {
-    persona: "No matter your business type, Zenstores helps you simplify shipping and scale faster.",
-    examples: ["Alex's Anything", "Tom's Tools", "Mikey's Market"]
+    cases: ["Alex's Antiques", "Tom's Tools", "Mikey's Machines"],
+    personas: {
+      low: "Getting started? Zenstores simplifies your shipping from day one.",
+      mid: "Growing pains? We help streamline your operation.",
+      high: "High-volume orders need structure. Zenstores brings it."
+    }
   }
 };
 
@@ -21,27 +37,30 @@ const categoryButtons = document.querySelectorAll(".category-btn");
 const personaMessage = document.getElementById("personaMessage");
 const ordersInput = document.getElementById("orders");
 const orderValue = document.getElementById("orderValue");
-const caseStudyList = document.getElementById("caseStudyList");
+const case1 = document.getElementById("case1");
+const case2 = document.getElementById("case2");
+const case3 = document.getElementById("case3");
 
 let selectedCategory = "Fashion";
 
+function getVolumeTier(orders) {
+  if (orders <= 2000) return "low";
+  if (orders <= 10000) return "mid";
+  return "high";
+}
+
 function updatePersona() {
-  const category = categories[selectedCategory];
-  if (category) {
-    personaMessage.textContent = category.persona;
-  }
+  const orders = parseInt(ordersInput.value, 10);
+  const tier = getVolumeTier(orders);
+  const persona = categories[selectedCategory].personas[tier];
+  personaMessage.textContent = persona;
 }
 
-function updateCaseStudies() {
-  const examples = categories[selectedCategory]?.examples || [];
-  caseStudyList.innerHTML = examples
-    .map(name => `<div class="case-study">${name}</div>`)
-    .join("");
-}
-
-function updateSliderLabel() {
-  const value = parseInt(ordersInput.value, 10);
-  orderValue.textContent = value >= 20000 ? "20,000+" : value;
+function updateCases() {
+  const cases = categories[selectedCategory].cases;
+  case1.textContent = cases[0];
+  case2.textContent = cases[1];
+  case3.textContent = cases[2];
 }
 
 categoryButtons.forEach(button => {
@@ -50,13 +69,15 @@ categoryButtons.forEach(button => {
     button.classList.add("selected");
     selectedCategory = button.getAttribute("data-category");
     updatePersona();
-    updateCaseStudies();
+    updateCases();
   });
 });
 
-ordersInput.addEventListener("input", updateSliderLabel);
+ordersInput.addEventListener("input", () => {
+  orderValue.textContent = ordersInput.value >= 20000 ? "20,000+" : ordersInput.value;
+  updatePersona();
+});
 
-// Initial load
+// Initial setup
 updatePersona();
-updateCaseStudies();
-updateSliderLabel();
+updateCases();
