@@ -1,6 +1,6 @@
 const personaData = {
   "Food & Drink": [
-    { maxOrders: 1000, persona: "Foodie Newbie", businessExample: "Alex's Apples" },
+    { maxOrders: 1000, persona: "Food & Drink Startup. Manual Fulfilment, prone to human error", businessExample: "Alex's Apples" },
     { maxOrders: 5000, persona: "Taste Explorer", businessExample: "Tom's Tomatoes" },
     { maxOrders: Infinity, persona: "Food Industry Leader", businessExample: "Mikey's Munch" }
   ],
