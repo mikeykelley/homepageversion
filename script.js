@@ -1,3 +1,6 @@
+// Current selected category (default 'fashion')
+let selectedCategory = 'fashion';
+
 // Update displayed orders and recalc
 function updateOrderValue() {
   const orders = parseInt(document.getElementById('orders').value);
@@ -5,22 +8,36 @@ function updateOrderValue() {
   calculateAll();
 }
 
-// Calculate the cheapest Zenstores plan price
-function calculateZenstoresPrice(orders) {
-  const planA = 79 + orders * 0.07;
-  const planB = 159 + orders * 0.04;
-  return Math.min(planA, planB);
-}
-
-// Determine persona tier and message based on orders
-function getPersonaMessage(orders) {
+// Determine persona tier and message based on orders and category
+function getPersonaMessage(orders, category) {
+  // Simple example with category influence (can expand later)
+  let baseMessage = '';
   if (orders < 2000) {
-    return `<strong>Startup Tier</strong>: You're running a startup-level business, focusing on establishing your operations and optimizing early growth. Zenstores can help automate key tasks and reduce errors as you scale.`;
+    baseMessage = `<strong>Startup Tier</strong>: You're running a startup-level business, focusing on establishing your operations and optimizing early growth.`;
   } else if (orders < 10000) {
-    return `<strong>Growing Tier</strong>: Your business is growing steadily. With more orders to manage, efficiency and error prevention are crucial. Zenstores provides scalable tools to support your expanding team and processes.`;
+    baseMessage = `<strong>Growing Tier</strong>: Your business is growing steadily. With more orders to manage, efficiency and error prevention are crucial.`;
   } else {
-    return `<strong>Scaling Tier</strong>: You operate at enterprise scale with high order volumes. Zenstores offers advanced automation and insights to maximize ROI and keep fulfilment seamless at scale.`;
+    baseMessage = `<strong>Scaling Tier</strong>: You operate at enterprise scale with high order volumes.`;
   }
+
+  // Add category-specific info
+  let categoryMessage = '';
+  switch(category) {
+    case 'fashion':
+      categoryMessage = " Your fashion business can benefit from streamlined inventory and fast shipping.";
+      break;
+    case 'food':
+      categoryMessage = " Food & Drink businesses need strict temperature control and timely delivery.";
+      break;
+    case 'beauty':
+      categoryMessage = " Beauty & Fitness requires careful handling and personalized customer service.";
+      break;
+    case 'home':
+      categoryMessage = " Home & Garden involves diverse product sizes and delivery challenges.";
+      break;
+  }
+
+  return baseMessage + categoryMessage;
 }
 
 // Main calculation function
@@ -45,29 +62,4 @@ function calculateAll() {
   const upliftedRevenue = baseRevenue * conversionRate * conversionUplift * grossMargin;
 
   // Total savings
-  const totalSavings = errorLoss + timeSaved + upliftedRevenue;
-
-  // Zenstores cost
-  const zenstoresCost = calculateZenstoresPrice(orders);
-
-  // ROI
-  const roi = zenstoresCost > 0 ? totalSavings / zenstoresCost : 0;
-
-  // Update DOM
-  document.getElementById('errorsCost').textContent = errorLoss.toFixed(0);
-  document.getElementById('timeCost').textContent = timeSaved.toFixed(0);
-  document.getElementById('missedRevenue').textContent = upliftedRevenue.toFixed(0);
-  document.getElementById('total').textContent = totalSavings.toFixed(0);
-  document.getElementById('zenstoresPrice').textContent = zenstoresCost.toFixed(0);
-  document.getElementById('roiMultiplier').textContent = roi.toFixed(1) + 'x';
-
-  // Persona message
-  document.getElementById('personaMessage').innerHTML = getPersonaMessage(orders);
-}
-
-// Event listeners
-document.getElementById('orders').addEventListener('input', updateOrderValue);
-document.getElementById('aov').addEventListener('input', calculateAll);
-
-// Initial calculation
-updateOrderValue();
+  const totalSavings = errorLoss + timeSaved +
