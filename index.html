@@ -2,43 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
-  <title>Zenstores Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenstores Persona Tool</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="container">
-    <div class="left-panel">
-      <h1>Zenstores</h1>
-      <div class="button-group">
-        <button class="btn primary">Get Started</button>
-        <button class="btn secondary">See it in Action</button>
+    <div class="form">
+      <h1>Find your fulfilment edge</h1>
+      <p>Select your business type:</p>
+      <div class="category-buttons">
+        <button class="category-btn selected" data-category="Fashion">👗 Fashion</button>
+        <button class="category-btn" data-category="Food & Drink">🍎 Food & Drink</button>
+        <button class="category-btn" data-category="Beauty & Fitness">💄 Beauty & Fitness</button>
+        <button class="category-btn" data-category="Other">🛠️ Other</button>
       </div>
-      <div class="reviews">
-        <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify Reviews" />
-        <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
-      </div>
+
+      <p>Average monthly orders: <span id="orderValue">1000</span></p>
+      <input type="range" id="orders" min="0" max="20000" step="250" value="1000" />
+
+      <button class="cta">👀 See it in action</button>
     </div>
 
-    <div class="right-panel">
-      <div class="category-selector">
-        <button class="category-btn selected" data-category="Fashion">Fashion</button>
-        <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
-        <button class="category-btn" data-category="Beauty & Fitness">Beauty & Fitness</button>
-        <button class="category-btn" data-category="Other">Other</button>
+    <div class="results">
+      <div class="persona-section">
+        <p id="personaMessage"></p>
       </div>
-
-      <div class="slider-section">
-        <label for="orders">Orders per Month: <span id="orderValue">250</span></label>
-        <input type="range" id="orders" min="250" max="20000" step="250" value="250" />
-      </div>
-
-      <div id="personaMessage" class="persona-box"></div>
-
       <div class="case-studies">
-        <div class="case-study-box" id="case1"></div>
-        <div class="case-study-box" id="case2"></div>
-        <div class="case-study-box" id="case3"></div>
+        <h3>Similar businesses we've helped</h3>
+        <div class="case-cards">
+          <div class="case-box" id="case1"></div>
+          <div class="case-box" id="case2"></div>
+          <div class="case-box" id="case3"></div>
+        </div>
       </div>
     </div>
   </div>
