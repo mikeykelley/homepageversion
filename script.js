@@ -4,19 +4,22 @@ const personaData = {
       maxOrders: 1000,
       persona: "Food & Drink Startup",
       businessExample: "Alex's Apples",
-      challenges: ["📦 Challenge 1", "⏱ Challenge 2", "💰 Challenge 3"]
+      challenges: ["📦 Managing storage for perishable goods", "⏱ Fulfilling orders quickly during peak demand", "💰 Keeping delivery costs low for small orders"],
+      quote: "Zenstores helped us streamline everything from packaging to dispatch. It was a game-changer for our small team."
     },
     {
       maxOrders: 5000,
       persona: "Taste Explorer",
       businessExample: "Tom's Tomatoes",
-      challenges: ["📦 Challenge 4", "⏱ Challenge 5", "💰 Challenge 6"]
+      challenges: ["📦 Managing rapid growth", "⏱ Juggling multiple courier services", "💰 Avoiding missed deliveries"],
+      quote: "As we scaled, Zenstores scaled with us. It's like having a fulfilment assistant built into our operations."
     },
     {
       maxOrders: Infinity,
       persona: "Food Industry Leader",
       businessExample: "Mikey's Munch",
-      challenges: ["📦 Challenge 7", "⏱ Challenge 8", "💰 Challenge 9"]
+      challenges: ["📦 Multi-site dispatch management", "⏱ High-volume peak periods", "💰 Streamlining courier integrations"],
+      quote: "Zenstores keeps our logistics efficient even on our busiest weeks. It’s our secret weapon."
     }
   ],
   "Beauty & Fitness": [
@@ -24,92 +27,118 @@ const personaData = {
       maxOrders: 1000,
       persona: "Beauty Beginner",
       businessExample: "Alex's Algae",
-      challenges: ["🧴 Challenge 1", "🚚 Challenge 2", "📊 Challenge 3"]
+      challenges: ["🧴 Packing small, fragile items", "🚚 Choosing the right shipping options", "📊 Understanding customer delivery expectations"],
+      quote: "Zenstores made it easy to turn fulfilment from a stress into a strength. Highly recommend!"
     },
     {
       maxOrders: 5000,
       persona: "Health Enthusiast",
       businessExample: "Tom's Training",
-      challenges: ["🧴 Challenge 4", "🚚 Challenge 5", "📊 Challenge 6"]
+      challenges: ["🧴 Managing varied SKUs", "🚚 Next-day delivery coordination", "📊 Balancing service and speed"],
+      quote: "Shipping used to be the bottleneck. Now it’s one of our strongest points thanks to Zenstores."
     },
     {
       maxOrders: Infinity,
       persona: "Industry Icon",
       businessExample: "Mikey's Mascara",
-      challenges: ["🧴 Challenge 7", "🚚 Challenge 8", "📊 Challenge 9"]
+      challenges: ["🧴 Handling thousands of daily orders", "🚚 Maintaining fast dispatch at scale", "📊 Centralising fulfilment analytics"],
+      quote: "With Zenstores, we fulfil faster, analyse better, and support more customers every day."
     }
   ],
   "Fashion": [
     {
       maxOrders: 1000,
-      persona: "Style Starter",
-      businessExample: "Alex's Aprons",
-      challenges: ["👕 Challenge 1", "📦 Challenge 2", "💸 Challenge 3"]
+      persona: "Fashion Founder",
+      businessExample: "Alex's Accessories",
+      challenges: ["👗 High return rates", "📦 Managing varied stock sizes", "⏱ Dispatching promo campaign orders"],
+      quote: "I used to dread busy periods. Zenstores handles them effortlessly now."
     },
     {
       maxOrders: 5000,
-      persona: "Fashion Enthusiast",
-      businessExample: "Tom's Tees",
-      challenges: ["👕 Challenge 4", "📦 Challenge 5", "💸 Challenge 6"]
+      persona: "Style Seller",
+      businessExample: "Tom's Threads",
+      challenges: ["👗 Multi-size inventory", "📦 Complex order bundling", "⏱ Limited packing space"],
+      quote: "Zenstores has helped us cut down fulfilment time and improve delivery consistency."
     },
     {
       maxOrders: Infinity,
-      persona: "Fashion Powerhouse",
-      businessExample: "Mikey's Mittens",
-      challenges: ["👕 Challenge 7", "📦 Challenge 8", "💸 Challenge 9"]
+      persona: "Trend Leader",
+      businessExample: "Mikey's Moda",
+      challenges: ["👗 International shipping coordination", "📦 Real-time stock tracking", "⏱ High daily order volumes"],
+      quote: "Zenstores allows our ops team to focus on growth, not admin."
+    }
+  ],
+  "Other": [
+    {
+      maxOrders: 1000,
+      persona: "Online Entrepreneur",
+      businessExample: "Alex's Art Supplies",
+      challenges: ["📦 Niche packaging needs", "⏱ Organising solo dispatch", "💰 Avoiding courier overcharges"],
+      quote: "The setup was quick and the impact was instant. Zenstores just works."
+    },
+    {
+      maxOrders: 5000,
+      persona: "Growing Operator",
+      businessExample: "Tom's Tools",
+      challenges: ["📦 Inventory accuracy", "⏱ Managing fulfilment alongside daily ops", "💰 Keeping fulfilment lean"],
+      quote: "It’s like having a fulfilment team without needing to hire one."
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Scaling Brand",
+      businessExample: "Mikey's Market",
+      challenges: ["📦 Scaling physical space", "⏱ Dispatching across channels", "💰 Forecasting courier costs"],
+      quote: "Zenstores keeps everything ticking. We’ve grown twice as fast with it in place."
     }
   ]
 };
 
 const categoryButtons = document.querySelectorAll('.category-btn');
-const personaMessage = document.getElementById('personaMessage');
 const orderSlider = document.getElementById('orders');
 const orderValueDisplay = document.getElementById('orderValue');
-const similarBusinessesContainer = document.getElementById('similarBusinesses');
+const personaMessage = document.getElementById('personaMessage');
 const challengesContainer = document.getElementById('challengesContainer');
+const similarBusinesses = document.getElementById('similarBusinesses');
 
-let selectedCategory = 'Fashion';
+let selectedCategory = "Fashion";
 
-function updatePersonaAndBusinesses() {
-  const orders = Number(orderSlider.value);
-  orderValueDisplay.textContent = orders.toLocaleString();
+function updateCalculator() {
+  const orderCount = parseInt(orderSlider.value, 10);
+  orderValueDisplay.textContent = orderCount;
 
-  const categoryArray = personaData[selectedCategory];
-  if (!categoryArray) {
-    personaMessage.textContent = `You're in a unique category. We'd love to learn more!`;
-    similarBusinessesContainer.innerHTML = '';
-    challengesContainer.innerHTML = '';
-    return;
-  }
+  const data = personaData[selectedCategory];
+  const persona = data.find(p => orderCount <= p.maxOrders);
 
-  let personaObj = categoryArray.find(item => orders <= item.maxOrders) || categoryArray[categoryArray.length - 1];
-  personaMessage.textContent = `You’re a "${personaObj.persona}".`;
+  // Update persona message with quote
+  personaMessage.innerHTML = `You're a <strong>${persona.persona}</strong><br/><em>"${persona.quote}"</em>`;
 
-  // Similar business
-  similarBusinessesContainer.innerHTML = '';
-  const businessDiv = document.createElement('div');
-  businessDiv.className = 'business-box';
-  businessDiv.textContent = personaObj.businessExample;
-  similarBusinessesContainer.appendChild(businessDiv);
-
-  // Challenges
-  challengesContainer.innerHTML = '';
-  personaObj.challenges.forEach(challenge => {
-    const li = document.createElement('li');
+  // Update challenges
+  challengesContainer.innerHTML = "";
+  persona.challenges.forEach(challenge => {
+    const li = document.createElement("li");
     li.textContent = challenge;
     challengesContainer.appendChild(li);
   });
+
+  // Update similar businesses
+  similarBusinesses.innerHTML = "";
+  const exampleDiv = document.createElement("div");
+  exampleDiv.classList.add("business-box");
+  exampleDiv.textContent = persona.businessExample;
+  similarBusinesses.appendChild(exampleDiv);
 }
 
-categoryButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    categoryButtons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    selectedCategory = button.getAttribute('data-category');
-    updatePersonaAndBusinesses();
+// Event listeners
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    categoryButtons.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedCategory = btn.dataset.category;
+    updateCalculator();
   });
 });
 
-orderSlider.addEventListener('input', updatePersonaAndBusinesses);
+orderSlider.addEventListener('input', updateCalculator);
 
-updatePersonaAndBusinesses();
+// Initial call
+updateCalculator();
