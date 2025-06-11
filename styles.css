@@ -26,7 +26,7 @@
 }
 
 .homepage-intro em strong {
-  color: #e91e63; /* pink */
+  color: #FFBEAF; /* pink */
 }
 
 .homepage-intro p {
@@ -53,7 +53,7 @@
 }
 
 .btn.get-started {
-  background-color: #e91e63;
+  background-color: #FFBEAF;
   color: white;
 }
 
@@ -131,7 +131,7 @@
 }
 
 .category-btn.selected {
-  background-color: #e91e63;
+  background-color: #FFBEAF;
   color: white;
 }
 
@@ -158,7 +158,7 @@
   appearance: none;
   width: 20px;
   height: 20px;
-  background: #e91e63;
+  background: #FFBEAF;
   border-radius: 50%;
   cursor: pointer;
   margin-top: -7px; /* center thumb vertically */
@@ -171,7 +171,7 @@
 #orders::-moz-range-thumb {
   width: 20px;
   height: 20px;
-  background: #e91e63;
+  background: #FFBEAF;
   border-radius: 50%;
   cursor: pointer;
   border: none;
@@ -191,7 +191,7 @@
 /* --- PERSONA BOX --- */
 .persona-box {
   background: #fff0f6;
-  border: 1px solid #e91e63;
+  border: 1px solid #FFBEAF;
   padding: 1rem;
   border-radius: 6px;
   margin-bottom: 1.5rem;
