@@ -1,94 +1,125 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const categoryButtons = document.querySelectorAll('.category-btn');
-  const personaMessage = document.getElementById('personaMessage');
-  const ordersSlider = document.getElementById('orders');
-  const orderValueDisplay = document.getElementById('orderValue');
-  const aovInput = document.getElementById('aov');
-  
-  let selectedCategory = 'Fashion';
-  let monthlyOrders = Number(ordersSlider.value);
-  
-  // Persona messages data: nested by category and order volume ranges
-  const personaMessages = {
-    'Fashion': [
-      { max: 1000, text: 'You’re a stylish boutique with emerging online presence.' },
-      { max: 5000, text: 'You’re growing fast in fashion e-commerce with loyal customers.' },
-      { max: 25000, text: 'You’re an established fashion brand with complex shipping needs.' },
-    ],
-    'Food & Drink': [
-      { max: 1000, text: 'Small but mighty food brand focusing on local deliveries.' },
-      { max: 5000, text: 'Growing food & drink business scaling up fulfilment.' },
-      { max: 25000, text: 'Large food & drink brand handling multiple channels and orders.' },
-    ],
-    'Beauty & Fitness': [
-      { max: 1000, text: 'Niche beauty brand building your community.' },
-      { max: 5000, text: 'You’re expanding your range and customer base steadily.' },
-      { max: 25000, text: 'You’re a leading beauty & fitness company with high demand.' },
-    ],
-    'Home & Garden': [
-      { max: 1000, text: 'Home & garden startup with focused local orders.' },
-      { max: 5000, text: 'You’re scaling your product range and shipping nationwide.' },
-      { max: 25000, text: 'You’re a well-established home & garden brand with complex logistics.' },
-    ],
-  };
-  
-  // Update the persona message based on category and volume
-  function updatePersonaMessage() {
-    const volume = monthlyOrders;
-    const messages = personaMessages[selectedCategory];
-    let matchedMessage = messages[messages.length - 1].text; // Default to highest
-    
-    for (const entry of messages) {
-      if (volume <= entry.max) {
-        matchedMessage = entry.text;
-        break;
-      }
+const categories = {
+  Fashion: [
+    {
+      volumeMax: 2000,
+      persona: "Small fashion startups needing quick turnaround for seasonal trends.",
+      example: "We've helped indie boutiques increase shipping speed by 30%."
+    },
+    {
+      volumeMax: 10000,
+      persona: "Growing fashion brands managing multiple SKUs and seasonal peaks.",
+      example: "We supported brands scaling from 5k to 15k orders/month."
+    },
+    {
+      volumeMax: Infinity,
+      persona: "Large fashion retailers with complex fulfilment needs.",
+      example: "Helping enterprise brands cut fulfilment errors by 50%."
     }
-    
-    personaMessage.textContent = matchedMessage;
+  ],
+  "Food & Drink": [
+    {
+      volumeMax: 2000,
+      persona: "Local food producers focused on freshness and fast delivery.",
+      example: "Enabled artisan food shops to reduce delivery delays by 20%."
+    },
+    {
+      volumeMax: 10000,
+      persona: "Regional food & drink companies optimizing cold-chain logistics.",
+      example: "Helping brands scale with real-time delivery tracking."
+    },
+    {
+      volumeMax: Infinity,
+      persona: "National food distributors managing complex shipping routes.",
+      example: "Reducing wastage and improving customer satisfaction at scale."
+    }
+  ],
+  "Beauty & Fitness": [
+    {
+      volumeMax: 2000,
+      persona: "Boutique beauty brands with personalized packaging needs.",
+      example: "Streamlined order packing to boost customer retention."
+    },
+    {
+      volumeMax: 10000,
+      persona: "Mid-sized fitness and beauty companies expanding product lines.",
+      example: "Helped businesses launch new SKUs without disruption."
+    },
+    {
+      volumeMax: Infinity,
+      persona: "Large beauty and fitness brands managing high volume fulfilment.",
+      example: "Reducing returns and errors for national distribution."
+    }
+  ],
+  "Home & Garden": [
+    {
+      volumeMax: 2000,
+      persona: "Small homeware brands focusing on quality and care in packing.",
+      example: "Improved packaging speed and reduced damage rates."
+    },
+    {
+      volumeMax: 10000,
+      persona: "Growing garden and home product sellers expanding online.",
+      example: "Supported scale-up with integrated shipping solutions."
+    },
+    {
+      volumeMax: Infinity,
+      persona: "Large home & garden retailers with multi-warehouse fulfilment.",
+      example: "Optimised logistics to cut delivery times by 40%."
+    }
+  ]
+};
+
+const categoryButtons = document.querySelectorAll(".category-btn");
+const ordersSlider = document.getElementById("orders");
+const orderValueDisplay = document.getElementById("orderValue");
+const aovInput = document.getElementById("aov");
+const personaMessage = document.getElementById("personaMessage");
+const businessExamples = document.getElementById("businessExamples");
+
+let selectedCategory = "Fashion";
+
+// Utility to get tier info by orders for category
+function getTier(category, orders) {
+  const tiers = categories[category];
+  for (const tier of tiers) {
+    if (orders <= tier.volumeMax) return tier;
   }
-  
-  // Update order volume display and recalc
-  function updateOrderVolume(value) {
-    monthlyOrders = Number(value);
-    orderValueDisplay.textContent = monthlyOrders.toLocaleString();
-    updatePersonaMessage();
-    calculateSavings();
+  return tiers[tiers.length - 1]; // fallback to last tier (Infinity)
+}
+
+function updateUI() {
+  // Clamp orders slider max to 20000
+  let orders = parseInt(ordersSlider.value, 10);
+  if (orders >= 20000) {
+    orderValueDisplay.textContent = "20,000+";
+    orders = 20000;
+  } else {
+    orderValueDisplay.textContent = orders.toLocaleString();
   }
-  
-  // Handle category button selection UI
-  categoryButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      categoryButtons.forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      selectedCategory = btn.getAttribute('data-category');
-      updatePersonaMessage();
-      calculateSavings();
-    });
+
+  // Update persona & examples
+  const tier = getTier(selectedCategory, orders);
+  personaMessage.textContent = tier.persona || "";
+
+  // Update example businesses content
+  businessExamples.textContent = tier.example || "";
+}
+
+// Handle category button clicks
+categoryButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    categoryButtons.forEach((b) => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    selectedCategory = btn.getAttribute("data-category");
+    updateUI();
   });
-  
-  // Calculate and update savings display (example, simple calc)
-  function calculateSavings() {
-    const aov = Number(aovInput.value) || 0;
-    // Example logic for savings:
-    const errorsCost = (monthlyOrders * 0.005) * aov; // 0.5% error rate cost
-    const timeCost = (monthlyOrders * 3/60) * 12; // 3 mins per order, £12/hr wage
-    const missedRevenue = (monthlyOrders * aov) * 0.03 * 0.10; // 10% uplift on 3% conv
-    
-    document.getElementById('errorsCost').textContent = errorsCost.toFixed(0);
-    document.getElementById('timeCost').textContent = timeCost.toFixed(0);
-    document.getElementById('missedRevenue').textContent = missedRevenue.toFixed(0);
-    
-    const total = errorsCost + timeCost + missedRevenue;
-    document.getElementById('total').textContent = total.toFixed(0);
-  }
-  
-  // Event listeners for slider and AOV input
-  ordersSlider.addEventListener('input', (e) => updateOrderVolume(e.target.value));
-  aovInput.addEventListener('input', () => calculateSavings());
-  
-  // Initialize default UI
-  updateOrderVolume(monthlyOrders);
-  updatePersonaMessage();
-  calculateSavings();
 });
+
+// Update on slider or AOV input change (AOV kept in UI for future use)
+ordersSlider.addEventListener("input", updateUI);
+aovInput.addEventListener("input", () => {
+  // You could use AOV in calculations later if needed
+});
+
+// Initialize UI on load
+updateUI();
