@@ -1,57 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Zenstores Homepage Mockup</title>
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zenstores Homepage with Calculator</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="page-container">
+    <!-- Left side: simplified homepage intro -->
+    <section class="homepage-intro">
+      <h1>Welcome to Zenstores</h1>
+      <p>Your all-in-one fulfilment and shipping software for ecommerce businesses.</p>
+      <p>Automate your fulfilment, reduce errors, and delight your customers with accurate delivery promises.</p>
+      <p>Get started by telling us a little about your business on the right.</p>
+    </section>
 
-<div class="container">
+    <!-- Right side: calculator widget -->
+    <section class="calculator-container">
+      <div class="calculator current-logic">
+        <h2>What's the opportunity?</h2>
 
-  <!-- Left: Zenstores hero section mockup -->
-  <div class="left-panel">
-    <h1>Upgrade your shipping.<br />From checkout to dispatch.</h1>
-    <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage—all through one seamless integration.</p>
-    <div class="cta-buttons">
-      <button class="btn-primary">Start Free Trial</button>
-      <button class="btn-secondary">See It in Action</button>
-    </div>
+        <!-- Business category selector -->
+        <div class="business-category">
+          <p>Select your business category:</p>
+          <div class="category-buttons">
+            <button data-category="Fashion" class="category-btn selected" title="Fashion">
+              👗<br /><span>Fashion</span>
+            </button>
+            <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
+              🍔<br /><span>Food & Drink</span>
+            </button>
+            <button data-category="Beauty & Fitness" class="category-btn" title="Beauty & Fitness">
+              💄<br /><span>Beauty & Fitness</span>
+            </button>
+            <button data-category="Home & Garden" class="category-btn" title="Home & Garden">
+              🏡<br /><span>Home & Garden</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Persona message below category -->
+        <div id="personaMessage" class="persona-box">
+          <!-- Persona text populated by JS -->
+        </div>
+
+        <!-- Monthly orders slider -->
+        <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
+        <input type="range" id="orders" min="250" max="25000" value="250" step="250" />
+
+        <!-- Average order value -->
+        <label for="aov">Average Order Value (£):</label>
+        <input type="number" id="aov" value="50" min="0" />
+
+        <!-- Estimated savings -->
+        <div class="result">
+          <p><strong>Estimated Monthly Savings:</strong></p>
+          <p>❌ Preventing Fulfilment Errors: <strong>£<span id="errorsCost">0</span></strong></p>
+          <p>🕒 Fulfilment Automations: <strong>£<span id="timeCost">0</span></strong></p>
+          <p>📈 Conversion Rate Uplift: <strong>£<span id="missedRevenue">0</span></strong></p>
+          <hr />
+          <h3>Total Savings: £<span id="total">0</span></h3>
+        </div>
+
+        <!-- Assumptions -->
+        <div class="assumptions">
+          <details>
+            <summary>What's this based on?</summary>
+            <ul id="assumptionsList">
+              <li>~0.5% of orders contain packing errors or ship to unvalidated addresses</li>
+              <li>Assumes orders takes 3 minutes to process manually</li>
+              <li>10% uplift on assumed 3% baseline conversion rate</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <!-- Right: Interactive calculator widget -->
-  <div class="right-panel">
-    <h2>What's the opportunity?</h2>
-
-    <label for="orders">Monthly Orders</label>
-    <input type="range" id="orders" min="0" max="2000" step="10" value="250" />
-
-    <label for="aov">Average Order Value (£)</label>
-    <input type="number" id="aov" min="0" max="1000" step="1" value="50" />
-
-    <label>Business Category</label>
-    <div class="category-buttons">
-      <div class="category-button selected" data-category="Fashion">Fashion</div>
-      <div class="category-button" data-category="Food & Drink">Food & Drink</div>
-      <div class="category-button" data-category="Beauty & Fitness">Beauty & Fitness</div>
-      <div class="category-button" data-category="Home & Garden">Home & Garden</div>
-    </div>
-
-    <div class="persona-message" id="personaMessage">Your persona message will appear here.</div>
-
-    <div class="results" id="results">
-      <div>Preventing Fulfilment Errors: £<span id="errorSavings">0</span></div>
-      <div>Fulfilment Automations: £<span id="automationSavings">0</span></div>
-      <div>Conversion Rate Uplift: £<span id="conversionUplift">0</span></div>
-      <div class="total">Total Estimated Savings: £<span id="totalSavings">0</span></div>
-      <div>Zenstores Pricing: £<span id="pricing">0</span> / month</div>
-      <div>Estimated ROI: <span id="roi">0</span> x</div>
-    </div>
-  </div>
-
-</div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
+
