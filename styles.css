@@ -1,163 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
+/* General Reset & Fonts */
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #FFEFEB; /* Zen pink light */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
   margin: 0;
-  padding: 20px;
-  color: #052424; /* Zen black */
+  padding: 0;
+  color: #333;
 }
 
 .container {
-  display: flex;
-  max-width: 900px;
+  max-width: 700px;
   margin: 0 auto;
-  gap: 30px;
+  padding: 40px 20px;
+  text-align: center;
 }
 
-.form {
-  flex: 1;
-  background-color: #fff0f0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(40, 60, 255, 0.1);
+h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
-.category-buttons {
-  margin-bottom: 20px;
+.subtext {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 30px;
 }
 
-.category-btn {
-  background-color: transparent;
-  border: 2px solid #283CFF; /* Zen blue */
-  color: #283CFF;
-  font-weight: 600;
-  padding: 10px 15px;
-  margin-right: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 16px;
-}
-
-.category-btn.selected,
-.category-btn:hover {
-  background-color: #283CFF;
-  color: white;
-  border-color: #283CFF;
-}
-
-label {
-  font-weight: 600;
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 16px;
+.slider-section {
+  margin-bottom: 30px;
 }
 
 input[type="range"] {
   width: 100%;
-  margin-top: 8px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.orders-display {
-  font-weight: 600;
-  margin-bottom: 15px;
-  font-size: 16px;
-}
-
-input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-.cta {
-  background-color: #283CFF; /* Zen blue */
-  border: none;
-  color: white;
-  font-weight: 700;
-  padding: 14px 20px;
-  border-radius: 8px;
-  font-size: 18px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.cta:hover {
-  background-color: #1f2acb;
-}
-
-.see-action {
-  background-color: transparent;
-  color: #052424; /* Zen black */
-  border: 2px solid #052424;
   margin-top: 10px;
 }
 
-.see-action:hover {
-  background-color: #052424;
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.category-btn {
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.category-btn.selected {
+  background-color: #007BFF;
   color: white;
+  border-color: #007BFF;
 }
 
-.results {
-  flex: 1;
-  background-color: #fff0f0;
-  padding: 20px;
+.persona-box {
+  background-color: #fff;
+  padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(40, 60, 255, 0.1);
+  box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+}
+
+.persona-message {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.case-studies {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.persona-section p {
-  font-size: 18px;
-  line-height: 1.5;
-  font-weight: 400;
-  color: #052424;
-  margin-bottom: 25px;
-}
-
-.case-studies h3 {
-  font-weight: 700;
-  color: #283CFF;
-  margin-bottom: 15px;
-  font-size: 22px;
-}
-
-.case-cards {
-  display: flex;
-  gap: 15px;
   justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .case-box {
-  background-color: white;
-  border-radius: 10px;
-  padding: 20px;
-  flex-basis: calc(33.33% - 10px);
-  box-shadow: 0 2px 6px rgba(5, 36, 36, 0.15);
-  color: #052424;
-  font-weight: 600;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 80px;
-  text-align: center;
-  user-select: none;
-  border: 2px solid transparent;
-  transition: border-color 0.3s ease;
-}
-
-.case-box:hover {
-  border-color: #283CFF;
+  flex: 1;
+  background-color: #f1f1f1;
+  padding: 12px;
+  border-radius: 6px;
+  min-width: 100px;
+  font-weight: bold;
 }
