@@ -66,6 +66,7 @@ const personaMessage = document.getElementById('personaMessage');
 const orderSlider = document.getElementById('orders');
 const orderValueDisplay = document.getElementById('orderValue');
 const similarBusinessesContainer = document.getElementById('similarBusinesses');
+const challengesContainer = document.getElementById('challengesContainer');
 
 let selectedCategory = 'Fashion';
 
@@ -74,22 +75,30 @@ function updatePersonaAndBusinesses() {
   orderValueDisplay.textContent = orders.toLocaleString();
 
   const categoryArray = personaData[selectedCategory];
-  let personaObj = categoryArray.find(item => orders <= item.maxOrders);
-
-  if (!personaObj) {
-    personaObj = categoryArray[categoryArray.length - 1];
+  if (!categoryArray) {
+    personaMessage.textContent = `You're in a unique category. We'd love to learn more!`;
+    similarBusinessesContainer.innerHTML = '';
+    challengesContainer.innerHTML = '';
+    return;
   }
 
+  let personaObj = categoryArray.find(item => orders <= item.maxOrders) || categoryArray[categoryArray.length - 1];
   personaMessage.textContent = `You’re a "${personaObj.persona}".`;
 
-  // Clear previous content
+  // Similar business
   similarBusinessesContainer.innerHTML = '';
+  const businessDiv = document.createElement('div');
+  businessDiv.className = 'business-box';
+  businessDiv.textContent = personaObj.businessExample;
+  similarBusinessesContainer.appendChild(businessDiv);
 
-  // Create and append single business box
-  const div = document.createElement('div');
-  div.className = 'business-box';
-  div.textContent = personaObj.businessExample;
-  similarBusinessesContainer.appendChild(div);
+  // Challenges
+  challengesContainer.innerHTML = '';
+  personaObj.challenges.forEach(challenge => {
+    const li = document.createElement('li');
+    li.textContent = challenge;
+    challengesContainer.appendChild(li);
+  });
 }
 
 categoryButtons.forEach(button => {
