@@ -245,13 +245,3 @@ body {
 #orders:hover::-webkit-slider-thumb {
   background-color: #1f33cc;
 }
-
-/* Add italic style for the business quotes under business names */
-.business-quote {
-  font-style: italic;
-  color: var(--zen-black);
-  opacity: 0.7;
-  margin: 4px 0 12px 12px; /* slight indent from business name and space below */
-  font-weight: 400;
-  font-size: 0.95rem;
-}
