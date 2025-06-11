@@ -2,55 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Demo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenstores Persona Matcher</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <div class="form">
-      <div class="category-buttons">
-        <button class="category-btn selected" data-category="Fashion">Fashion</button>
-        <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
-        <button class="category-btn" data-category="Beauty & Fitness">Beauty & Fitness</button>
-        <button class="category-btn" data-category="Other">Other</button>
-      </div>
+    <h1>What kind of brand are you?</h1>
+    <p class="subtext">Slide to set your monthly order volume and choose your industry to see how Zenstores can help.</p>
 
-      <label for="orders">Order Volume</label>
-      <input
-        type="range"
-        id="orders"
-        min="0"
-        max="20000"
-        step="250"
-        value="0"
-        list="tickmarks"
-        aria-label="Order volume"
-      />
-      <datalist id="tickmarks">
-        <option value="0" label="0"></option>
-        <option value="5000"></option>
-        <option value="10000"></option>
-        <option value="15000"></option>
-        <option value="20000" label="20,000+"></option>
-      </datalist>
-      <div class="orders-display">Orders: <span id="orderValue">0</span></div>
-
-      <label for="aov">Average Order Value (£)</label>
-      <input type="number" id="aov" value="50" min="0" aria-label="Average order value" />
-
-      <button class="cta">Get Started</button>
-      <button class="cta see-action">See it in action</button>
+    <div class="slider-section">
+      <label for="orders">Monthly orders: <span id="orderValue">2000</span></label>
+      <input type="range" id="orders" min="0" max="30000" step="100" value="2000" />
     </div>
 
-    <div class="results">
-      <div class="persona-section">
-        <p id="personaMessage"></p>
-      </div>
+    <div class="categories">
+      <button class="category-btn selected" data-category="Fashion">Fashion</button>
+      <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
+      <button class="category-btn" data-category="Beauty & Fitness">Beauty & Fitness</button>
+      <button class="category-btn" data-category="Other">Other</button>
+    </div>
+
+    <div class="persona-box">
+      <p id="personaMessage" class="persona-message"></p>
       <div class="case-studies">
-        <h3>Similar businesses we've helped</h3>
-        <div class="case-cards" id="caseCards"></div>
+        <div class="case-box" id="case1"></div>
+        <div class="case-box" id="case2"></div>
+        <div class="case-box" id="case3"></div>
       </div>
     </div>
   </div>
