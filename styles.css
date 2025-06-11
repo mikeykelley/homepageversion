@@ -1,36 +1,93 @@
+/* Reset and basics */
 body {
+  margin: 0;
   font-family: 'Inter', sans-serif;
   background-color: #fffaf9;
   color: #052424;
-  display: flex;
-  justify-content: center;
-  padding: 40px;
-  margin: 0;
   min-height: 100vh;
-}
-
-.calculator-container {
   display: flex;
-  gap: 40px;
-  max-width: 900px;
-  width: 100%;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px 0;
+  padding: 40px;
   box-sizing: border-box;
 }
 
-/* Since only one calculator now, center it */
+.page-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  gap: 60px;
+}
+
+/* Left panel (mock Zenstores homepage hero) */
+.left-panel {
+  flex: 1;
+  max-width: 600px;
+  color: #052424;
+}
+
+.left-panel h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #283CFF;
+  line-height: 1.1;
+}
+
+.left-panel p {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 480px;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #283CFF;
+  color: white;
+  padding: 14px 28px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(40, 60, 255, 0.4);
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #1f2ecc;
+}
+
+.small-text {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #555;
+  max-width: 480px;
+}
+
+/* Right panel (calculator) */
+.right-panel {
+  width: 440px;
+}
+
+/* Calculator container */
+.calculator-container {
+  width: 100%;
+}
+
+/* Calculator box */
 .calculator {
   border: 2px solid #FFBEAF;
   border-radius: 16px;
   padding: 32px 24px;
-  width: 480px;
   background-color: #fff;
   box-shadow: 0 6px 16px rgba(5, 36, 36, 0.12);
   box-sizing: border-box;
+  text-align: left;
 }
 
+/* Headings */
 h2 {
   color: #283CFF;
   margin-bottom: 20px;
@@ -38,6 +95,7 @@ h2 {
   font-size: 24px;
 }
 
+/* Labels */
 label {
   display: block;
   margin-top: 16px;
@@ -46,6 +104,7 @@ label {
   font-size: 18px;
 }
 
+/* Inputs */
 input[type="range"],
 input[type="number"] {
   width: 100%;
@@ -57,12 +116,59 @@ input[type="number"] {
   box-sizing: border-box;
 }
 
+/* Business category buttons */
+.category-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.category-btn {
+  background: #fff5d6;
+  border: 2px solid #ffd580;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #5a4000;
+  font-weight: 700;
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.category-btn:hover {
+  background-color: #fff8e1;
+}
+
+.category-btn.selected {
+  background-color: #ffd580;
+  border-color: #ffb347;
+}
+
+/* Persona message box */
+.persona-box {
+  background-color: #FFF5D6;
+  border: 2px solid #FFD580;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  color: #5A4000;
+  box-shadow: 0 4px 12px rgba(90, 64, 0, 0.1);
+}
+
+/* Result box */
 .result {
   margin-top: 24px;
   background-color: #FFBEAF22;
   padding: 16px;
   border-radius: 12px;
-  text-align: left;
   font-size: 16px;
 }
 
@@ -77,6 +183,7 @@ input[type="number"] {
   font-weight: 700;
 }
 
+/* Assumptions */
 .assumptions {
   margin-top: 16px;
   font-size: 18px;
@@ -96,56 +203,3 @@ input[type="number"] {
   list-style: disc;
   line-height: 1.4;
 }
-
-/* Persona message box */
-.persona-box {
-  background-color: #FFF5D6; /* Soft yellow background */
-  border: 2px solid #FFD580; /* Golden border */
-  border-radius: 12px;
-  padding: 16px;
-  margin: 16px 0 20px 0;
-  font-size: 18px;
-  color: #5A4000;
-  box-shadow: 0 4px 12px rgba(90, 64, 0, 0.1);
-}
-
-/* Business category selector container */
-.category-selector {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-/* Category buttons */
-.category-btn {
-  background-color: #fff;
-  border: 2px solid #FFBEAF;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  width: 90px;
-  height: 90px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-/* Emoji icon size */
-.category-btn::before {
-  font-size: 28px;
-  margin-bottom: 8px;
-}
-
-/* Selected category style */
-.category-btn.selected {
-  background-color: #FFBEAF;
-  border-color: #283CFF;
-  color: #283CFF;
-  font-weight: 700;
-}
-
