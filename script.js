@@ -10,7 +10,6 @@ function updateOrderValue() {
 
 // Determine persona tier and message based on orders and category
 function getPersonaMessage(orders, category) {
-  // Simple example with category influence (can expand later)
   let baseMessage = '';
   if (orders < 2000) {
     baseMessage = `<strong>Startup Tier</strong>: You're running a startup-level business, focusing on establishing your operations and optimizing early growth.`;
@@ -62,4 +61,42 @@ function calculateAll() {
   const upliftedRevenue = baseRevenue * conversionRate * conversionUplift * grossMargin;
 
   // Total savings
-  const totalSavings = errorLoss + timeSaved +
+  const totalSavings = errorLoss + timeSaved + upliftedRevenue;
+
+  // Update UI
+  document.getElementById('errorsCost').textContent = errorLoss.toFixed(0);
+  document.getElementById('timeCost').textContent = timeSaved.toFixed(0);
+  document.getElementById('missedRevenue').textContent = upliftedRevenue.toFixed(0);
+  document.getElementById('total').textContent = totalSavings.toFixed(0);
+
+  // Update persona message
+  const personaBox = document.getElementById('personaMessage');
+  personaBox.innerHTML = getPersonaMessage(orders, selectedCategory);
+}
+
+// Category selection handler
+function setupCategorySelector() {
+  const buttons = document.querySelectorAll('.category-btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove 'selected' from all
+      buttons.forEach(b => b.classList.remove('selected'));
+      // Add 'selected' to clicked
+      btn.classList.add('selected');
+      // Update selectedCategory
+      selectedCategory = btn.getAttribute('data-category');
+      // Recalculate to update persona message
+      calculateAll();
+    });
+  });
+}
+
+// Initialization
+function init() {
+  document.getElementById('orders').addEventListener('input', updateOrderValue);
+  document.getElementById('aov').addEventListener('input', calculateAll);
+  setupCategorySelector();
+  calculateAll();
+}
+
+window.onload = init;
