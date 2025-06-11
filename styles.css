@@ -85,7 +85,7 @@ h1 {
   color: #222;
 }
 
-/* Persona Message */
+/* Persona Message - changed to normal weight */
 
 .persona-message {
   max-width: 600px;
@@ -96,11 +96,11 @@ h1 {
   font-size: 1.15rem;
   color: #1a3d7c;
   text-align: center;
-  font-weight: 600;
+  font-weight: 400; /* changed from 600 to 400 */
   box-shadow: 0 2px 5px rgba(74, 144, 226, 0.3);
 }
 
-/* Similar Businesses */
+/* Similar Businesses - larger squares with fixed aspect ratio */
 
 #similarBusinesses {
   display: flex;
@@ -111,10 +111,9 @@ h1 {
 }
 
 .business-box {
-  flex: 1 1 30%;
-  min-width: 220px;
+  flex: 1 1 280px;
   max-width: 300px;
-  min-height: 120px;
+  aspect-ratio: 1 / 1;  /* makes square */
   background: #f7f9fc;
   border: 2px dashed #bbb;
   border-radius: 10px;
@@ -124,7 +123,7 @@ h1 {
   font-size: 1.1rem;
   font-weight: 600;
   color: #666;
-  padding: 12px 20px;
+  padding: 20px;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   transition: border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
