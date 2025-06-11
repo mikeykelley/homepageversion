@@ -1,106 +1,94 @@
-// Persona messages data for categories & volume ranges
-const personas = {
-  "Fashion": [
-    { maxOrders: 1000, message: "Small fashion brand - time to scale smartly!" },
-    { maxOrders: 5000, message: "Growing fashion biz - optimize your workflow." },
-    { maxOrders: Infinity, message: "Enterprise fashion leader - maximize efficiency!" }
-  ],
-  "Food & Drink": [
-    { maxOrders: 1000, message: "Food startup - fresh delivery needs." },
-    { maxOrders: 5000, message: "Busy food brand - time savings matter." },
-    { maxOrders: Infinity, message: "Food enterprise - scale with confidence." }
-  ],
-  "Beauty & Fitness": [
-    { maxOrders: 1000, message: "Boutique beauty brand - streamline your orders." },
-    { maxOrders: 5000, message: "Scaling fitness biz - speed and accuracy." },
-    { maxOrders: Infinity, message: "Beauty powerhouse - automate to grow." }
-  ],
-  "Home & Garden": [
-    { maxOrders: 1000, message: "Home goods startup - smart shipping starts here." },
-    { maxOrders: 5000, message: "Growing garden brand - reduce errors and save time." },
-    { maxOrders: Infinity, message: "Large home brand - scale fulfilment easily." }
-  ]
-};
-
-const categoryButtons = document.querySelectorAll(".category-btn");
-const ordersInput = document.getElementById("orders");
-const aovInput = document.getElementById("aov");
-const orderValueSpan = document.getElementById("orderValue");
-const personaMessageDiv = document.getElementById("personaMessage");
-const errorsCostSpan = document.getElementById("errorsCost");
-const timeCostSpan = document.getElementById("timeCost");
-const missedRevenueSpan = document.getElementById("missedRevenue");
-const totalSpan = document.getElementById("total");
-
-let selectedCategory = "Fashion"; // default category
-
-// Update selected category UI and store selected category
-categoryButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    categoryButtons.forEach((b) => b.classList.remove("selected"));
-    btn.classList.add("selected");
-    selectedCategory = btn.dataset.category;
+document.addEventListener('DOMContentLoaded', () => {
+  const categoryButtons = document.querySelectorAll('.category-btn');
+  const personaMessage = document.getElementById('personaMessage');
+  const ordersSlider = document.getElementById('orders');
+  const orderValueDisplay = document.getElementById('orderValue');
+  const aovInput = document.getElementById('aov');
+  
+  let selectedCategory = 'Fashion';
+  let monthlyOrders = Number(ordersSlider.value);
+  
+  // Persona messages data: nested by category and order volume ranges
+  const personaMessages = {
+    'Fashion': [
+      { max: 1000, text: 'You’re a stylish boutique with emerging online presence.' },
+      { max: 5000, text: 'You’re growing fast in fashion e-commerce with loyal customers.' },
+      { max: 25000, text: 'You’re an established fashion brand with complex shipping needs.' },
+    ],
+    'Food & Drink': [
+      { max: 1000, text: 'Small but mighty food brand focusing on local deliveries.' },
+      { max: 5000, text: 'Growing food & drink business scaling up fulfilment.' },
+      { max: 25000, text: 'Large food & drink brand handling multiple channels and orders.' },
+    ],
+    'Beauty & Fitness': [
+      { max: 1000, text: 'Niche beauty brand building your community.' },
+      { max: 5000, text: 'You’re expanding your range and customer base steadily.' },
+      { max: 25000, text: 'You’re a leading beauty & fitness company with high demand.' },
+    ],
+    'Home & Garden': [
+      { max: 1000, text: 'Home & garden startup with focused local orders.' },
+      { max: 5000, text: 'You’re scaling your product range and shipping nationwide.' },
+      { max: 25000, text: 'You’re a well-established home & garden brand with complex logistics.' },
+    ],
+  };
+  
+  // Update the persona message based on category and volume
+  function updatePersonaMessage() {
+    const volume = monthlyOrders;
+    const messages = personaMessages[selectedCategory];
+    let matchedMessage = messages[messages.length - 1].text; // Default to highest
+    
+    for (const entry of messages) {
+      if (volume <= entry.max) {
+        matchedMessage = entry.text;
+        break;
+      }
+    }
+    
+    personaMessage.textContent = matchedMessage;
+  }
+  
+  // Update order volume display and recalc
+  function updateOrderVolume(value) {
+    monthlyOrders = Number(value);
+    orderValueDisplay.textContent = monthlyOrders.toLocaleString();
     updatePersonaMessage();
     calculateSavings();
-  });
-});
-
-// Update persona message based on selected category and orders
-function updatePersonaMessage() {
-  const orderVolume = parseInt(ordersInput.value, 10);
-
-  const messages = personas[selectedCategory];
-  let message = "";
-
-  for (const p of messages) {
-    if (orderVolume <= p.maxOrders) {
-      message = p.message;
-      break;
-    }
   }
-
-  personaMessageDiv.textContent = message;
-}
-
-// Calculate savings based on inputs
-function calculateSavings() {
-  const orders = parseInt(ordersInput.value, 10);
-  const aov = parseFloat(aovInput.value) || 0;
-
-  // Assumptions
-  const errorRate = 0.005; // 0.5%
-  const minutesPerOrder = 3;
-  const wagePerHour = 12;
-  const baselineConversionRate = 0.03; // 3%
-  const upliftConversion = 0.10; // 10% uplift
-  const grossMargin = 0.5; // 50%
-
-  // Calculate costs
-  const errorsCost = orders * errorRate * aov;
-  const timeCost = (orders * minutesPerOrder / 60) * wagePerHour;
-  const missedRevenue = (orders * aov * baselineConversionRate * upliftConversion) * grossMargin;
-
-  const total = errorsCost + timeCost + missedRevenue;
-
-  // Update UI with fixed 2 decimals
-  errorsCostSpan.textContent = errorsCost.toFixed(2);
-  timeCostSpan.textContent = timeCost.toFixed(2);
-  missedRevenueSpan.textContent = missedRevenue.toFixed(2);
-  totalSpan.textContent = total.toFixed(2);
-}
-
-// Update order value span and recalc on slider change
-ordersInput.addEventListener("input", () => {
-  orderValueSpan.textContent = ordersInput.value;
+  
+  // Handle category button selection UI
+  categoryButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      categoryButtons.forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedCategory = btn.getAttribute('data-category');
+      updatePersonaMessage();
+      calculateSavings();
+    });
+  });
+  
+  // Calculate and update savings display (example, simple calc)
+  function calculateSavings() {
+    const aov = Number(aovInput.value) || 0;
+    // Example logic for savings:
+    const errorsCost = (monthlyOrders * 0.005) * aov; // 0.5% error rate cost
+    const timeCost = (monthlyOrders * 3/60) * 12; // 3 mins per order, £12/hr wage
+    const missedRevenue = (monthlyOrders * aov) * 0.03 * 0.10; // 10% uplift on 3% conv
+    
+    document.getElementById('errorsCost').textContent = errorsCost.toFixed(0);
+    document.getElementById('timeCost').textContent = timeCost.toFixed(0);
+    document.getElementById('missedRevenue').textContent = missedRevenue.toFixed(0);
+    
+    const total = errorsCost + timeCost + missedRevenue;
+    document.getElementById('total').textContent = total.toFixed(0);
+  }
+  
+  // Event listeners for slider and AOV input
+  ordersSlider.addEventListener('input', (e) => updateOrderVolume(e.target.value));
+  aovInput.addEventListener('input', () => calculateSavings());
+  
+  // Initialize default UI
+  updateOrderVolume(monthlyOrders);
   updatePersonaMessage();
   calculateSavings();
 });
-
-// Recalculate on AOV change
-aovInput.addEventListener("input", () => {
-  calculateSavings();
-});
-
-// Initial setup
-updatePersonaMessage();
-calculateSavings();
