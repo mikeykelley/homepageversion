@@ -1,40 +1,40 @@
-<!-- ... (same head and homepage-intro section) ... -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zenstores ROI Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main>
+    <section class="calculator-container">
+      <div class="calculator">
+        <h1>What could Zenstores save your business?</h1>
 
-<!-- Right side: calculator widget -->
-<section class="calculator-container">
-  <div class="calculator current-logic">
-    <h2>What's the opportunity?</h2>
+        <div class="input-group">
+          <label for="category">Business type:</label>
+          <select id="category">
+            <option value="default" selected disabled>Select business type</option>
+            <option value="small">Small in-house fulfilment (1-5 people)</option>
+            <option value="medium">Medium-sized in-house fulfilment (5-15 people)</option>
+            <option value="large">Large in-house fulfilment (15+ people)</option>
+          </select>
+        </div>
 
-    <!-- Business category selector -->
-    <div class="business-category">
-      <p>Select your business category:</p>
-      <div class="category-buttons">
-        <button data-category="Fashion" class="category-btn selected" title="Fashion">
-          👗<br /><span>Fashion</span>
-        </button>
-        <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
-          🍔<br /><span>Food & Drink</span>
-        </button>
-        <button data-category="Beauty & Fitness" class="category-btn" title="Beauty & Fitness">
-          💄<br /><span>Beauty & Fitness</span>
-        </button>
-        <button data-category="Other" class="category-btn" title="Other">
-          🏡<br /><span>Other</span>
-        </button>
+        <div class="input-group">
+          <label for="orderVolume">Monthly orders: <span id="orderVolumeValue">100</span></label>
+          <input type="range" id="orderVolume" min="10" max="10000" value="100" step="10" />
+        </div>
+
+        <div class="output">
+          <h2>Your potential ROI with Zenstores</h2>
+          <div class="output-text" id="outputText">Fill in your info to see your potential savings</div>
+        </div>
       </div>
-    </div>
+    </section>
+  </main>
 
-    <!-- Persona message below category -->
-    <div id="personaMessage" class="persona-box"></div>
-
-    <!-- Monthly orders slider -->
-    <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
-    <input type="range" id="orders" min="250" max="20000" value="250" step="250" />
-
-    <!-- Similar businesses we've helped -->
-    <h3>Similar businesses we've helped</h3>
-    <div id="similarBusinesses" class="similar-businesses-container"></div>
-  </div>
-</section>
-
-<!-- ... (rest of HTML unchanged) ... -->
+  <script src="script.js"></script>
+</body>
+</html>
