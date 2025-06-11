@@ -235,7 +235,7 @@ body {
   cursor: pointer;
   border: none;
   box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
-  margin-top: -12px; /* center the thumb vertically relative to track */
+  margin-top: -6px; /* center the thumb vertically relative to track */
   transition: background-color 0.3s ease;
 }
 
