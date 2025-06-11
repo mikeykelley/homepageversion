@@ -1,88 +1,72 @@
-// Elements
-const categoryButtons = document.querySelectorAll('.category-btn');
-const personaMessage = document.getElementById('personaMessage');
-const ordersInput = document.getElementById('orders');
-const orderValueSpan = document.getElementById('orderValue');
-const aovInput = document.getElementById('aov');
-
-const errorsCostSpan = document.getElementById('errorsCost');
-const timeCostSpan = document.getElementById('timeCost');
-const missedRevenueSpan = document.getElementById('missedRevenue');
-const totalSpan = document.getElementById('total');
-
-// Persona messages data
-const personaMessages = {
-  "Fashion": "Small independent clothing, shoe and accessories brands. High volume, fast shipping, and easy returns are key to keeping your customers happy.",
-  "Food & Drink": "Food & drink brands with perishable goods needing fast, reliable delivery and clear communication.",
-  "Beauty & Fitness": "Brands focused on beauty, wellness, and fitness products. Customers expect personalisation and fast shipping.",
-  "Home & Garden": "Homewares and garden supplies retailers, with varied product sizes and shipping needs."
+const categories = {
+  "Fashion": "Fashion businesses often deal with fast-moving trends and seasonal stock. Optimise your fulfilment to keep customers happy and returns low.",
+  "Food & Drink": "Food & Drink requires precision and speed to maintain freshness. Zenstores helps you deliver on time, every time.",
+  "Beauty & Fitness": "Beauty & Fitness brands benefit from streamlined packaging and tracking to enhance customer loyalty.",
+  "Home & Garden": "Home & Garden orders often include bulky or fragile items. Zenstores helps you manage these efficiently and reduce damage."
 };
 
-// Selected category (default)
+const categoryButtons = document.querySelectorAll(".category-btn");
+const personaMessage = document.getElementById("personaMessage");
+const ordersInput = document.getElementById("orders");
+const orderValue = document.getElementById("orderValue");
+const aovInput = document.getElementById("aov");
+const errorsCost = document.getElementById("errorsCost");
+const timeCost = document.getElementById("timeCost");
+const missedRevenue = document.getElementById("missedRevenue");
+const total = document.getElementById("total");
+
 let selectedCategory = "Fashion";
 
-// Update selected category styling and persona message
-function updateCategory(category) {
-  selectedCategory = category;
-  categoryButtons.forEach(btn => {
-    btn.classList.toggle('selected', btn.dataset.category === category);
-  });
-  personaMessage.textContent = personaMessages[category];
-  calculateSavings();
+function updatePersona() {
+  personaMessage.textContent = categories[selectedCategory] || "";
 }
 
-// Calculate and update savings outputs
 function calculateSavings() {
-  const orders = Number(ordersInput.value);
-  const aov = Number(aovInput.value);
+  const orders = parseInt(ordersInput.value, 10);
+  const aov = parseFloat(aovInput.value);
 
-  // Prevent invalid input
-  if (aov <= 0) {
-    errorsCostSpan.textContent = '0';
-    timeCostSpan.textContent = '0';
-    missedRevenueSpan.textContent = '0';
-    totalSpan.textContent = '0';
-    return;
-  }
+  // Constants
+  const errorRate = 0.005; // 0.5%
+  const manualMinutes = 3;
+  const conversionRateBaseline = 0.03;
+  const conversionUplift = 0.10; // 10%
 
-  // Constants & assumptions
-  const errorRate = 0.005; // 0.5% packing errors
-  const wagePerHour = 12;
-  const processTimeMinutes = 3;
-  const margin = 0.5; // 50%
-  const baselineConversion = 0.03;
-  const upliftConversion = 0.10; // 10% uplift on baseline
-
-  // Error cost: orders * errorRate * AOV * margin
-  const errorsCost = orders * errorRate * aov * margin;
-
-  // Time saved: orders * processTime / 60 (hours) * wage per hour
-  const timeCost = orders * (processTimeMinutes / 60) * wagePerHour;
-
-  // Missed revenue: orders * aov * baselineConversion * upliftConversion
-  const missedRevenue = orders * aov * baselineConversion * upliftConversion;
-
-  // Total
-  const total = errorsCost + timeCost + missedRevenue;
+  // Cost calculations
+  const errorsCostVal = orders * errorRate * aov;
+  const timeCostVal = (orders * manualMinutes / 60) * 12; // £12 per hour wage
+  const revenueBaseline = orders * aov * conversionRateBaseline;
+  const upliftRevenue = revenueBaseline * conversionUplift;
 
   // Update UI
-  errorsCostSpan.textContent = errorsCost.toFixed(0);
-  timeCostSpan.textContent = timeCost.toFixed(0);
-  missedRevenueSpan.textContent = missedRevenue.toFixed(0);
-  totalSpan.textContent = total.toFixed(0);
+  errorsCost.textContent = errorsCostVal.toFixed(0);
+  timeCost.textContent = timeCostVal.toFixed(0);
+  missedRevenue.textContent = upliftRevenue.toFixed(0);
+
+  const totalSavings = errorsCostVal + timeCostVal + upliftRevenue;
+  total.textContent = totalSavings.toFixed(0);
 }
 
-// Event listeners
-categoryButtons.forEach(btn => {
-  btn.addEventListener('click', () => updateCategory(btn.dataset.category));
+// Category button click handler
+categoryButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    categoryButtons.forEach(btn => btn.classList.remove("selected"));
+    button.classList.add("selected");
+    selectedCategory = button.getAttribute("data-category");
+    updatePersona();
+    calculateSavings();
+  });
 });
-ordersInput.addEventListener('input', () => {
-  orderValueSpan.textContent = ordersInput.value;
+
+// Input event handlers
+ordersInput.addEventListener("input", () => {
+  orderValue.textContent = ordersInput.value;
   calculateSavings();
 });
-aovInput.addEventListener('input', calculateSavings);
 
-// Initialize
-updateCategory(selectedCategory);
+aovInput.addEventListener("input", () => {
+  calculateSavings();
+});
+
+// Initial setup
+updatePersona();
 calculateSavings();
-
