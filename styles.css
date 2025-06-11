@@ -214,21 +214,20 @@ body {
   color: var(--zen-black);
 }
 
-/* --- SLIDER STYLES --- */
+/* --- SLIDER STYLES (simplified) --- */
 #orders {
-  width: 100%;          /* full width of parent */
+  width: 100%;
   height: 6px;
   background: var(--zen-pink-standard);
   border-radius: 3px;
   outline: none;
   cursor: pointer;
   margin-bottom: 1.5rem;
-  -webkit-appearance: none; /* Remove default styling in Safari */
+  -webkit-appearance: none; /* remove default Safari styling */
 }
 
 #orders::-webkit-slider-thumb {
   -webkit-appearance: none;
-  appearance: none;
   width: 24px;
   height: 24px;
   background: var(--zen-blue);
@@ -236,25 +235,10 @@ body {
   cursor: pointer;
   border: none;
   box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
-  margin-top: -9px; /* vertically center thumb */
+  margin-top: -9px; /* center the thumb vertically relative to track */
   transition: background-color 0.3s ease;
 }
 
 #orders:hover::-webkit-slider-thumb {
-  background-color: #1f33cc;
-}
-
-#orders::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  background: var(--zen-blue);
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
-  box-shadow: 0 0 8px rgba(40, 60, 255, 0.6);
-  transition: background-color 0.3s ease;
-}
-
-#orders:hover::-moz-range-thumb {
   background-color: #1f33cc;
 }
