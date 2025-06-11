@@ -3,24 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Persona Tool</title>
+  <title>Zenstores Demo</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="container">
     <div class="form">
-      <p>What type of business are you?</p>
       <div class="category-buttons">
-        <button class="category-btn selected" data-category="Fashion">👗 Fashion</button>
-        <button class="category-btn" data-category="Food & Drink">🍎 Food & Drink</button>
-        <button class="category-btn" data-category="Beauty & Fitness">💄 Beauty & Fitness</button>
-        <button class="category-btn" data-category="Other">🛠️ Other</button>
+        <button class="category-btn selected" data-category="Fashion">Fashion</button>
+        <button class="category-btn" data-category="Food & Drink">Food & Drink</button>
+        <button class="category-btn" data-category="Beauty & Fitness">Beauty & Fitness</button>
+        <button class="category-btn" data-category="Other">Other</button>
       </div>
 
-      <p>How many orders do you ship per month? <span id="orderValue">1000</span></p>
-      <input type="range" id="orders" min="0" max="20000" step="250" value="1000" />
+      <label for="orders">Order Volume</label>
+      <input
+        type="range"
+        id="orders"
+        min="0"
+        max="20000"
+        step="250"
+        value="0"
+        list="tickmarks"
+      />
+      <datalist id="tickmarks">
+        <option value="0" label="0"></option>
+        <option value="5000"></option>
+        <option value="10000"></option>
+        <option value="15000"></option>
+        <option value="20000" label="20,000+"></option>
+      </datalist>
+      <div>Orders: <span id="orderValue">0</span></div>
 
-      <button class="cta">👀 See it in action</button>
+      <label for="aov">Average Order Value (£)</label>
+      <input type="number" id="aov" value="50" min="0" />
+
+      <button class="cta">Get Started</button>
+      <button class="cta see-action">See it in action</button>
     </div>
 
     <div class="results">
@@ -29,10 +49,8 @@
       </div>
       <div class="case-studies">
         <h3>Similar businesses we've helped</h3>
-        <div class="case-cards">
-          <div class="case-box" id="case1"></div>
-          <div class="case-box" id="case2"></div>
-          <div class="case-box" id="case3"></div>
+        <div class="case-cards" id="caseCards">
+          <!-- dynamically populated -->
         </div>
       </div>
     </div>
