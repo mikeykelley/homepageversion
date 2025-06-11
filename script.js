@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", () => {
   updateSimilarBusinesses();
   handleOrderInputStep();
 
-  // Also highlight default category button on load
+  // Highlight default category button on load
   categoryButtons.forEach(btn => {
     if (btn.dataset.category === selectedCategory) {
       btn.classList.add("selected");
