@@ -10,13 +10,35 @@
   <div class="calculator-container">
     <!-- Left Side: Cost Savings and Revenue Impact -->
     <div class="calculator current-logic">
-      <h2>How much could you save with Zenstores?</h2>
+      <h2>What's the opportunity?</h2>
 
+      <!-- Monthly Orders Slider -->
       <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
       <input type="range" id="orders" min="250" max="25000" value="250" step="250" />
 
+      <!-- Average Order Value Input -->
       <label for="aov">Average Order Value (£):</label>
       <input type="number" id="aov" value="50" min="0" />
+
+      <!-- Business Category Selector -->
+      <label>Business Category:</label>
+      <div class="category-selector" id="categorySelector">
+        <button class="category-btn selected" data-category="fashion" title="Fashion">
+          👗<br/>Fashion
+        </button>
+        <button class="category-btn" data-category="food" title="Food & Drink">
+          🍔<br/>Food & Drink
+        </button>
+        <button class="category-btn" data-category="beauty" title="Beauty & Fitness">
+          💄<br/>Beauty & Fitness
+        </button>
+        <button class="category-btn" data-category="home" title="Home & Garden">
+          🏡<br/>Home & Garden
+        </button>
+      </div>
+
+      <!-- Persona message box (moved here) -->
+      <div id="personaMessage" class="persona-box"></div>
 
       <div class="result">
         <p><strong>Estimated Monthly Savings:</strong></p>
@@ -39,20 +61,7 @@
       </div>
     </div>
 
-    <!-- Right Side: Pricing and ROI -->
-    <div class="calculator zenstores-pricing">
-      <h2>ROI Calculator</h2>
-
-      <div id="personaMessage" class="persona-box"></div>
-
-      <p>Based on your monthly order volume:</p>
-      <p><strong>Pricing starts from: £<span id="zenstoresPrice">0</span></strong></p>
-
-      <div class="roi-box">
-        <h3>Estimated ROI</h3>
-        <p><strong><span id="roiMultiplier">0.0x</span></strong> return on investment</p>
-      </div>
-    </div>
+    <!-- Right side removed as per request -->
   </div>
 
   <script src="script.js"></script>
