@@ -1,125 +1,99 @@
 body {
   margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #FFEFEB;
   color: #052424;
 }
 
-.page-container {
+.container {
   display: flex;
   flex-wrap: wrap;
-  padding: 40px;
-  gap: 40px;
+  padding: 2rem;
 }
 
-.homepage-intro {
+.left-panel {
   flex: 1;
+  min-width: 250px;
+  margin-right: 2rem;
+}
+
+.right-panel {
+  flex: 2;
   min-width: 300px;
 }
 
-.homepage-intro h1 {
-  font-size: 2.5rem;
-  font-style: italic;
-  font-weight: bold;
-  color: #052424;
-}
-
-.homepage-intro p {
-  font-size: 1.2rem;
-  margin-bottom: 24px;
-  color: #052424;
-}
-
-.cta-buttons {
+.button-group {
   display: flex;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
-.btn-primary {
+.btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.primary {
   background-color: #283CFF;
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
 }
 
-.btn-secondary {
+.secondary {
   background-color: transparent;
-  border: 2px solid #052424;
   color: #052424;
-  padding: 12px 24px;
-  font-size: 1rem;
-  border-radius: 8px;
-  cursor: pointer;
+  border: 2px solid #052424;
 }
 
 .reviews img {
   height: 40px;
-  margin-right: 12px;
+  margin-right: 10px;
 }
 
-.calculator-container {
-  flex: 1;
-  min-width: 300px;
-}
-
-.calculator h2 {
-  font-size: 1.8rem;
-  margin-bottom: 16px;
-}
-
-.category-buttons {
+.category-selector {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .category-btn {
-  background-color: white;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  padding: 8px 12px;
-  text-align: center;
-  width: 90px;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 2px solid #052424;
+  color: #052424;
   cursor: pointer;
+  border-radius: 8px;
 }
 
 .category-btn.selected {
-  border-color: #283CFF;
+  background-color: #052424;
+  color: white;
 }
 
-.persona-box {
-  background-color: white;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  font-size: 1rem;
+.slider-section {
+  margin-bottom: 1rem;
 }
 
-input[type="range"] {
-  width: 100%;
-  margin: 8px 0 24px;
+#personaMessage {
+  margin-bottom: 1rem;
+  font-weight: normal;
 }
 
-.case-studies p {
-  margin-bottom: 12px;
-}
-
-.case-study-list {
+.case-studies {
   display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.case-study {
+.case-study-box {
+  flex: 1;
   background-color: white;
-  padding: 16px;
-  border-radius: 8px;
-  flex: 1 1 calc(33% - 12px);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   text-align: center;
+  font-weight: bold;
 }
