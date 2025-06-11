@@ -1,4 +1,4 @@
-/* Colors */
+/* Color scheme */
 :root {
   --zen-pink-light: #FFEFEB;
   --zen-pink: #FFDFD7;
@@ -7,7 +7,7 @@
   --zen-blue: #283CFF;
 }
 
-/* Page layout */
+/* Base styles */
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -71,7 +71,6 @@ body {
   white-space: nowrap;
 }
 
-/* Get Started button */
 .get-started {
   background-color: var(--zen-blue);
   color: white;
@@ -83,7 +82,6 @@ body {
   border-color: #1f33cc;
 }
 
-/* See it in action button */
 .see-action {
   background-color: transparent;
   color: var(--zen-black);
@@ -97,7 +95,6 @@ body {
   opacity: 1;
 }
 
-/* Reviews images */
 .reviews-row {
   display: flex;
   gap: 24px;
@@ -171,68 +168,48 @@ body {
   color: var(--zen-black);
 }
 
+/* Persona box */
 .persona-box {
-  font-style: italic;
-  font-weight: 600;
+  background: var(--zen-pink);
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.1rem;
   color: var(--zen-black);
-  margin-bottom: 20px;
-  min-height: 48px;
-}
-
-/* Inputs */
-label {
-  display: block;
-  font-weight: 600;
   margin-top: 20px;
-  margin-bottom: 8px;
-  font-size: 1rem;
-  color: var(--zen-black);
+  margin-bottom: 16px;
 }
 
-input[type="range"] {
-  width: 100%;
-  cursor: pointer;
-  margin-bottom: 12px;
+/* Challenges */
+.challenges-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
-input[type="number"] {
-  width: 100%;
-  padding: 10px 12px;
-  font-size: 1rem;
+.challenges-list li {
+  background: var(--zen-pink-light);
+  padding: 8px 12px;
   border-radius: 8px;
-  border: 1.8px solid var(--zen-pink-standard);
-  color: var(--zen-black);
-  box-sizing: border-box;
-  outline-offset: 2px;
-}
-
-input[type="number"]:focus {
-  border-color: var(--zen-blue);
-  outline: none;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  border-left: 4px solid var(--zen-pink-standard);
 }
 
 /* Similar businesses */
 .similar-businesses-container {
-  margin-top: 20px;
   display: flex;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
+  margin-top: 8px;
 }
 
 .business-box {
-  background-color: var(--zen-pink-standard);
-  border-radius: 10px;
-  padding: 12px 16px;
-  color: var(--zen-black);
+  background: var(--zen-pink-standard);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  flex: 1 1 120px;
-  text-align: center;
-  user-select: none;
-  transition: background-color 0.3s ease;
-}
-
-.business-box:hover {
-  background-color: var(--zen-blue);
-  color: white;
+  color: var(--zen-black);
 }
