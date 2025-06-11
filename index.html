@@ -3,27 +3,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Homepage</title>
+  <title>Zenstores Homepage with Calculator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Zenstores Personas & Testimonials</h1>
+  <div class="page-container">
+    <!-- Left side: simplified homepage intro -->
+    <section class="homepage-intro">
+      <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
+      <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
 
-    <label for="persona-select">Select Persona:</label>
-    <select id="persona-select">
-      <option value="">-- Choose Persona --</option>
-      <option value="fashion-founder">Fashion Founder</option>
-      <option value="tech-startup">Tech Startup</option>
-      <option value="small-retailer">Small Retailer</option>
-    </select>
+      <div class="buttons-row">
+        <button class="btn get-started">Get Started</button>
+        <button class="btn see-action">See it in action</button>
+      </div>
 
-    <div id="persona-info" class="persona-info">
-      <h2 id="persona-title"></h2>
-      <div id="persona-challenges" class="challenges"></div>
-      <h3>Businesses:</h3>
-      <ul id="business-list"></ul>
-    </div>
+      <div class="reviews-row">
+        <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify App Store Reviews" />
+        <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
+      </div>
+    </section>
+
+    <!-- Right side: calculator widget -->
+    <section class="calculator-container">
+      <div class="calculator current-logic">
+        <h2>Are we a good fit?</h2>
+
+        <!-- Business category selector -->
+        <div class="business-category">
+          <p>Select your business category:</p>
+          <div class="category-buttons">
+            <button data-category="Fashion" class="category-btn selected" title="Fashion">
+              👗<br /><span>Fashion</span>
+            </button>
+            <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
+              🍔<br /><span>Food & Drink</span>
+            </button>
+            <button data-category="Beauty & Fitness" class="category-btn" title="Beauty & Fitness">
+              💄<br /><span>Beauty & Fitness</span>
+            </button>
+            <button data-category="Other" class="category-btn" title="Other">
+              🏡<br /><span>Other</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Monthly orders slider -->
+        <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
+        <input type="range" id="orders" min="250" max="20000" value="250" step="250" />
+
+         <!-- Persona message below category -->
+        <div id="personaMessage" class="persona-box"></div>
+
+        <!-- Persona-specific challenges -->
+<h3>Challenges you may face</h3>
+<ul id="challengesContainer" class="challenges-list"></ul>
+
+        <!-- Similar businesses we've helped -->
+        <h3>Similar businesses we've helped</h3>
+        <div id="similarBusinesses" class="similar-businesses-container"></div>
+      </div>
+    </section>
   </div>
 
   <script src="script.js"></script>
