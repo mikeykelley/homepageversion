@@ -65,8 +65,6 @@ const categoryButtons = document.querySelectorAll('.category-btn');
 const personaMessage = document.getElementById('personaMessage');
 const orderSlider = document.getElementById('orders');
 const orderValueDisplay = document.getElementById('orderValue');
-// Assuming you still want the AOV input and business container, just one business now
-const aovInput = document.getElementById('aov');
 const similarBusinessesContainer = document.getElementById('similarBusinesses');
 
 let selectedCategory = 'Fashion';
@@ -104,9 +102,5 @@ categoryButtons.forEach(button => {
 });
 
 orderSlider.addEventListener('input', updatePersonaAndBusinesses);
-
-aovInput.addEventListener('input', () => {
-  // Add logic here if needed
-});
 
 updatePersonaAndBusinesses();
