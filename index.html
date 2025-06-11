@@ -2,15 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Zenstores Persona Tool</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <div class="form">
-      <h1>Find your fulfilment edge</h1>
-      <p>Select your business type:</p>
+      <p>What type of business are you?</p>
       <div class="category-buttons">
         <button class="category-btn selected" data-category="Fashion">👗 Fashion</button>
         <button class="category-btn" data-category="Food & Drink">🍎 Food & Drink</button>
@@ -18,7 +17,7 @@
         <button class="category-btn" data-category="Other">🛠️ Other</button>
       </div>
 
-      <p>Average monthly orders: <span id="orderValue">1000</span></p>
+      <p>How many orders do you ship per month? <span id="orderValue">1000</span></p>
       <input type="range" id="orders" min="0" max="20000" step="250" value="1000" />
 
       <button class="cta">👀 See it in action</button>
