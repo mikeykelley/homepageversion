@@ -1,71 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zenstores Homepage with Calculator</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zenstores Homepage</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .category-select, .orders-slider {
+    margin-bottom: 20px;
+  }
+  .persona-message {
+    font-size: 1.25em;
+    margin-bottom: 20px;
+  }
+  .business-info {
+    margin-top: 30px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  .business-name {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+  .quote {
+    font-style: italic;
+    margin-top: 5px;
+    color: #555;
+  }
+</style>
 </head>
 <body>
-  <div class="page-container">
-    <!-- Left side: simplified homepage intro -->
-    <section class="homepage-intro">
-      <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
-      <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
-
-      <div class="buttons-row">
-        <button class="btn get-started">Get Started</button>
-        <button class="btn see-action">See it in action</button>
-      </div>
-
-      <div class="reviews-row">
-        <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e5c72c34008b472ec1_review-stars-shopifyappstore.svg" alt="Shopify App Store Reviews" />
-        <img src="https://cdn.prod.website-files.com/66977bd785453b9d7b04a8b2/6697d0e55dec634b9685e7bf_review-stars-capterra.svg" alt="Capterra Reviews" />
-      </div>
-    </section>
-
-    <!-- Right side: calculator widget -->
-    <section class="calculator-container">
-      <div class="calculator current-logic">
-        <h2>Are we a good fit?</h2>
-
-        <!-- Business category selector -->
-        <div class="business-category">
-          <p>Select your business category:</p>
-          <div class="category-buttons">
-            <button data-category="Fashion" class="category-btn selected" title="Fashion">
-              👗<br /><span>Fashion</span>
-            </button>
-            <button data-category="Food & Drink" class="category-btn" title="Food & Drink">
-              🍔<br /><span>Food & Drink</span>
-            </button>
-            <button data-category="Beauty & Fitness" class="category-btn" title="Beauty & Fitness">
-              💄<br /><span>Beauty & Fitness</span>
-            </button>
-            <button data-category="Other" class="category-btn" title="Other">
-              🏡<br /><span>Other</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Monthly orders slider -->
-        <label for="orders">Monthly Orders: <span id="orderValue">250</span></label>
-        <input type="range" id="orders" min="250" max="20000" value="250" step="250" />
-
-         <!-- Persona message below category -->
-        <div id="personaMessage" class="persona-box"></div>
-
-        <!-- Persona-specific challenges -->
-<h3>Challenges you may face</h3>
-<ul id="challengesContainer" class="challenges-list"></ul>
-
-        <!-- Similar businesses we've helped -->
-        <h3>Similar businesses we've helped</h3>
-        <div id="similarBusinesses" class="similar-businesses-container"></div>
-      </div>
-    </section>
+<div class="container">
+  <div class="category-select">
+    <label for="category">Select your business category:</label>
+    <select id="category">
+      <option value="fashion">Fashion</option>
+      <option value="food">Food & Drink</option>
+      <option value="beauty">Beauty & Fitness</option>
+      <option value="other">Other</option>
+    </select>
   </div>
 
-  <script src="script.js"></script>
+  <div class="orders-slider">
+    <label for="orders">Monthly Orders: <span id="ordersValue">1000</span></label>
+    <input type="range" id="orders" min="0" max="5000" step="100" value="1000" />
+  </div>
+
+  <div id="personaMessage" class="persona-message"></div>
+
+  <div class="business-info">
+    <div id="businessName" class="business-name"></div>
+    <div id="quote" class="quote"></div>
+  </div>
+</div>
+
+<script>
+  const categorySelect = document.getElementById('category');
+  const ordersSlider = document.getElementById('orders');
+  const ordersValue = document.getElementById('ordersValue');
+  const personaMessage = document.getElementById('personaMessage');
+  const businessName = document.getElementById('businessName');
+  const quote = document.getElementById('quote');
+
+  const data = {
+    fashion: {
+      persona: 'Fashion Founder',
+      business: "Alex's Accessories",
+      quote: "I used to dread busy periods. Zenstores handles them effortlessly now."
+    },
+    food: {
+      persona: 'Food & Drink Entrepreneur',
+      business: "Bella's Bakery",
+      quote: "Zenstores helped me keep track of all my orders, even on the busiest days."
+    },
+    beauty: {
+      persona: 'Beauty & Fitness Pro',
+      business: "Clara's Cosmetics",
+      quote: "Managing my inventory used to be stressful. Zenstores makes it simple."
+    },
+    other: {
+      persona: 'Entrepreneur',
+      business: "Sam's Shop",
+      quote: "Zenstores saves me time so I can focus on growing my business."
+    }
+  };
+
+  function updateUI() {
+    const category = categorySelect.value;
+    const orders = ordersSlider.value;
+    ordersValue.textContent = orders;
+
+    const persona = data[category];
+    // Show only "You're a [persona]" here
+    personaMessage.innerHTML = `You're a <strong>${persona.persona}</strong>`;
+
+    // Show business name and quote together at the bottom
+    businessName.textContent = persona.business;
+    quote.textContent = `"${persona.quote}"`;
+  }
+
+  categorySelect.addEventListener('change', updateUI);
+  ordersSlider.addEventListener('input', updateUI);
+
+  // Initialize UI on page load
+  updateUI();
+</script>
 </body>
 </html>
