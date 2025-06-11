@@ -2,33 +2,33 @@ const categories = {
   "Fashion": {
     cases: ["Alex's Aprons", "Tom's Tees", "Mikey's Mitten's"],
     personas: {
-      low: "Fashion brands just starting out often deal with stock organisation and basic fulfilment. We help streamline those first steps.",
-      mid: "Scaling fashion brands often find fulfilment eats time. Zenstores frees you up to grow.",
-      high: "Established fashion businesses rely on speed and seasonal flexibility. Zenstores keeps you agile."
+      low: "👗 Starting out? Fashion brands often juggle packaging & stock. Zenstores simplifies it so you can focus on trends.",
+      mid: "🧵 Scaling up? Zenstores streamlines fashion fulfilment so you can stay on top of demand.",
+      high: "🛍️ Shipping thousands? Zenstores keeps your seasonal stock moving and customers coming back."
     }
   },
   "Food & Drink": {
     cases: ["Alex's Apples", "Tom's Tomatoes", "Mikey's Munch"],
     personas: {
-      low: "Smaller food businesses need to nail freshness and timings. Zenstores ensures on-time delivery.",
-      mid: "At mid-scale, keeping perishable orders accurate becomes harder. Zenstores gives you precision.",
-      high: "For high volume food brands, efficiency is everything. Zenstores helps you scale without slipping."
+      low: "🍏 Fresh start? Small food businesses need reliability — we’ve got your back.",
+      mid: "🥦 Mid-growth? Zenstores keeps perishable orders precise and on-time.",
+      high: "🚚 High-volume? Zenstores helps you ship fast and scale fearlessly."
     }
   },
   "Beauty & Fitness": {
     cases: ["Alex's Algae", "Tom's Training", "Mikey's Mascara"],
     personas: {
-      low: "Early-stage beauty brands benefit from polished packaging and fast fulfilment. Zenstores has you covered.",
-      mid: "As demand grows, managing shipments gets trickier. Zenstores makes it seamless.",
-      high: "High-volume health and beauty brands rely on automation. Zenstores delivers reliability at scale."
+      low: "💄 New brand? We help beauty businesses look polished from the first parcel.",
+      mid: "📦 Growing? Zenstores makes fulfilment seamless as orders rise.",
+      high: "💪 Big brand? Get speed, automation, and reliability at scale."
     }
   },
   "Other": {
     cases: ["Alex's Antiques", "Tom's Tools", "Mikey's Machines"],
     personas: {
-      low: "Getting started? Zenstores simplifies your shipping from day one.",
-      mid: "Growing pains? We help streamline your operation.",
-      high: "High-volume orders need structure. Zenstores brings it."
+      low: "🛠️ Just starting? Zenstores gets your operation off the ground.",
+      mid: "⚙️ Growing brand? We simplify shipping and save you hours.",
+      high: "🏭 High-volume? Zenstores powers your next stage of growth."
     }
   }
 };
