@@ -68,30 +68,23 @@ function updateUI() {
   // Update persona message
   personaMessage.textContent = persona ? `You're a: ${persona.persona}` : "";
 
-  // Update challenges
-  challengesContainer.innerHTML = "";
-  let totalChallengeValue = 0;
-  const challengeTitles = ["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"];
-  persona.challenges.forEach((value, i) => {
-    totalChallengeValue += value;
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${challengeTitles[i]}:</strong> £${value.toLocaleString()}`;
-    challengesContainer.appendChild(li);
-  });
+ // Update challenges
+challengesContainer.innerHTML = "";
+const challengeTitles = ["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"];
+const multipliers = [1, 2, 3];
+let totalChallengeValue = 0;
 
-  // Insert or update "Size of the problem" line
-  let sizeLine = document.getElementById("size-of-problem");
-  if (!sizeLine) {
-    sizeLine = document.createElement("p");
-    sizeLine.id = "size-of-problem";
-    sizeLine.style.borderTop = "1px solid #e0e0e0";
-    sizeLine.style.paddingTop = "1rem";
-    sizeLine.style.fontWeight = "bold";
-    sizeLine.style.fontSize = "1.1rem";
-    sizeLine.style.color = "#0074E4"; // Blue from Get Started button
-    challengesContainer.parentNode.insertBefore(sizeLine, challengesContainer.nextSibling);
-  }
-  sizeLine.textContent = `Size of the problem: £${totalChallengeValue.toLocaleString()}`;
+challengeTitles.forEach((title, i) => {
+  const value = orderCount * multipliers[i];
+  totalChallengeValue += value;
+  const li = document.createElement("li");
+  li.innerHTML = `<strong>${title}:</strong> £${value.toLocaleString()}`;
+  challengesContainer.appendChild(li);
+});
+
+// Update the "Size of the problem" line
+const sizeLine = document.getElementById("size-of-problem");
+sizeLine.textContent = `Size of the problem: £${totalChallengeValue.toLocaleString()}`;
 
   // Update similar businesses
   similarBusinessesContainer.innerHTML = "";
