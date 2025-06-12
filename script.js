@@ -7,7 +7,7 @@ const personaData = {
   "Food & Drink": [
     {
       maxOrders: 1500,
-      persona: "Food & Drink Startup",
+      persona: "Startup Brewery",
       businessExample: {
         name: "Arbor Ales",
         image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-1080.png",
@@ -17,20 +17,101 @@ const personaData = {
     },
     {
       maxOrders: 5000,
-      persona: "Taste Explorer",
-      businessExample: { name: "Sa Brains & Co." },
-      challenges: ["📦 Scaling difficulties", "⏱ Lack of integrations", "💰 Perishable Products"]
+      persona: "Growing Food Brand",
+      businessExample: {
+        name: "Sa Brains & Co."
+      },
+      challenges: ["📦 Scaling fulfilment", "⏱ Lack of integrations", "💰 Perishable products"]
     },
     {
       maxOrders: Infinity,
-      persona: "Food Industry Leader",
-      businessExample: { name: "Clearspring" },
-      challenges: ["📦 Lack of carrier flexibility", "⏱ Custom Bundles", "💰 Bespoke Orders"]
+      persona: "National Supplier",
+      businessExample: {
+        name: "Clearspring"
+      },
+      challenges: ["📦 Carrier flexibility", "⏱ Custom Bundles", "💰 Bespoke Orders"]
     }
   ],
-  "Health & Beauty": [...], // (same structure as above)
-  "Fashion & Apparel": [...]
+  "Health & Beauty": [
+    {
+      maxOrders: 1500,
+      persona: "Indie Skincare Brand",
+      businessExample: {
+        name: "Glow Botanicals"
+      },
+      challenges: ["📦 Small batch handling", "⏱ No automation", "💰 Delivery costs"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Wellness Scaleup",
+      businessExample: {
+        name: "Zen Beauty Co."
+      },
+      challenges: ["📦 Returns management", "⏱ Multi-channel sales", "💰 Stockouts"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Global Beauty Brand",
+      businessExample: {
+        name: "Luna Labs"
+      },
+      challenges: ["📦 Custom packaging", "⏱ International logistics", "💰 Carrier negotiation"]
+    }
+  ],
+  "Fashion & Apparel": [
+    {
+      maxOrders: 1500,
+      persona: "Boutique Label",
+      businessExample: {
+        name: "Thread & Needle"
+      },
+      challenges: ["📦 Manual picking", "⏱ Size variations", "💰 Lost parcels"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Fast Fashion Brand",
+      businessExample: {
+        name: "Wearly"
+      },
+      challenges: ["📦 Flash sale spikes", "⏱ Pre-orders", "💰 High return rate"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "UK Clothing Chain",
+      businessExample: {
+        name: "ModWear"
+      },
+      challenges: ["📦 Seasonal inventory", "⏱ Store replenishment", "💰 Complex shipping rules"]
+    }
+  ],
+  "Other": [
+    {
+      maxOrders: 1500,
+      persona: "Specialist Retailer",
+      businessExample: {
+        name: "HobbyHut"
+      },
+      challenges: ["📦 Unique SKUs", "⏱ Long lead times", "💰 Expensive packaging"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "DTC Innovator",
+      businessExample: {
+        name: "GadgetZone"
+      },
+      challenges: ["📦 Product bundling", "⏱ Multiple warehouses", "💰 Inventory sync"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Multi-Category Giant",
+      businessExample: {
+        name: "OmniStore"
+      },
+      challenges: ["📦 Carrier APIs", "⏱ Enterprise ERPs", "💰 Custom SLAs"]
+    }
+  ]
 };
+
 
 const categoryButtons = document.querySelectorAll('.category-btn');
 const personaMessage = document.getElementById('personaMessage');
