@@ -57,8 +57,6 @@ const similarBusinessesContainer = document.getElementById("similarBusinesses");
 const categoryButtons = document.querySelectorAll(".category-btn");
 const sizeLine = document.getElementById("size-of-problem");
 
-let selectedCategory = "Fashion & Apparel";
-
 // --- Animation function ---
 function animateValue(el, start, end, duration = 800, prefix = "£") {
   let startTimestamp = null;
@@ -101,7 +99,7 @@ function updateUI() {
     const li = document.createElement("li");
     const span = document.createElement("span");
     span.id = `challenge-${i}`;
-    span.dataset.value = value; // store the value for animation comparison
+    span.dataset.value = value;
     li.innerHTML = `<strong>${title}:</strong> `;
     li.appendChild(span);
     challengesContainer.appendChild(li);
@@ -109,10 +107,18 @@ function updateUI() {
     animateValue(span, previousValue, value);
   });
 
-  // Animate total challenge value
+  // Animate total challenge value with static label
   const previousTotal = parseInt(sizeLine.dataset.value) || 0;
   sizeLine.dataset.value = totalChallengeValue;
-  animateValue(sizeLine, previousTotal, totalChallengeValue);
+
+  // Create/reuse inner span for animated number
+  let valueSpan = sizeLine.querySelector("span");
+  if (!valueSpan) {
+    valueSpan = document.createElement("span");
+    sizeLine.textContent = "Size of the prize: ";
+    sizeLine.appendChild(valueSpan);
+  }
+  animateValue(valueSpan, previousTotal, totalChallengeValue);
 
   // Update similar businesses
   similarBusinessesContainer.innerHTML = "";
