@@ -1,7 +1,7 @@
 const personaData = {
   "Food & Drink": [
     {
-      maxOrders: 1000,
+      maxOrders: 1500,
       persona: "Food & Drink Startup",
       businessExample: "Alex's Apples",
       challenges: ["📦 Challenge 1", "⏱ Challenge 2", "💰 Challenge 3"]
@@ -21,7 +21,7 @@ const personaData = {
   ],
   "Beauty & Fitness": [
     {
-      maxOrders: 1000,
+      maxOrders: 1500,
       persona: "Beauty Beginner",
       businessExample: "Alex's Algae",
       challenges: ["🧴 Challenge 1", "🚚 Challenge 2", "📊 Challenge 3"]
@@ -41,7 +41,7 @@ const personaData = {
   ],
   "Fashion": [
     {
-      maxOrders: 1000,
+      maxOrders: 1500,
       persona: "Style Starter",
       businessExample: "Alex's Aprons",
       challenges: ["👕 Challenge 1", "📦 Challenge 2", "💸 Challenge 3"]
