@@ -55,8 +55,24 @@ const personaMessage = document.getElementById("personaMessage");
 const challengesContainer = document.getElementById("challengesContainer");
 const similarBusinessesContainer = document.getElementById("similarBusinesses");
 const categoryButtons = document.querySelectorAll(".category-btn");
+const sizeLine = document.getElementById("size-of-problem");
 
 let selectedCategory = "Fashion & Apparel";
+
+// --- Animation function ---
+function animateValue(el, start, end, duration = 800, prefix = "£") {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    const value = Math.floor(progress * (end - start) + start);
+    el.textContent = `${prefix}${value.toLocaleString()}`;
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
 
 function updateUI() {
   const orderCount = parseInt(ordersSlider.value * 50);
@@ -68,23 +84,35 @@ function updateUI() {
   // Update persona message
   personaMessage.textContent = persona ? `You're a: ${persona.persona}` : "";
 
- // Update challenges
-challengesContainer.innerHTML = "";
-const challengeTitles = ["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"];
-const multipliers = [1, 2, 3];
-let totalChallengeValue = 0;
+  // Update challenges
+  const challengeTitles = ["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"];
+  const multipliers = [1, 2, 3];
 
-challengeTitles.forEach((title, i) => {
-  const value = orderCount * multipliers[i];
-  totalChallengeValue += value;
-  const li = document.createElement("li");
-  li.innerHTML = `<strong>${title}:</strong> £${value.toLocaleString()}`;
-  challengesContainer.appendChild(li);
-});
+  challengesContainer.innerHTML = "";
+  let totalChallengeValue = 0;
 
-// Update the "Size of the problem" line
-const sizeLine = document.getElementById("size-of-problem");
-sizeLine.textContent = `Size of the problem: £${totalChallengeValue.toLocaleString()}`;
+  challengeTitles.forEach((title, i) => {
+    const prevElement = document.getElementById(`challenge-${i}`);
+    const previousValue = prevElement ? parseInt(prevElement.dataset.value) || 0 : 0;
+
+    const value = orderCount * multipliers[i];
+    totalChallengeValue += value;
+
+    const li = document.createElement("li");
+    const span = document.createElement("span");
+    span.id = `challenge-${i}`;
+    span.dataset.value = value; // store the value for animation comparison
+    li.innerHTML = `<strong>${title}:</strong> `;
+    li.appendChild(span);
+    challengesContainer.appendChild(li);
+
+    animateValue(span, previousValue, value);
+  });
+
+  // Animate total challenge value
+  const previousTotal = parseInt(sizeLine.dataset.value) || 0;
+  sizeLine.dataset.value = totalChallengeValue;
+  animateValue(sizeLine, previousTotal, totalChallengeValue);
 
   // Update similar businesses
   similarBusinessesContainer.innerHTML = "";
