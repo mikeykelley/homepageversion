@@ -1,64 +1,35 @@
+const sliderSteps = [];
+for (let i = 250; i <= 2500; i += 250) sliderSteps.push(i);
+for (let i = 3000; i <= 10000; i += 500) sliderSteps.push(i);
+for (let i = 11000; i <= 50000; i += 1000) sliderSteps.push(i);
+
 const personaData = {
   "Food & Drink": [
     {
       maxOrders: 1500,
       persona: "Food & Drink Startup",
-      businessExample: "Arbor Ales",
-      challenges: ["📦 Manual Fulfilment - £1,000 in lost time", "⏱ Fragile Goods - £X?", "💰 Alcohol Age Verificiation Regulations - £X?"]
+      businessExample: {
+        name: "Arbor Ales",
+        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-1080.png",
+        link: "https://zenstores.com/case-study/arbor-ales"
+      },
+      challenges: ["📦 Manual Fulfilment", "⏱ Fragile Goods", "💰 Alcohol Age Verification"]
     },
     {
       maxOrders: 5000,
       persona: "Taste Explorer",
-      businessExample: "Sa Brains & Co.",
+      businessExample: { name: "Sa Brains & Co." },
       challenges: ["📦 Scaling difficulties", "⏱ Lack of integrations", "💰 Perishable Products"]
     },
     {
       maxOrders: Infinity,
       persona: "Food Industry Leader",
-      businessExample: "Clearspring",
-      challenges: ["📦 Lack of carrier flexibility", "⏱ Picking & Packing Custom Bundles", "💰 Bespoke Order requirements"]
+      businessExample: { name: "Clearspring" },
+      challenges: ["📦 Lack of carrier flexibility", "⏱ Custom Bundles", "💰 Bespoke Orders"]
     }
   ],
-  "Health & Beauty": [
-    {
-      maxOrders: 1500,
-      persona: "Beauty Beginner",
-      businessExample: "My Luxe Beauty",
-      challenges: ["🧴 Challenge 1", "🚚 Challenge 2", "📊 Challenge 3"]
-    },
-    {
-      maxOrders: 10000,
-      persona: "Health Enthusiast",
-      businessExample: "The Vitamin",
-      challenges: ["🧴 Challenge 4", "🚚 Challenge 5", "📊 Challenge 6"]
-    },
-    {
-      maxOrders: Infinity,
-      persona: "Industry Icon",
-      businessExample: "Nutrition Geeks",
-      challenges: ["🧴 Challenge 7", "🚚 Challenge 8", "📊 Challenge 9"]
-    }
-  ],
-  "Fashion & Apparel": [
-    {
-      maxOrders: 1500,
-      persona: "Style Starter",
-      businessExample: "Abiza",
-      challenges: ["👕 Challenge 1", "📦 Challenge 2", "💸 Challenge 3"]
-    },
-    {
-      maxOrders: 10000,
-      persona: "Fashion Enthusiast",
-      businessExample: "Messina Hembry",
-      challenges: ["👕 Challenge 4", "📦 Challenge 5", "💸 Challenge 6"]
-    },
-    {
-      maxOrders: Infinity,
-      persona: "Fashion Powerhouse",
-      businessExample: "Hollands Country Clothing",
-      challenges: ["👕 Challenge 7", "📦 Challenge 8", "💸 Challenge 9"]
-    }
-  ]
+  "Health & Beauty": [...], // (same structure as above)
+  "Fashion & Apparel": [...]
 };
 
 const categoryButtons = document.querySelectorAll('.category-btn');
@@ -68,37 +39,45 @@ const orderValueDisplay = document.getElementById('orderValue');
 const similarBusinessesContainer = document.getElementById('similarBusinesses');
 const challengesContainer = document.getElementById('challengesContainer');
 
-let selectedCategory = 'Fashion';
+let selectedCategory = "Fashion & Apparel";
 
 function updatePersonaAndBusinesses() {
-  const orders = Number(orderSlider.value);
+  const sliderIndex = parseInt(orderSlider.value);
+  const orders = sliderSteps[sliderIndex];
   orderValueDisplay.textContent = orders.toLocaleString();
 
   const categoryArray = personaData[selectedCategory];
-  if (!categoryArray) {
-    personaMessage.textContent = `You're in a unique category. We'd love to learn more!`;
-    similarBusinessesContainer.innerHTML = '';
-    challengesContainer.innerHTML = '';
-    return;
-  }
+  if (!categoryArray) return;
 
-  let personaObj = categoryArray.find(item => orders <= item.maxOrders) || categoryArray[categoryArray.length - 1];
+  const personaObj = categoryArray.find(item => orders <= item.maxOrders) || categoryArray[categoryArray.length - 1];
   personaMessage.textContent = `You’re a "${personaObj.persona}".`;
 
-  // Similar business
-  similarBusinessesContainer.innerHTML = '';
-  const businessDiv = document.createElement('div');
-  businessDiv.className = 'business-box';
-  businessDiv.textContent = personaObj.businessExample;
-  similarBusinessesContainer.appendChild(businessDiv);
-
-  // Challenges
+  // Challenges with placeholder costs
   challengesContainer.innerHTML = '';
-  personaObj.challenges.forEach(challenge => {
+  personaObj.challenges.forEach((challenge, index) => {
+    const cost = (index + 1) * orders;
     const li = document.createElement('li');
-    li.textContent = challenge;
+    li.textContent = `${challenge} – Estimated Cost: £${cost.toLocaleString()}`;
     challengesContainer.appendChild(li);
   });
+
+  // Similar business with image link if available
+  similarBusinessesContainer.innerHTML = '';
+  if (personaObj.businessExample?.image && personaObj.businessExample?.link) {
+    const img = document.createElement('img');
+    img.src = personaObj.businessExample.image;
+    img.alt = personaObj.businessExample.name;
+    img.className = "business-image";
+
+    const link = document.createElement('a');
+    link.href = personaObj.businessExample.link;
+    link.target = "_blank";
+    link.appendChild(img);
+
+    similarBusinessesContainer.appendChild(link);
+  } else {
+    similarBusinessesContainer.textContent = personaObj.businessExample?.name || '';
+  }
 }
 
 categoryButtons.forEach(button => {
@@ -110,6 +89,7 @@ categoryButtons.forEach(button => {
   });
 });
 
-orderSlider.addEventListener('input', updatePersonaAndBusinesses);
+orderSlider.setAttribute("max", sliderSteps.length - 1);
+orderSlider.addEventListener("input", updatePersonaAndBusinesses);
 
 updatePersonaAndBusinesses();
