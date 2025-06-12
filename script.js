@@ -1,116 +1,176 @@
-// Sample data structure for personas and challenges, per category & order volume tiers
-const data = {
+const sliderSteps = [];
+for (let i = 250; i <= 2500; i += 250) sliderSteps.push(i);
+for (let i = 3000; i <= 10000; i += 500) sliderSteps.push(i);
+for (let i = 11000; i <= 50000; i += 1000) sliderSteps.push(i);
+
+const personaData = {
+  "Food & Drink": [
+    {
+      maxOrders: 1500,
+      persona: "Startup Brewery",
+      businessExample: {
+        name: "Arbor Ales",
+        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-1080.png",
+        link: "https://zenstores.com/case-study/arbor-ales"
+      },
+      challenges: ["📦 Manual Fulfilment", "⏱ Fragile Goods", "💰 Alcohol Age Verification"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Growing Food Brand",
+      businessExample: {
+        name: "Sa Brains & Co."
+      },
+      challenges: ["📦 Scaling fulfilment", "⏱ Lack of integrations", "💰 Perishable products"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "National Supplier",
+      businessExample: {
+        name: "Clearspring"
+      },
+      challenges: ["📦 Carrier flexibility", "⏱ Custom Bundles", "💰 Bespoke Orders"]
+    }
+  ],
+  "Health & Beauty": [
+    {
+      maxOrders: 1500,
+      persona: "Indie Skincare Brand",
+      businessExample: {
+        name: "Glow Botanicals"
+      },
+      challenges: ["📦 Small batch handling", "⏱ No automation", "💰 Delivery costs"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "Wellness Scaleup",
+      businessExample: {
+        name: "Zen Beauty Co."
+      },
+      challenges: ["📦 Returns management", "⏱ Multi-channel sales", "💰 Stockouts"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Global Beauty Brand",
+      businessExample: {
+        name: "Luna Labs"
+      },
+      challenges: ["📦 Custom packaging", "⏱ International logistics", "💰 Carrier negotiation"]
+    }
+  ],
   "Fashion & Apparel": [
     {
-      min: 0,
-      max: 1500,
-      persona: "Small Boutique",
-      challenges: [
-        { text: "High shipping costs", cost: 200 },
-        { text: "Slow fulfillment times", cost: 150 },
-        { text: "Limited carrier options", cost: 100 },
-      ],
-      similarBusinesses: ["Boutique A", "Boutique B"],
+      maxOrders: 1500,
+      persona: "Boutique Label",
+      businessExample: {
+        name: "Thread & Needle"
+      },
+      challenges: ["📦 Manual picking", "⏱ Size variations", "💰 Lost parcels"]
     },
     {
-      min: 1501,
-      max: 5000,
-      persona: "Growing Apparel Brand",
-      challenges: [
-        { text: "Inventory syncing issues", cost: 500 },
-        { text: "Shipping errors", cost: 400 },
-        { text: "Scaling fulfillment", cost: 300 },
-      ],
-      similarBusinesses: ["Brand X", "Brand Y"],
+      maxOrders: 5000,
+      persona: "Fast Fashion Brand",
+      businessExample: {
+        name: "Wearly"
+      },
+      challenges: ["📦 Flash sale spikes", "⏱ Pre-orders", "💰 High return rate"]
     },
     {
-      min: 5001,
-      max: Infinity,
-      persona: "Established Fashion Retailer",
-      challenges: [
-        { text: "Complex carrier contracts", cost: 1000 },
-        { text: "International shipping delays", cost: 800 },
-        { text: "High returns rate", cost: 600 },
-      ],
-      similarBusinesses: ["Retailer 1", "Retailer 2"],
-    },
+      maxOrders: Infinity,
+      persona: "UK Clothing Chain",
+      businessExample: {
+        name: "ModWear"
+      },
+      challenges: ["📦 Seasonal inventory", "⏱ Store replenishment", "💰 Complex shipping rules"]
+    }
   ],
-  // Add similar objects for Food & Drink, Health & Beauty, Other...
+  "Other": [
+    {
+      maxOrders: 1500,
+      persona: "Specialist Retailer",
+      businessExample: {
+        name: "HobbyHut"
+      },
+      challenges: ["📦 Unique SKUs", "⏱ Long lead times", "💰 Expensive packaging"]
+    },
+    {
+      maxOrders: 5000,
+      persona: "DTC Innovator",
+      businessExample: {
+        name: "GadgetZone"
+      },
+      challenges: ["📦 Product bundling", "⏱ Multiple warehouses", "💰 Inventory sync"]
+    },
+    {
+      maxOrders: Infinity,
+      persona: "Multi-Category Giant",
+      businessExample: {
+        name: "OmniStore"
+      },
+      challenges: ["📦 Carrier APIs", "⏱ Enterprise ERPs", "💰 Custom SLAs"]
+    }
+  ]
 };
 
+
 const categoryButtons = document.querySelectorAll('.category-btn');
+const personaMessage = document.getElementById('personaMessage');
 const orderSlider = document.getElementById('orders');
 const orderValueDisplay = document.getElementById('orderValue');
-const personaMessage = document.getElementById('personaMessage');
-const challengesContainer = document.getElementById('challengesContainer');
 const similarBusinessesContainer = document.getElementById('similarBusinesses');
-const problemSizeEl = document.getElementById('problemSize');
+const challengesContainer = document.getElementById('challengesContainer');
 
 let selectedCategory = "Fashion & Apparel";
 
-function updateUI() {
-  const orderVal = parseInt(orderSlider.value, 10);
-  orderValueDisplay.textContent = orderVal;
+function updatePersonaAndBusinesses() {
+  const sliderIndex = parseInt(orderSlider.value);
+  const orders = sliderSteps[sliderIndex];
+  orderValueDisplay.textContent = orders.toLocaleString();
 
-  // Find the persona & challenges for the selected category and order volume
-  const tiers = data[selectedCategory];
-  let tier = tiers.find(t => orderVal >= t.min && orderVal <= t.max);
+  const categoryArray = personaData[selectedCategory];
+  if (!categoryArray) return;
 
-  if (!tier) {
-    // fallback if none found
-    tier = tiers[0];
-  }
+  const personaObj = categoryArray.find(item => orders <= item.maxOrders) || categoryArray[categoryArray.length - 1];
+  personaMessage.textContent = `You’re a "${personaObj.persona}".`;
 
-  // Update persona message
-  personaMessage.textContent = `Persona: ${tier.persona}`;
-
-  // Update challenges list
+  // Challenges with placeholder costs
   challengesContainer.innerHTML = '';
-  tier.challenges.forEach(challenge => {
+  personaObj.challenges.forEach((challenge, index) => {
+    const cost = (index + 1) * orders;
     const li = document.createElement('li');
-    li.textContent = challenge.text;
-    li.setAttribute('data-cost', challenge.cost);
+    li.textContent = `${challenge} – Estimated Cost: £${cost.toLocaleString()}`;
     challengesContainer.appendChild(li);
   });
 
-  // Update similar businesses
+  // Similar business with image link if available
   similarBusinessesContainer.innerHTML = '';
-  tier.similarBusinesses.forEach(business => {
-    const div = document.createElement('div');
-    div.textContent = business;
-    similarBusinessesContainer.appendChild(div);
-  });
+  if (personaObj.businessExample?.image && personaObj.businessExample?.link) {
+    const img = document.createElement('img');
+    img.src = personaObj.businessExample.image;
+    img.alt = personaObj.businessExample.name;
+    img.className = "business-image";
 
-  // Update problem size
-  updateProblemSize();
+    const link = document.createElement('a');
+    link.href = personaObj.businessExample.link;
+    link.target = "_blank";
+    link.appendChild(img);
+
+    similarBusinessesContainer.appendChild(link);
+  } else {
+    similarBusinessesContainer.textContent = personaObj.businessExample?.name || '';
+  }
 }
 
-function updateProblemSize() {
-  const challenges = challengesContainer.querySelectorAll('li[data-cost]');
-  let total = 0;
-  challenges.forEach(challenge => {
-    const cost = parseFloat(challenge.getAttribute('data-cost'));
-    if (!isNaN(cost)) total += cost;
-  });
-
-  problemSizeEl.textContent = `Size of the problem: £${total.toLocaleString()}`;
-}
-
-// Event listeners
 categoryButtons.forEach(button => {
   button.addEventListener('click', () => {
-    // Remove selected class from all
     categoryButtons.forEach(btn => btn.classList.remove('selected'));
-    // Add to clicked button
     button.classList.add('selected');
     selectedCategory = button.getAttribute('data-category');
-    updateUI();
+    updatePersonaAndBusinesses();
   });
 });
 
-orderSlider.addEventListener('input', () => {
-  updateUI();
-});
+orderSlider.setAttribute("max", sliderSteps.length - 1);
+orderSlider.addEventListener("input", updatePersonaAndBusinesses);
 
-// Initial UI render
-updateUI();
+updatePersonaAndBusinesses();
