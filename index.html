@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="page-container">
-    <!-- Left side: simplified homepage intro -->
+    <!-- Left side: homepage intro -->
     <section class="homepage-intro">
       <h1>Upgrade your shipping. <br /><em><strong>From checkout to dispatch.</strong></em></h1>
       <p>Zenstores connects your checkout with how you actually ship orders. Unlock smarter delivery, faster fulfilment, and big savings on postage - all through one seamless integration.</p>
@@ -24,12 +24,12 @@
       </div>
     </section>
 
-    <!-- Right side: calculator widget -->
+    <!-- Right side: calculator -->
     <section class="calculator-container">
       <div class="calculator current-logic">
         <h2>Who are you?</h2>
 
-        <!-- Business category selector -->
+        <!-- Category -->
         <div class="business-category">
           <p>Select your business category:</p>
           <div class="category-buttons">
@@ -48,16 +48,15 @@
           </div>
         </div>
 
-        <!-- Monthly Shipment Volume -->
+        <!-- Monthly orders -->
         <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
-        <input type="range" id="orders" min="250" max="20000" value="250" step="250" />
-        
-<!-- Persona-specific challenges -->
-<p id="personaMessage" class="persona-message"></p>
-<h3>Challenges you may face</h3>
-<ul id="challengesContainer" class="challenges-list"></ul>
+        <input type="range" id="orders" min="0" max="112" value="0" />
 
-        <!-- Similar businesses we've helped -->
+        <p id="personaMessage" class="persona-message"></p>
+        <h3>Challenges you may face</h3>
+        <ul id="challengesContainer" class="challenges-list"></ul>
+
+        <!-- Similar business -->
         <h3>Similar businesses we've helped</h3>
         <div id="similarBusinesses" class="similar-businesses-container"></div>
       </div>
