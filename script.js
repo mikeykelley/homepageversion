@@ -4,7 +4,7 @@ const personaData = {
       maxOrders: 1500,
       persona: "Food & Drink Startup",
       businessExample: "Arbor Ales",
-      challenges: ["📦 Challenge 1", "⏱ Challenge 2", "💰 Challenge 3"]
+      challenges: ["📦 Manual Fulfilment - £1,000 in lost time", "⏱ Fragile Goods - £X?", "💰 Alcohol Age Verificiation Regulations - £X?"]
     },
     {
       maxOrders: 5000,
