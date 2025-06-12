@@ -245,3 +245,13 @@ body {
 #orders:hover::-webkit-slider-thumb {
   background-color: #1f33cc;
 }
+
+/* ...existing styles... */
+
+.business-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
