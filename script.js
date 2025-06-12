@@ -27,7 +27,7 @@ const personaData = {
       challenges: ["🧴 Challenge 1", "🚚 Challenge 2", "📊 Challenge 3"]
     },
     {
-      maxOrders: 5000,
+      maxOrders: 10000,
       persona: "Health Enthusiast",
       businessExample: "The Vitamin",
       challenges: ["🧴 Challenge 4", "🚚 Challenge 5", "📊 Challenge 6"]
@@ -47,7 +47,7 @@ const personaData = {
       challenges: ["👕 Challenge 1", "📦 Challenge 2", "💸 Challenge 3"]
     },
     {
-      maxOrders: 5000,
+      maxOrders: 10000,
       persona: "Fashion Enthusiast",
       businessExample: "Messina Hembry",
       challenges: ["👕 Challenge 4", "📦 Challenge 5", "💸 Challenge 6"]
