@@ -10,13 +10,13 @@ const personaData = {
       maxOrders: 5000,
       persona: "Taste Explorer",
       businessExample: "Sa Brains & Co.",
-      challenges: ["📦 Challenge 4", "⏱ Challenge 5", "💰 Challenge 6"]
+      challenges: ["📦 Scaling difficulties", "⏱ Lack of integrations", "💰 Perishable Products"]
     },
     {
       maxOrders: Infinity,
       persona: "Food Industry Leader",
       businessExample: "Clearspring",
-      challenges: ["📦 Challenge 7", "⏱ Challenge 8", "💰 Challenge 9"]
+      challenges: ["📦 Lack of carrier flexibility", "⏱ Picking & Packing Custom Bundles", "💰 Bespoke Order requirements"]
     }
   ],
   "Health & Beauty": [
