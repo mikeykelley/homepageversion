@@ -255,3 +255,9 @@ body {
   margin-top: 10px;
 }
 
+.problem-size-line {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #0070f3; /* Blue from the Get Started button */
+  margin: 1rem 0;
+}
