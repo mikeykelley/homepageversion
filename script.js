@@ -3,59 +3,59 @@ const personaData = {
     {
       maxOrders: 1500,
       persona: "Food & Drink Startup",
-      businessExample: "Alex's Apples",
+      businessExample: "Arbor Ales",
       challenges: ["📦 Challenge 1", "⏱ Challenge 2", "💰 Challenge 3"]
     },
     {
       maxOrders: 5000,
       persona: "Taste Explorer",
-      businessExample: "Tom's Tomatoes",
+      businessExample: "Sa Brains & Co.",
       challenges: ["📦 Challenge 4", "⏱ Challenge 5", "💰 Challenge 6"]
     },
     {
       maxOrders: Infinity,
       persona: "Food Industry Leader",
-      businessExample: "Mikey's Munch",
+      businessExample: "Clearspring",
       challenges: ["📦 Challenge 7", "⏱ Challenge 8", "💰 Challenge 9"]
     }
   ],
-  "Beauty & Fitness": [
+  "Health & Beauty": [
     {
       maxOrders: 1500,
       persona: "Beauty Beginner",
-      businessExample: "Alex's Algae",
+      businessExample: "My Luxe Beauty",
       challenges: ["🧴 Challenge 1", "🚚 Challenge 2", "📊 Challenge 3"]
     },
     {
       maxOrders: 5000,
       persona: "Health Enthusiast",
-      businessExample: "Tom's Training",
+      businessExample: "The Vitamin",
       challenges: ["🧴 Challenge 4", "🚚 Challenge 5", "📊 Challenge 6"]
     },
     {
       maxOrders: Infinity,
       persona: "Industry Icon",
-      businessExample: "Mikey's Mascara",
+      businessExample: "Nutrition Geeks",
       challenges: ["🧴 Challenge 7", "🚚 Challenge 8", "📊 Challenge 9"]
     }
   ],
-  "Fashion": [
+  "Fashion & Apparel": [
     {
       maxOrders: 1500,
       persona: "Style Starter",
-      businessExample: "Alex's Aprons",
+      businessExample: "Abiza",
       challenges: ["👕 Challenge 1", "📦 Challenge 2", "💸 Challenge 3"]
     },
     {
       maxOrders: 5000,
       persona: "Fashion Enthusiast",
-      businessExample: "Tom's Tees",
+      businessExample: "Messina Hembry",
       challenges: ["👕 Challenge 4", "📦 Challenge 5", "💸 Challenge 6"]
     },
     {
       maxOrders: Infinity,
       persona: "Fashion Powerhouse",
-      businessExample: "Mikey's Mittens",
+      businessExample: "Hollands Country Clothing",
       challenges: ["👕 Challenge 7", "📦 Challenge 8", "💸 Challenge 9"]
     }
   ]
