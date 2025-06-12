@@ -1,176 +1,120 @@
-const sliderSteps = [];
-for (let i = 250; i <= 2500; i += 250) sliderSteps.push(i);
-for (let i = 3000; i <= 10000; i += 500) sliderSteps.push(i);
-for (let i = 11000; i <= 50000; i += 1000) sliderSteps.push(i);
-
-const personaData = {
-  "Food & Drink": [
-    {
-      maxOrders: 1500,
-      persona: "Startup Brewery",
-      businessExample: {
-        name: "Arbor Ales",
-        image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-1080.png",
-        link: "https://zenstores.com/case-study/arbor-ales"
-      },
-      challenges: ["📦 Manual Fulfilment", "⏱ Fragile Goods", "💰 Alcohol Age Verification"]
-    },
-    {
-      maxOrders: 5000,
-      persona: "Growing Food Brand",
-      businessExample: {
-        name: "Sa Brains & Co."
-      },
-      challenges: ["📦 Scaling fulfilment", "⏱ Lack of integrations", "💰 Perishable products"]
-    },
-    {
-      maxOrders: Infinity,
-      persona: "National Supplier",
-      businessExample: {
-        name: "Clearspring"
-      },
-      challenges: ["📦 Carrier flexibility", "⏱ Custom Bundles", "💰 Bespoke Orders"]
-    }
-  ],
-  "Health & Beauty": [
-    {
-      maxOrders: 1500,
-      persona: "Indie Skincare Brand",
-      businessExample: {
-        name: "Glow Botanicals"
-      },
-      challenges: ["📦 Small batch handling", "⏱ No automation", "💰 Delivery costs"]
-    },
-    {
-      maxOrders: 5000,
-      persona: "Wellness Scaleup",
-      businessExample: {
-        name: "Zen Beauty Co."
-      },
-      challenges: ["📦 Returns management", "⏱ Multi-channel sales", "💰 Stockouts"]
-    },
-    {
-      maxOrders: Infinity,
-      persona: "Global Beauty Brand",
-      businessExample: {
-        name: "Luna Labs"
-      },
-      challenges: ["📦 Custom packaging", "⏱ International logistics", "💰 Carrier negotiation"]
-    }
-  ],
-  "Fashion & Apparel": [
-    {
-      maxOrders: 1500,
-      persona: "Boutique Label",
-      businessExample: {
-        name: "Thread & Needle"
-      },
-      challenges: ["📦 Manual picking", "⏱ Size variations", "💰 Lost parcels"]
-    },
-    {
-      maxOrders: 5000,
-      persona: "Fast Fashion Brand",
-      businessExample: {
-        name: "Wearly"
-      },
-      challenges: ["📦 Flash sale spikes", "⏱ Pre-orders", "💰 High return rate"]
-    },
-    {
-      maxOrders: Infinity,
-      persona: "UK Clothing Chain",
-      businessExample: {
-        name: "ModWear"
-      },
-      challenges: ["📦 Seasonal inventory", "⏱ Store replenishment", "💰 Complex shipping rules"]
-    }
-  ],
-  "Other": [
-    {
-      maxOrders: 1500,
-      persona: "Specialist Retailer",
-      businessExample: {
-        name: "HobbyHut"
-      },
-      challenges: ["📦 Unique SKUs", "⏱ Long lead times", "💰 Expensive packaging"]
-    },
-    {
-      maxOrders: 5000,
-      persona: "DTC Innovator",
-      businessExample: {
-        name: "GadgetZone"
-      },
-      challenges: ["📦 Product bundling", "⏱ Multiple warehouses", "💰 Inventory sync"]
-    },
-    {
-      maxOrders: Infinity,
-      persona: "Multi-Category Giant",
-      businessExample: {
-        name: "OmniStore"
-      },
-      challenges: ["📦 Carrier APIs", "⏱ Enterprise ERPs", "💰 Custom SLAs"]
-    }
-  ]
+const categories = {
+  "Fashion & Apparel": {
+    personas: [
+      { max: 1500, persona: "Growing Shopify brand", challenges: [1200, 900, 600] },
+      { max: 5000, persona: "Scaling direct-to-consumer label", challenges: [3500, 2400, 1200] },
+      { max: Infinity, persona: "Fast-growth fashion business", challenges: [7200, 4100, 2300] },
+    ],
+    similarBusinesses: [
+      { name: "Perseverance London", url: "https://www.perseverancelondon.com/" },
+      { name: "Cortili", url: "https://www.instagram.com/cortili/" },
+      { name: "No One True Anything", url: "https://www.instagram.com/noonetrueanything/" },
+    ],
+  },
+  "Food & Drink": {
+    personas: [
+      { max: 1500, persona: "Growing Shopify brand", challenges: [800, 700, 500] },
+      { max: 5000, persona: "Scaling direct-to-consumer producer", challenges: [2600, 1800, 1400] },
+      { max: Infinity, persona: "Fast-growth food business", challenges: [5400, 2900, 2000] },
+    ],
+    similarBusinesses: [
+      { name: "Flavourly", url: "https://www.flavourly.com/" },
+      { name: "Root Kitchen", url: "https://www.rootkitchen.uk/" },
+      { name: "Pasta Evangelists", url: "https://pastaevangelists.com/" },
+    ],
+  },
+  "Health & Beauty": {
+    personas: [
+      { max: 1500, persona: "Growing Shopify brand", challenges: [1000, 750, 500] },
+      { max: 5000, persona: "Scaling skincare/beauty business", challenges: [3000, 2200, 1600] },
+      { max: Infinity, persona: "Fast-growth wellness brand", challenges: [6600, 3600, 2400] },
+    ],
+    similarBusinesses: [
+      { name: "UpCircle Beauty", url: "https://upcirclebeauty.com/" },
+      { name: "AKT London", url: "https://www.aktlondon.com/" },
+      { name: "Woody's", url: "https://www.instagram.com/woodys_uk/" },
+    ],
+  },
+  "Other": {
+    personas: [
+      { max: 1500, persona: "Growing online seller", challenges: [900, 600, 500] },
+      { max: 5000, persona: "Scaling business", challenges: [2800, 2000, 1300] },
+      { max: Infinity, persona: "Fast-growth brand", challenges: [6000, 3500, 2100] },
+    ],
+    similarBusinesses: [
+      { name: "Wave Spas", url: "https://wavespas.com/" },
+      { name: "Grind", url: "https://grind.co.uk/" },
+      { name: "Climbing Van", url: "https://climbingvan.co.uk/" },
+    ],
+  },
 };
 
-
-const categoryButtons = document.querySelectorAll('.category-btn');
-const personaMessage = document.getElementById('personaMessage');
-const orderSlider = document.getElementById('orders');
-const orderValueDisplay = document.getElementById('orderValue');
-const similarBusinessesContainer = document.getElementById('similarBusinesses');
-const challengesContainer = document.getElementById('challengesContainer');
+const ordersSlider = document.getElementById("orders");
+const orderValue = document.getElementById("orderValue");
+const personaMessage = document.getElementById("personaMessage");
+const challengesContainer = document.getElementById("challengesContainer");
+const similarBusinessesContainer = document.getElementById("similarBusinesses");
+const categoryButtons = document.querySelectorAll(".category-btn");
 
 let selectedCategory = "Fashion & Apparel";
 
-function updatePersonaAndBusinesses() {
-  const sliderIndex = parseInt(orderSlider.value);
-  const orders = sliderSteps[sliderIndex];
-  orderValueDisplay.textContent = orders.toLocaleString();
+function updateUI() {
+  const orderCount = parseInt(ordersSlider.value * 50);
+  orderValue.textContent = orderCount;
 
-  const categoryArray = personaData[selectedCategory];
-  if (!categoryArray) return;
+  const categoryData = categories[selectedCategory];
+  const persona = categoryData.personas.find((p) => orderCount <= p.max);
 
-  const personaObj = categoryArray.find(item => orders <= item.maxOrders) || categoryArray[categoryArray.length - 1];
-  personaMessage.textContent = `You’re a "${personaObj.persona}".`;
+  // Update persona message
+  personaMessage.textContent = persona ? `You're a: ${persona.persona}` : "";
 
-  // Challenges with placeholder costs
-  challengesContainer.innerHTML = '';
-  personaObj.challenges.forEach((challenge, index) => {
-    const cost = (index + 1) * orders;
-    const li = document.createElement('li');
-    li.textContent = `${challenge} – Estimated Cost: £${cost.toLocaleString()}`;
+  // Update challenges
+  challengesContainer.innerHTML = "";
+  let totalChallengeValue = 0;
+  const challengeTitles = ["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"];
+  persona.challenges.forEach((value, i) => {
+    totalChallengeValue += value;
+    const li = document.createElement("li");
+    li.innerHTML = `<strong>${challengeTitles[i]}:</strong> £${value.toLocaleString()}`;
     challengesContainer.appendChild(li);
   });
 
-  // Similar business with image link if available
-  similarBusinessesContainer.innerHTML = '';
-  if (personaObj.businessExample?.image && personaObj.businessExample?.link) {
-    const img = document.createElement('img');
-    img.src = personaObj.businessExample.image;
-    img.alt = personaObj.businessExample.name;
-    img.className = "business-image";
-
-    const link = document.createElement('a');
-    link.href = personaObj.businessExample.link;
-    link.target = "_blank";
-    link.appendChild(img);
-
-    similarBusinessesContainer.appendChild(link);
-  } else {
-    similarBusinessesContainer.textContent = personaObj.businessExample?.name || '';
+  // Insert or update "Size of the problem" line
+  let sizeLine = document.getElementById("size-of-problem");
+  if (!sizeLine) {
+    sizeLine = document.createElement("p");
+    sizeLine.id = "size-of-problem";
+    sizeLine.style.borderTop = "1px solid #e0e0e0";
+    sizeLine.style.paddingTop = "1rem";
+    sizeLine.style.fontWeight = "bold";
+    sizeLine.style.fontSize = "1.1rem";
+    sizeLine.style.color = "#0074E4"; // Blue from Get Started button
+    challengesContainer.parentNode.insertBefore(sizeLine, challengesContainer.nextSibling);
   }
+  sizeLine.textContent = `Size of the problem: £${totalChallengeValue.toLocaleString()}`;
+
+  // Update similar businesses
+  similarBusinessesContainer.innerHTML = "";
+  categoryData.similarBusinesses.forEach((biz) => {
+    const a = document.createElement("a");
+    a.href = biz.url;
+    a.target = "_blank";
+    a.textContent = biz.name;
+    a.classList.add("similar-business");
+    similarBusinessesContainer.appendChild(a);
+  });
 }
 
-categoryButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    categoryButtons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-    selectedCategory = button.getAttribute('data-category');
-    updatePersonaAndBusinesses();
+ordersSlider.addEventListener("input", updateUI);
+
+categoryButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    categoryButtons.forEach((b) => b.classList.remove("selected"));
+    btn.classList.add("selected");
+    selectedCategory = btn.dataset.category;
+    updateUI();
   });
 });
 
-orderSlider.setAttribute("max", sliderSteps.length - 1);
-orderSlider.addEventListener("input", updatePersonaAndBusinesses);
-
-updatePersonaAndBusinesses();
+// Initialize
+updateUI();
