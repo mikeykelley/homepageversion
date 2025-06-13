@@ -120,7 +120,7 @@ body {
 .calculator h2 {
   font-weight: 700;
   font-size: 2rem;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
   color: var(--zen-black);
 }
 
