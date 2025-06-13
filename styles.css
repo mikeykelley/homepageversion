@@ -185,8 +185,8 @@ body {
   box-sizing: border-box; /* so padding doesn’t break layout */
 }
 
-#interactive-area.glow {
-box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.6); /* soft zen pink glow */
+#glow-wrap.glow {
+  box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.6); /* soft zen pink glow */
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 8px;
 }
