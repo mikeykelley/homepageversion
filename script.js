@@ -83,15 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (i === 0) {
         // Challenge 1: Manual or poor fitting fulfilment solutions
-        const oldTime = count / 20; // hours at 20 orders/hour
-        const newTime = count / 50; // hours at 50 orders/hour
-        const wage = 12; // £12/hour
+        const oldTime = count / 20;
+        const newTime = count / 50;
+        const wage = 12;
         val = Math.round((oldTime - newTime) * wage);
       } else if (i === 1) {
         // Challenge 2: Pick & Pack errors
         const errorRateCurrent = 0.02;
         const errorRateOptimised = 0.005;
-        const costPerError = 50; // AOV
+        const costPerError = 50;
         val = Math.round((count * errorRateCurrent * costPerError) - (count * errorRateOptimised * costPerError));
       } else if (i === 2) {
         // Challenge 3: Missed orders due to poor delivery experience
@@ -127,50 +127,49 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animateValue(vs, prevTot, total);
 
-   // Quirks
-quirksContainer.innerHTML = "";
+    // Quirks
+    quirksContainer.innerHTML = "";
+    const quirksHeading = document.getElementById("quirksHeading");
+    if (quirksHeading) {
+      quirksHeading.textContent =
+        selectedCategory === "Other"
+          ? "What we often hear from ecommerce brands"
+          : `What makes ${selectedCategory} fulfilment tricky?`;
+    }
 
-const quirksHeading = document.getElementById("quirksHeading");
-if (quirksHeading) {
-  quirksHeading.textContent =
-    selectedCategory === "Other"
-      ? "What we often hear from ecommerce brands"
-      : `What makes ${selectedCategory} fulfilment tricky?`;
-}
+    (categoryQuirks[selectedCategory] || []).forEach(q => {
+      const li = document.createElement("li");
+      li.textContent = q;
+      quirksContainer.appendChild(li);
+    });
 
-(categoryQuirks[selectedCategory] || []).forEach(q => {
-  const li = document.createElement("li");
-  li.textContent = q;
-  quirksContainer.appendChild(li);
-});
+    // Similar business
+    similarBusinessesContainer.innerHTML = "";
 
-// Similar business
-similarBusinessesContainer.innerHTML = "";
+    const heading = document.createElement("h4");
+    heading.textContent =
+      selectedCategory === "Other"
+        ? "Other brands we've helped"
+        : `Similar ${selectedCategory} businesses we've helped`;
+    similarBusinessesContainer.appendChild(heading);
 
-// Add dynamic heading
-const heading = document.createElement("h4");
-if (selectedCategory === "Other") {
-  heading.textContent = "Other brands we've helped";
-} else {
-  heading.textContent = `Similar ${selectedCategory} businesses we've helped`;
-}
-similarBusinessesContainer.appendChild(heading);
+    const biz = categories[selectedCategory]?.similarBusiness;
+    if (biz) {
+      const a = document.createElement("a");
+      a.href = biz.url;
+      a.target = "_blank";
+      a.classList.add("case-study-card");
+      const img = document.createElement("img");
+      img.src = biz.image;
+      img.alt = biz.name;
+      a.appendChild(img);
+      similarBusinessesContainer.appendChild(a);
+    }
+  }
 
-// Add the actual business card
-const biz = categories[selectedCategory]?.similarBusiness;
-if (biz) {
-  const a = document.createElement("a");
-  a.href = biz.url;
-  a.target = "_blank";
-  a.classList.add("case-study-card");
-  const img = document.createElement("img");
-  img.src = biz.image;
-  img.alt = biz.name;
-  a.appendChild(img);
-  similarBusinessesContainer.appendChild(a);
-}
-
+  // ✅ These must be outside updateUI
   ordersSlider.addEventListener("input", updateUI);
+
   categoryButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       categoryButtons.forEach(b => b.classList.remove("selected"));
@@ -180,5 +179,6 @@ if (biz) {
     });
   });
 
+  // ✅ Initial render
   updateUI();
 });
