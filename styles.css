@@ -181,6 +181,10 @@ body {
   display: none !important;
 }
 
+.persona-box {
+  display: none !important;
+}
+
 /* Challenges */
 .challenges-list {
   list-style: none;
