@@ -75,21 +75,34 @@ document.addEventListener("DOMContentLoaded", () => {
     // Challenges
     challengesContainer.innerHTML = "";
     let total = 0;
-    baseMultipliers.forEach((mult, i) => {
-      const prev = document.getElementById(`challenge-${i}`);
-      const prevVal = prev?.dataset?.value * 1 || 0;
-      const val = count * mult;
-      total += val;
+  baseMultipliers.forEach((mult, i) => {
+  const prev = document.getElementById(`challenge-${i}`);
+  const prevVal = prev?.dataset?.value * 1 || 0;
+  let val;
 
-      const li = document.createElement("li");
-      const span = document.createElement("span");
-      span.id = `challenge-${i}`;
-      span.dataset.value = val;
-      li.innerHTML = `<strong>${["Poor fitting fulfilment processes", "Pick & Pack errors", "Lacklustre delivery experiences"][i]}:</strong> `;
-      li.appendChild(span);
-      challengesContainer.appendChild(li);
-      animateValue(span, prevVal, val);
-    });
+  if (i === 0) {
+    // Challenge 1: Manual or poor fitting fulfilment solutions
+    const oldTime = count / 20; // hours at 20 orders/hour
+    const newTime = count / 50; // hours at 50 orders/hour
+    const wage = 12; // £12/hour
+    val = Math.round((oldTime - newTime) * wage);
+  } else {
+    // Other challenges use multipliers for now
+    val = count * mult;
+  }
+
+  total += val;
+
+  const li = document.createElement("li");
+  const span = document.createElement("span");
+  span.id = `challenge-${i}`;
+  span.dataset.value = val;
+  li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Lacklustre delivery experiences"][i]}:</strong> `;
+  li.appendChild(span);
+  challengesContainer.appendChild(li);
+  animateValue(span, prevVal, val);
+});
+
 
     // Total size of the prize
     const prevTot = sizeLine.dataset.value * 1 || 0;
