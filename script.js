@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const costPerError = 50; // AOV
         val = Math.round((count * errorRateCurrent * costPerError) - (count * errorRateOptimised * costPerError));
       } else if (i === 2) {
-        // Challenge 3: Conversion uplift from better delivery experience
+        // Challenge 3: Missed orders due to poor delivery experience
         const aov = 50;
         const baselineConversionRate = 0.03;
         const upliftedConversionRate = baselineConversionRate * 1.1;
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
       span.id = `challenge-${i}`;
       span.dataset.value = val;
-      li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Conversion uplift from better delivery experience"][i]}:</strong> `;
+      li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Missed orders due to poor delivery experience"][i]}:</strong> `;
       li.appendChild(span);
       challengesContainer.appendChild(li);
       animateValue(span, prevVal, val);
