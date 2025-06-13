@@ -303,3 +303,33 @@ body {
   display: block;
 }
 
+.revenue-uplift-box {
+  background: var(--zen-pink);
+  padding: 20px;
+  border-radius: 12px;
+  margin: 20px 0;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(5, 36, 36, 0.1);
+}
+
+.uplift-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--zen-black);
+  margin-bottom: 10px;
+}
+
+.uplift-amount {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1c9b58; /* A bold green */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.arrow-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
