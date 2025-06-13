@@ -135,21 +135,31 @@ document.addEventListener("DOMContentLoaded", () => {
       quirksContainer.appendChild(li);
     });
 
-    // Similar business
-    similarBusinessesContainer.innerHTML = "";
-    const biz = categories[selectedCategory]?.similarBusiness;
-    if (biz) {
-      const a = document.createElement("a");
-      a.href = biz.url;
-      a.target = "_blank";
-      a.classList.add("case-study-card");
-      const img = document.createElement("img");
-      img.src = biz.image;
-      img.alt = biz.name;
-      a.appendChild(img);
-      similarBusinessesContainer.appendChild(a);
-    }
-  }
+// Similar business
+similarBusinessesContainer.innerHTML = "";
+
+// Add dynamic heading
+const heading = document.createElement("h4");
+if (selectedCategory === "Other") {
+  heading.textContent = "Other brands we've helped";
+} else {
+  heading.textContent = `Similar ${selectedCategory} businesses we've helped`;
+}
+similarBusinessesContainer.appendChild(heading);
+
+// Add the actual business card
+const biz = categories[selectedCategory]?.similarBusiness;
+if (biz) {
+  const a = document.createElement("a");
+  a.href = biz.url;
+  a.target = "_blank";
+  a.classList.add("case-study-card");
+  const img = document.createElement("img");
+  img.src = biz.image;
+  img.alt = biz.name;
+  a.appendChild(img);
+  similarBusinessesContainer.appendChild(a);
+}
 
   ordersSlider.addEventListener("input", updateUI);
   categoryButtons.forEach(btn => {
