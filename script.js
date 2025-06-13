@@ -49,6 +49,8 @@ const categories = {
   },
 };
 
+let selectedCategory = "Fashion & Apparel";
+
 const ordersSlider = document.getElementById("orders");
 const orderValue = document.getElementById("orderValue");
 const personaMessage = document.getElementById("personaMessage");
@@ -56,6 +58,17 @@ const challengesContainer = document.getElementById("challengesContainer");
 const similarBusinessesContainer = document.getElementById("similarBusinesses");
 const categoryButtons = document.querySelectorAll(".category-btn");
 const sizeLine = document.getElementById("size-of-problem");
+
+// --- Maps slider value (0–40) to actual order count ---
+function getOrderCount(sliderValue) {
+  if (sliderValue <= 10) {
+    return sliderValue * 100; // 0–1000 in 100s
+  } else if (sliderValue <= 22) {
+    return 1000 + (sliderValue - 10) * 250; // 1250–5000 in 250s
+  } else {
+    return 5000 + (sliderValue - 22) * 500; // 5500–20000 in 500s
+  }
+}
 
 // --- Animation function ---
 function animateValue(el, start, end, duration = 800, prefix = "£") {
@@ -73,7 +86,8 @@ function animateValue(el, start, end, duration = 800, prefix = "£") {
 }
 
 function updateUI() {
-  const orderCount = parseInt(ordersSlider.value * 50);
+  const sliderValue = parseInt(ordersSlider.value);
+  const orderCount = getOrderCount(sliderValue);
   orderValue.textContent = orderCount;
 
   const categoryData = categories[selectedCategory];
