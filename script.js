@@ -6,9 +6,9 @@ const categories = {
       { max: Infinity, persona: "Fast-growth fashion business", challenges: [7200, 4100, 2300] },
     ],
     similarBusiness: {
-      name: "Arbor Ales",
-      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
-      url: "https://www.zenstores.com/case-study/arbor-ales"
+      name: "Holland's Country Clothing",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4ac80a2384710e0e4b73b_Holland%27s%20Country%20Clothing-p-500.png",
+      url: "https://www.zenstores.com/case-study/hollands-country-clothing"
     }
   },
   "Food & Drink": {
