@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const baseMultipliers = [1, 2, 3];
   const categoryQuirks = {
     "Fashion & Apparel": ["Frequent returns", "Sizing complexity"],
@@ -48,6 +47,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const similarBusinessesContainer = document.getElementById("similarBusinesses");
   const categoryButtons = document.querySelectorAll(".category-btn");
   const sizeLine = document.getElementById("size-of-problem");
+  const interactiveArea = document.getElementById("interactive-area");
+
+  // === Glow effect on page load ===
+  interactiveArea.classList.add("glow");
+
+  // Function to stop glow on first user interaction
+  function stopGlow() {
+    interactiveArea.classList.remove("glow");
+    categoryButtons.forEach(btn => btn.removeEventListener("click", stopGlow));
+    ordersSlider.removeEventListener("input", stopGlow);
+  }
+
+  // Stop glow on any category button click
+  categoryButtons.forEach(btn => btn.addEventListener("click", stopGlow));
+
+  // Stop glow on slider input change
+  ordersSlider.addEventListener("input", stopGlow);
+
+  // === Your existing functions ===
 
   function getOrderCount(v) {
     if (v <= 10) return v * 250;
@@ -167,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ✅ These must be outside updateUI
+  // Attach UI events
   ordersSlider.addEventListener("input", updateUI);
 
   categoryButtons.forEach(btn => {
@@ -179,6 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ✅ Initial render
+  // Initial render
   updateUI();
 });
