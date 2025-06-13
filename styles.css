@@ -174,19 +174,10 @@ body {
   color: var(--zen-black);
 }
 
-/* Glow animation, applied via .glow class */
-
-.category-btn.glow {
-  animation: gentleGlow 2.5s ease-in-out infinite alternate;
-}
-
-@keyframes gentleGlow {
-  0% {
-    box-shadow: 0 0 6px 1px rgba(0, 174, 255, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 14px 3px rgba(0, 174, 255, 0.6);
-  }
+#interactive-area.glow {
+  box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.7); /* soft zen-pink glow */
+  transition: box-shadow 0.3s ease-in-out;
+  border-radius: 8px;
 }
 
 /* Challenges */
