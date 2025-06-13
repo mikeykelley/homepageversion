@@ -59,7 +59,7 @@ const similarBusinessesContainer = document.getElementById("similarBusinesses");
 const categoryButtons = document.querySelectorAll(".category-btn");
 const sizeLine = document.getElementById("size-of-problem");
 
-// --- Maps slider value (0–40) to actual order count ---
+// --- Maps slider value (0–37) to actual order count ---
 function getOrderCount(sliderValue) {
   if (sliderValue <= 10) {
     return sliderValue * 250; // 0–2500 in 250s
