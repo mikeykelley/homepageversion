@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const step = (t) => {
       if (!startTime) startTime = t;
       const prog = Math.min((t - startTime) / duration, 1);
-      const value = Math.floor(start + (end - startTime) * prog);
+      const value = Math.floor(start + (end - start) * prog);
       el.textContent = `${prefix}${value.toLocaleString()}`;
       if (prog < 1) requestAnimationFrame(step);
     };
