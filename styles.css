@@ -219,7 +219,7 @@ body {
   background: var(--zen-pink-light);
   padding: 8px 12px;
   border-radius: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 2px;
   font-size: 0.95rem;
   border-left: 4px solid var(--zen-blue); /* Optional: differentiate from challenges */
 }
@@ -229,7 +229,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: 2px;
 }
 
 .business-box {
