@@ -12,15 +12,44 @@ const categoryQuirks = {
   "Other": ["Bulky items", "Irregular delivery times"]
 };
 
-const categories = {
+  const categories = {
   "Fashion & Apparel": {
     similarBusiness: {
       name: "Holland's Country Clothing",
-      image: "...png",
-      url: "https://www..."
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4ac80a2384710e0e4b73b_Holland%27s%20Country%20Clothing-p-500.png",
+      url: "https://www.zenstores.com/case-study/hollands-country-clothing"
     }
   },
-  // ... other categories
+  "Food & Drink": {
+    similarBusiness: {
+      name: "Arbor Ales",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
+      url: "https://www.zenstores.com/case-study/arbor-ales"
+    }
+  },
+  "Health & Beauty": {
+    similarBusiness: {
+      name: "The Vitamin",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b67b0341cd7e7e5e941a_The%20Vitamin-p-500.png",
+      url: "https://www.zenstores.com/case-study/the-vitamin"
+    }
+  },
+  "Other": {
+    similarBusiness: {
+      name: "FNX Bathrooms",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b477a18735bf49ed0e7737_FNX%20Bathrooms.png",
+      url: "https://www.zenstores.com/case-study/fnx-bathrooms"
+    }
+  }
+};
+
+let selectedCategory = "Fashion & Apparel";
+
+const ordersSlider = document.getElementById("orders");
+const orderValue = document.getElementById("orderValue");
+const personaMessage = document.getElementById("personaMessage");
+const challengesContainer = document.getElementById("challengesContainer");
+cons
 };
 
 let selectedCategory = "Fashion & Apparel";
