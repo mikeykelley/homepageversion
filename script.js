@@ -101,8 +101,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (i === 0) {
         // Challenge 1: Manual or poor fitting fulfilment solutions
-        const oldTime = count / 20;
-        const newTime = count / 50;
+        const oldTime = count / 15;
+        const newTime = count / 60;
         const wage = 12;
         val = Math.round((oldTime - newTime) * wage);
       } else if (i === 1) {
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Challenge 3: Missed orders due to poor delivery experience
         const aov = 50;
         const baselineConversionRate = 0.03;
-        const upliftedConversionRate = baselineConversionRate * 1.1;
+        const upliftedConversionRate = baselineConversionRate * 1.05;
         const visitors = count / baselineConversionRate;
         const newOrders = visitors * upliftedConversionRate;
         const extraOrders = Math.round(newOrders - count);
