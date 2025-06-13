@@ -186,7 +186,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Attach UI events
-  ordersSlider.addEventListener("input", updateUI);
+let debounceTimeout;
+
+ordersSlider.addEventListener("input", () => {
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(() => {
+    updateUI();
+  }, 250); // delay in ms
+});
 
   categoryButtons.forEach(btn => {
     btn.addEventListener("click", () => {
