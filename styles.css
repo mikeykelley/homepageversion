@@ -225,7 +225,7 @@ body {
   border-radius: 3px;
   outline: none;
   cursor: pointer;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   -webkit-appearance: none; /* remove default Safari styling */
 }
 
@@ -258,6 +258,7 @@ body {
 .problem-size-line {
   font-size: 1.25rem;
   font-weight: 600;
+  margin-bottom: 2.5rem;
   color: #0070f3; /* Blue from the Get Started button */
   margin: 1rem 0;
 }
