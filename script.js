@@ -1,10 +1,18 @@
+const personas = [
+  { max: 1500, persona: "Growing Shopify brand", challenges: [1200, 900, 600] },
+  { max: 10000, persona: "Scaling direct-to-consumer label", challenges: [3500, 2400, 1200] },
+  { max: Infinity, persona: "Fast-growth business", challenges: [7200, 4100, 2300] },
+];
+
+const categoryQuirks = {
+  "Fashion & Apparel": ["Frequent returns", "Sizing complexity"],
+  "Food & Drink": ["Chilled/frozen deliveries", "Alcohol regulations"],
+  "Health & Beauty": ["Hazardous goods restrictions", "Sensitive packaging"],
+  "Other": ["Bulky items", "Irregular delivery times"]
+};
+
 const categories = {
   "Fashion & Apparel": {
-    personas: [
-      { max: 1500, persona: "Growing Shopify brand", challenges: [1200, 900, 600] },
-      { max: 10000, persona: "Scaling direct-to-consumer label", challenges: [3500, 2400, 1200] },
-      { max: Infinity, persona: "Fast-growth fashion business", challenges: [7200, 4100, 2300] },
-    ],
     similarBusiness: {
       name: "Holland's Country Clothing",
       image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4ac80a2384710e0e4b73b_Holland%27s%20Country%20Clothing-p-500.png",
@@ -12,11 +20,6 @@ const categories = {
     }
   },
   "Food & Drink": {
-    personas: [
-      { max: 1500, persona: "Growing Shopify brand", challenges: [800, 700, 500] },
-      { max: 10000, persona: "Scaling direct-to-consumer producer", challenges: [2600, 1800, 1400] },
-      { max: Infinity, persona: "Fast-growth food business", challenges: [5400, 2900, 2000] },
-    ],
     similarBusiness: {
       name: "Arbor Ales",
       image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
@@ -24,11 +27,6 @@ const categories = {
     }
   },
   "Health & Beauty": {
-    personas: [
-      { max: 1500, persona: "Growing Shopify brand", challenges: [1000, 750, 500] },
-      { max: 10000, persona: "Scaling skincare/beauty business", challenges: [3000, 2200, 1600] },
-      { max: Infinity, persona: "Fast-growth wellness brand", challenges: [6600, 3600, 2400] },
-    ],
     similarBusiness: {
       name: "The Vitamin",
       image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b67b0341cd7e7e5e941a_The%20Vitamin-p-500.png",
@@ -36,11 +34,6 @@ const categories = {
     }
   },
   "Other": {
-    personas: [
-      { max: 1500, persona: "Growing online seller", challenges: [900, 600, 500] },
-      { max: 10000, persona: "Scaling business", challenges: [2800, 2000, 1300] },
-      { max: Infinity, persona: "Fast-growth brand", challenges: [6000, 3500, 2100] },
-    ],
     similarBusiness: {
       name: "FNX Bathrooms",
       image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b477a18735bf49ed0e7737_FNX%20Bathrooms.png",
@@ -55,6 +48,7 @@ const ordersSlider = document.getElementById("orders");
 const orderValue = document.getElementById("orderValue");
 const personaMessage = document.getElementById("personaMessage");
 const challengesContainer = document.getElementById("challengesContainer");
+const quirksContainer = document.getElementById("quirksContainer");
 const similarBusinessesContainer = document.getElementById("similarBusinesses");
 const categoryButtons = document.querySelectorAll(".category-btn");
 const sizeLine = document.getElementById("size-of-problem");
@@ -90,15 +84,14 @@ function updateUI() {
   const orderCount = getOrderCount(sliderValue);
   orderValue.textContent = orderCount.toLocaleString();
 
-  const categoryData = categories[selectedCategory];
-  const persona = categoryData.personas.find((p) => orderCount <= p.max);
+  const persona = personas.find((p) => orderCount <= p.max);
 
   // Update persona message
   personaMessage.textContent = persona ? `You're a: ${persona.persona}` : "";
 
   // Update challenges
   const challengeTitles = ["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"];
-  const multipliers = [1, 2, 3];
+  const values = persona.challenges;
 
   challengesContainer.innerHTML = "";
   let totalChallengeValue = 0;
@@ -107,7 +100,7 @@ function updateUI() {
     const prevElement = document.getElementById(`challenge-${i}`);
     const previousValue = prevElement ? parseInt(prevElement.dataset.value) || 0 : 0;
 
-    const value = orderCount * multipliers[i];
+    const value = values[i];
     totalChallengeValue += value;
 
     const li = document.createElement("li");
@@ -133,10 +126,19 @@ function updateUI() {
   }
   animateValue(valueSpan, previousTotal, totalChallengeValue);
 
+  // Update quirks
+  quirksContainer.innerHTML = "";
+  const quirks = categoryQuirks[selectedCategory] || [];
+  quirks.forEach((quirk) => {
+    const li = document.createElement("li");
+    li.textContent = quirk;
+    quirksContainer.appendChild(li);
+  });
+
   // Update similar business section
   similarBusinessesContainer.innerHTML = "";
 
-  const biz = categoryData.similarBusiness;
+  const biz = categories[selectedCategory].similarBusiness;
   if (biz) {
     const a = document.createElement("a");
     a.href = biz.url;
