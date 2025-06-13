@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
   const baseMultipliers = [1, 2, 3];
   const categoryQuirks = {
-    "Fashion & Apparel": ["Frequent returns", "Sizing complexity"],
-    "Food & Drink": ["Integrating with third party apps e.g. Bundles/Subscriptions", "Age verification deliveries", "Temperature controlled deliveries"],
-    "Health & Beauty": ["Hazardous goods restrictions", "Sensitive packaging"],
-    "Other": ["Bulky items", "Irregular delivery times"]
+    "Fashion & Apparel": ["🔄 Frequent returns", "📏 Sizing complexity"],
+    "Food & Drink": ["🔗 Integrating with third party apps e.g. Bundles/Subscriptions", "🍷 Age verification deliveries", "❄️ Temperature controlled deliveries"],
+    "Health & Beauty": ["⚠️ Hazardous goods restrictions", "🎁 Sensitive packaging"],
+    "Other": ["⚖️ Bulky items", "⏰ Irregular delivery times"]
   };
 
   const categories = {
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
       span.id = `challenge-${i}`;
       span.dataset.value = val;
-      li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Missed orders due to poor delivery experience"][i]}:</strong> `;
+      li.innerHTML = `<strong>${["🛠️ Manual or poor fitting fulfilment solutions", "📦 Pick & Pack errors", "❌ Missed orders due to poor delivery experience"][i]}:</strong> `;
       li.appendChild(span);
       challengesContainer.appendChild(li);`r
       animateValue(span, prevVal, val);
