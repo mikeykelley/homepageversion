@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       span.dataset.value = val;
       li.innerHTML = `<strong>${["🛠️ Manual or poor fitting fulfilment solutions", "📦 Pick & Pack errors", "❌ Missed orders due to poor delivery experience"][i]}:</strong> `;
       li.appendChild(span);
-      challengesContainer.appendChild(li);`r
+      challengesContainer.appendChild(li);
       animateValue(span, prevVal, val);
     });
 
