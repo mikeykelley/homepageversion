@@ -30,9 +30,9 @@ const categories = {
       { max: Infinity, persona: "Fast-growth wellness brand", challenges: [6600, 3600, 2400] },
     ],
     similarBusiness: {
-      name: "Arbor Ales",
-      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
-      url: "https://www.zenstores.com/case-study/arbor-ales"
+      name: "The Vitamin",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b67b0341cd7e7e5e941a_The%20Vitamin-p-500.png",
+      url: "https://www.zenstores.com/case-study/the-vitamin"
     }
   },
   "Other": {
