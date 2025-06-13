@@ -2,7 +2,7 @@ const categories = {
   "Fashion & Apparel": {
     personas: [
       { max: 1500, persona: "Growing Shopify brand", challenges: [1200, 900, 600] },
-      { max: 5000, persona: "Scaling direct-to-consumer label", challenges: [3500, 2400, 1200] },
+      { max: 10000, persona: "Scaling direct-to-consumer label", challenges: [3500, 2400, 1200] },
       { max: Infinity, persona: "Fast-growth fashion business", challenges: [7200, 4100, 2300] },
     ],
     similarBusinesses: [
@@ -14,7 +14,7 @@ const categories = {
   "Food & Drink": {
     personas: [
       { max: 1500, persona: "Growing Shopify brand", challenges: [800, 700, 500] },
-      { max: 5000, persona: "Scaling direct-to-consumer producer", challenges: [2600, 1800, 1400] },
+      { max: 10000, persona: "Scaling direct-to-consumer producer", challenges: [2600, 1800, 1400] },
       { max: Infinity, persona: "Fast-growth food business", challenges: [5400, 2900, 2000] },
     ],
     similarBusinesses: [
@@ -26,7 +26,7 @@ const categories = {
   "Health & Beauty": {
     personas: [
       { max: 1500, persona: "Growing Shopify brand", challenges: [1000, 750, 500] },
-      { max: 5000, persona: "Scaling skincare/beauty business", challenges: [3000, 2200, 1600] },
+      { max: 10000, persona: "Scaling skincare/beauty business", challenges: [3000, 2200, 1600] },
       { max: Infinity, persona: "Fast-growth wellness brand", challenges: [6600, 3600, 2400] },
     ],
     similarBusinesses: [
@@ -38,7 +38,7 @@ const categories = {
   "Other": {
     personas: [
       { max: 1500, persona: "Growing online seller", challenges: [900, 600, 500] },
-      { max: 5000, persona: "Scaling business", challenges: [2800, 2000, 1300] },
+      { max: 10000, persona: "Scaling business", challenges: [2800, 2000, 1300] },
       { max: Infinity, persona: "Fast-growth brand", challenges: [6000, 3500, 2100] },
     ],
     similarBusinesses: [
