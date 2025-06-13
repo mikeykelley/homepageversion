@@ -127,13 +127,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     animateValue(vs, prevTot, total);
 
-    // Quirks
-    quirksContainer.innerHTML = "";
-    (categoryQuirks[selectedCategory] || []).forEach(q => {
-      const li = document.createElement("li");
-      li.textContent = q;
-      quirksContainer.appendChild(li);
-    });
+   // Quirks
+quirksContainer.innerHTML = "";
+
+const quirksHeading = document.getElementById("quirksHeading");
+if (quirksHeading) {
+  quirksHeading.textContent =
+    selectedCategory === "Other"
+      ? "What we often hear from other brands"
+      : `What we often hear from ${selectedCategory} brands`;
+}
+
+(categoryQuirks[selectedCategory] || []).forEach(q => {
+  const li = document.createElement("li");
+  li.textContent = q;
+  quirksContainer.appendChild(li);
+});
 
 // Similar business
 similarBusinessesContainer.innerHTML = "";
