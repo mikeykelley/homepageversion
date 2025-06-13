@@ -140,13 +140,19 @@ body {
 .category-btn {
   box-sizing: border-box;
   border: 2px solid var(--zen-pink-standard);
+  background: var(--zen-pink-light);       /* old default bg */
+  font-weight: 700;                        /* old font-weight */
+  font-size: 0.9rem;
+  padding: 10px 12px;                      /* old padding */
+  border-radius: 10px;                     /* old border-radius */
+  cursor: pointer;
+  user-select: none;
+  width: 110px;                           /* fixed width for uniformity */
+  text-align: center;
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
   outline: 2px solid transparent;
   outline-offset: 0;
-  cursor: pointer;
-  padding: 12px 20px;
-  border-radius: 8px;
-  user-select: none;
+  color: var(--zen-black);                /* old color */
 }
 
 .category-btn span {
@@ -155,8 +161,7 @@ body {
   margin-top: 4px;
 }
 
-/* Selected state: keeps blue background, white text, and glowing outline */
-
+/* Selected state: glowing blue with outline */
 .category-btn.selected {
   background-color: var(--zen-blue);
   color: white;
@@ -166,8 +171,7 @@ body {
   box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
 }
 
-/* Hover effect for unselected buttons */
-
+/* Hover effect on unselected */
 .category-btn:hover:not(.selected) {
   background-color: var(--zen-pink-standard);
   border-color: var(--zen-pink-standard);
