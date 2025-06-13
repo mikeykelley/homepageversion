@@ -88,7 +88,7 @@ function animateValue(el, start, end, duration = 800, prefix = "£") {
 function updateUI() {
   const sliderValue = parseInt(ordersSlider.value);
   const orderCount = getOrderCount(sliderValue);
-  orderValue.textContent = orderCount;
+orderValue.textContent = orderCount.toLocaleString();
 
   const categoryData = categories[selectedCategory];
   const persona = categoryData.personas.find((p) => orderCount <= p.max);
