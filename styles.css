@@ -168,23 +168,6 @@ body {
   color: var(--zen-black);
 }
 
-/* Persona box */
-.persona-box {
-  background: var(--zen-pink);
-  padding: 14px 18px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--zen-black);
-  margin-top: 10px;
-  margin-bottom: 16px;
-  display: none !important;
-}
-
-.persona-box {
-  display: none !important;
-}
-
 /* Challenges */
 .challenges-list {
   list-style: none;
