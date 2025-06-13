@@ -262,24 +262,26 @@ body {
   margin: 1rem 0;
 }
 
+.similar-businesses-container {
+  max-width: 520px;
+  margin: 2rem auto;
+}
+
 .case-study-card {
   display: block;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 100%;
-  margin-top: 1rem;
 }
 
 .case-study-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .case-study-card img {
-  display: block;
   width: 100%;
   height: auto;
+  display: block;
 }
 
