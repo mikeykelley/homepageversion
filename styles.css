@@ -140,19 +140,19 @@ body {
 .category-btn {
   box-sizing: border-box;
   border: 2px solid var(--zen-pink-standard);
-  background: var(--zen-pink-light);       /* old default bg */
-  font-weight: 700;                        /* old font-weight */
+  background: var(--zen-pink-light);
+  font-weight: 700;
   font-size: 0.9rem;
-  padding: 6px 8px;                      /* old padding */
-  border-radius: 10px;                     /* old border-radius */
+  padding: 10px 8px; /* increased top/bottom padding */
+  border-radius: 12px; /* slightly more rounded to match increased height */
   cursor: pointer;
   user-select: none;
-  width: 110px;                           /* fixed width for uniformity */
+  width: 110px;
   text-align: center;
   transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
   outline: 2px solid transparent;
   outline-offset: 0;
-  color: var(--zen-black);                /* old color */
+  color: var(--zen-black);
 }
 
 .category-btn span {
@@ -186,7 +186,7 @@ body {
 }
 
 #interactive-area.glow {
-  box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.7); /* soft zen-pink glow */
+  box-shadow: 0 0 15px 5px rgba(42, 42, 255, 0.5); /* soft royal blue glow */
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 8px;
 }
