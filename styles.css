@@ -323,7 +323,7 @@ body {
   height: 24px;
 }
 
-/* Gentle glow animation */
+/* Gentle glow animation on interactive area */
 #interactive-area.glow {
   animation: gentleGlow 2.5s ease-in-out infinite alternate;
   border-radius: 12px;
@@ -339,3 +339,4 @@ body {
     box-shadow: 0 0 14px 3px rgba(0, 174, 255, 0.6);
   }
 }
+
