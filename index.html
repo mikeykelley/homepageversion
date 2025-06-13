@@ -29,8 +29,8 @@
       <div class="calculator current-logic">
         <h2>Why should you care?</h2>
 
-        <!-- Wrap interactive area for glow -->
-        <div id="interactive-area">
+        <!-- Glow only wraps this interactive area -->
+        <div id="interactive-area" class="glow">
           <!-- Category -->
           <div class="business-category">
             <p>Select your business category:</p>
@@ -53,7 +53,9 @@
           <!-- Monthly orders -->
           <label for="orders">Monthly Shipment Volume: <span id="orderValue">250</span></label>
           <input type="range" id="orders" min="0" max="40" step="1" />
-<hr class="divider" />
+        </div>
+
+        <hr class="divider" />
 
         <h3>The hidden hurdles holding back growth:</h3>
         <ul id="challengesContainer" class="challenges-list"></ul>
@@ -64,20 +66,17 @@
             <svg class="arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 6L18 18M18 18H10M18 18V10" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            <span class="amount">£0</span>
+            <span>£0</span>
           </div>
         </div>
 
-          <hr class="divider" />
+        <hr class="divider" />
 
-        <h3 id="quirksHeading">Your quirks</h3>
-        <ul id="quirksContainer" class="quirks-list"></ul>
+        <div class="similar-businesses-container" id="similarBusinessesContainer"></div>
+      </div>
+    </section>
+  </div>
 
-        <div id="similarBusinesses" class="similar-businesses-container"></div>
-      </div> <!-- close .calculator -->
-    </section> <!-- close .calculator-container -->
-  </div> <!-- close .page-container -->
-  
   <script src="script.js"></script>
 </body>
 </html>
