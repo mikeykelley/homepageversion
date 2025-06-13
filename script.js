@@ -1,7 +1,7 @@
 const personas = [
-  { max: 1500, persona: "Growing Shopify brand" },
-  { max: 10000, persona: "Scaling direct-to-consumer label" },
-  { max: Infinity, persona: "Fast-growth business" }
+  { max: 1500, persona: "Startup brand" },
+  { max: 10000, persona: "Growing brand" },
+  { max: Infinity, persona: "Scaling brand" }
 ];
 
 const baseMultipliers = [1, 2, 3];
