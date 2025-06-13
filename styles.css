@@ -143,7 +143,7 @@ body {
   background: var(--zen-pink-light);       /* old default bg */
   font-weight: 700;                        /* old font-weight */
   font-size: 0.9rem;
-  padding: 10px 12px;                      /* old padding */
+  padding: 6px 8px;                      /* old padding */
   border-radius: 10px;                     /* old border-radius */
   cursor: pointer;
   user-select: none;
