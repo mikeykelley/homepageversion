@@ -42,9 +42,9 @@ const categories = {
       { max: Infinity, persona: "Fast-growth brand", challenges: [6000, 3500, 2100] },
     ],
     similarBusiness: {
-      name: "Arbor Ales",
-      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
-      url: "https://www.zenstores.com/case-study/arbor-ales"
+      name: "FNX Bathrooms",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b477a18735bf49ed0e7737_FNX%20Bathrooms.png",
+      url: "https://www.zenstores.com/case-study/fnx-bathrooms"
     }
   }
 };
