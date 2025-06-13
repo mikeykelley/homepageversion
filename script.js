@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
       span.dataset.value = val;
       li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Missed orders due to poor delivery experience"][i]}:</strong> `;
       li.appendChild(span);
-      challengesContainer.appendChild(li);
+      challengesContainer.appendChild(li);`r
       animateValue(span, prevVal, val);
     });
 
@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     heading.textContent =
       selectedCategory === "Other"
         ? "Other brands we've helped"
-        : `Similar ${selectedCategory} businesses we've helped`;
+        : `Other ${selectedCategory} brands we've helped`;
     similarBusinessesContainer.appendChild(heading);
 
     const biz = categories[selectedCategory]?.similarBusiness;
