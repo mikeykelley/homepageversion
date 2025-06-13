@@ -64,7 +64,7 @@ function getOrderCount(sliderValue) {
   if (sliderValue <= 10) {
     return sliderValue * 250; // 0–2500 in 250s
   } else if (sliderValue <= 22) {
-    return 2500 + (sliderValue - 15) * 500; // 2500–10000 in 500s
+    return 2500 + (sliderValue - 10) * 500; // 2500–10000 in 500s
   } else {
     return 10000 + (sliderValue - 22) * 1000; // 10000–25000 in 1000s
   }
