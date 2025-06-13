@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const baseMultipliers = [1, 2, 3];
   const categoryQuirks = {
     "Fashion & Apparel": ["Frequent returns", "Sizing complexity"],
-    "Food & Drink": ["Chilled/frozen deliveries", "Alcohol regulations"],
+    "Food & Drink": ["Integrating with third party apps e.g. Bundles/Subscriptions", "Age verification deliveries", "Temperature controlled deliveries"],
     "Health & Beauty": ["Hazardous goods restrictions", "Sensitive packaging"],
     "Other": ["Bulky items", "Irregular delivery times"]
   };
