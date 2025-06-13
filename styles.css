@@ -135,13 +135,18 @@ body {
   margin-bottom: 20px;
 }
 
+/* Keep your .category-btn styling as is */
+
 .category-btn {
-  box-sizing: border-box; /* ensure padding + border don't resize */
+  box-sizing: border-box;
   border: 2px solid var(--zen-pink-standard);
-  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  /* reserve space for glow by adding transparent outline */
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, outline-color 0.3s ease;
   outline: 2px solid transparent;
   outline-offset: 0;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 8px;
+  user-select: none;
 }
 
 .category-btn span {
@@ -150,23 +155,38 @@ body {
   margin-top: 4px;
 }
 
+/* Selected state: keeps blue background, white text, and glowing outline */
+
 .category-btn.selected {
   background-color: var(--zen-blue);
   color: white;
   border-color: var(--zen-blue);
-
-  /* Glow using outline - does not shift layout */
   outline-color: rgba(40, 60, 255, 0.7);
   outline-offset: 4px;
-
-  /* Optionally add subtle box-shadow inside */
   box-shadow: 0 0 8px 2px rgba(40, 60, 255, 0.6);
 }
+
+/* Hover effect for unselected buttons */
 
 .category-btn:hover:not(.selected) {
   background-color: var(--zen-pink-standard);
   border-color: var(--zen-pink-standard);
   color: var(--zen-black);
+}
+
+/* Glow animation, applied via .glow class */
+
+.category-btn.glow {
+  animation: gentleGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes gentleGlow {
+  0% {
+    box-shadow: 0 0 6px 1px rgba(0, 174, 255, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 14px 3px rgba(0, 174, 255, 0.6);
+  }
 }
 
 /* Challenges */
@@ -323,21 +343,3 @@ body {
   width: 24px;
   height: 24px;
 }
-
-/* Gentle glow animation on interactive area */
-#interactive-area.glow {
-  animation: gentleGlow 2.5s ease-in-out infinite alternate;
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 0 8px 2px rgba(0, 174, 255, 0.4);
-}
-
-@keyframes gentleGlow {
-  0% {
-    box-shadow: 0 0 6px 1px rgba(0, 174, 255, 0.2);
-  }
-  100% {
-    box-shadow: 0 0 14px 3px rgba(0, 174, 255, 0.6);
-  }
-}
-
