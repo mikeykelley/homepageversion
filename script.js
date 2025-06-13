@@ -1,9 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const personas = [
-    { max: 1500, persona: "Startup brand" },
-    { max: 10000, persona: "Growing brand" },
-    { max: Infinity, persona: "Scaling brand" }
-  ];
 
   const baseMultipliers = [1, 2, 3];
   const categoryQuirks = {
@@ -76,9 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const v = parseInt(ordersSlider.value);
     const count = getOrderCount(v);
     orderValue.textContent = count.toLocaleString();
-
-    const persona = personas.find(p => count <= p.max);
-    personaMessage.textContent = persona ? `You're a: ${persona.persona}` : "";
 
     // Challenges
     challengesContainer.innerHTML = "";
