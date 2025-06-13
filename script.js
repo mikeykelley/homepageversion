@@ -5,11 +5,11 @@ const categories = {
       { max: 10000, persona: "Scaling direct-to-consumer label", challenges: [3500, 2400, 1200] },
       { max: Infinity, persona: "Fast-growth fashion business", challenges: [7200, 4100, 2300] },
     ],
-    similarBusinesses: [
-      { name: "Perseverance London", url: "https://www.perseverancelondon.com/" },
-      { name: "Cortili", url: "https://www.instagram.com/cortili/" },
-      { name: "No One True Anything", url: "https://www.instagram.com/noonetrueanything/" },
-    ],
+    similarBusiness: {
+      name: "Arbor Ales",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
+      url: "https://www.zenstores.com/case-study/arbor-ales"
+    }
   },
   "Food & Drink": {
     personas: [
@@ -17,11 +17,11 @@ const categories = {
       { max: 10000, persona: "Scaling direct-to-consumer producer", challenges: [2600, 1800, 1400] },
       { max: Infinity, persona: "Fast-growth food business", challenges: [5400, 2900, 2000] },
     ],
-    similarBusinesses: [
-      { name: "Flavourly", url: "https://www.flavourly.com/" },
-      { name: "Root Kitchen", url: "https://www.rootkitchen.uk/" },
-      { name: "Pasta Evangelists", url: "https://pastaevangelists.com/" },
-    ],
+    similarBusiness: {
+      name: "Arbor Ales",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
+      url: "https://www.zenstores.com/case-study/arbor-ales"
+    }
   },
   "Health & Beauty": {
     personas: [
@@ -29,11 +29,11 @@ const categories = {
       { max: 10000, persona: "Scaling skincare/beauty business", challenges: [3000, 2200, 1600] },
       { max: Infinity, persona: "Fast-growth wellness brand", challenges: [6600, 3600, 2400] },
     ],
-    similarBusinesses: [
-      { name: "UpCircle Beauty", url: "https://upcirclebeauty.com/" },
-      { name: "AKT London", url: "https://www.aktlondon.com/" },
-      { name: "Woody's", url: "https://www.instagram.com/woodys_uk/" },
-    ],
+    similarBusiness: {
+      name: "Arbor Ales",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
+      url: "https://www.zenstores.com/case-study/arbor-ales"
+    }
   },
   "Other": {
     personas: [
@@ -41,12 +41,12 @@ const categories = {
       { max: 10000, persona: "Scaling business", challenges: [2800, 2000, 1300] },
       { max: Infinity, persona: "Fast-growth brand", challenges: [6000, 3500, 2100] },
     ],
-    similarBusinesses: [
-      { name: "Wave Spas", url: "https://wavespas.com/" },
-      { name: "Grind", url: "https://grind.co.uk/" },
-      { name: "Climbing Van", url: "https://climbingvan.co.uk/" },
-    ],
-  },
+    similarBusiness: {
+      name: "Arbor Ales",
+      image: "https://cdn.prod.website-files.com/66977bd785453b9d7b04a8bc/66b4b425b091117c133ee9ac_case-study-arbor-ales-p-800.png",
+      url: "https://www.zenstores.com/case-study/arbor-ales"
+    }
+  }
 };
 
 let selectedCategory = "Fashion & Apparel";
@@ -62,11 +62,11 @@ const sizeLine = document.getElementById("size-of-problem");
 // --- Maps slider value (0–37) to actual order count ---
 function getOrderCount(sliderValue) {
   if (sliderValue <= 10) {
-    return sliderValue * 250; // 0–2500 in 250s (0–10)
+    return sliderValue * 250;
   } else if (sliderValue <= 25) {
-    return 2500 + (sliderValue - 10) * 500; // 2500–10000 in 500s (11–25)
+    return 2500 + (sliderValue - 10) * 500;
   } else {
-    return 10000 + (sliderValue - 25) * 1000; // 10000–25000 in 1000s (26–40)
+    return 10000 + (sliderValue - 25) * 1000;
   }
 }
 
@@ -88,7 +88,7 @@ function animateValue(el, start, end, duration = 800, prefix = "£") {
 function updateUI() {
   const sliderValue = parseInt(ordersSlider.value);
   const orderCount = getOrderCount(sliderValue);
-orderValue.textContent = orderCount.toLocaleString();
+  orderValue.textContent = orderCount.toLocaleString();
 
   const categoryData = categories[selectedCategory];
   const persona = categoryData.personas.find((p) => orderCount <= p.max);
@@ -121,11 +121,10 @@ orderValue.textContent = orderCount.toLocaleString();
     animateValue(span, previousValue, value);
   });
 
-  // Animate total challenge value with static label
+  // Animate total challenge value
   const previousTotal = parseInt(sizeLine.dataset.value) || 0;
   sizeLine.dataset.value = totalChallengeValue;
 
-  // Create/reuse inner span for animated number
   let valueSpan = sizeLine.querySelector("span");
   if (!valueSpan) {
     valueSpan = document.createElement("span");
@@ -134,16 +133,23 @@ orderValue.textContent = orderCount.toLocaleString();
   }
   animateValue(valueSpan, previousTotal, totalChallengeValue);
 
-  // Update similar businesses
+  // Update similar business section
   similarBusinessesContainer.innerHTML = "";
-  categoryData.similarBusinesses.forEach((biz) => {
+
+  const biz = categoryData.similarBusiness;
+  if (biz) {
     const a = document.createElement("a");
     a.href = biz.url;
     a.target = "_blank";
-    a.textContent = biz.name;
-    a.classList.add("similar-business");
+    a.classList.add("case-study-card");
+
+    const img = document.createElement("img");
+    img.src = biz.image;
+    img.alt = biz.name;
+
+    a.appendChild(img);
     similarBusinessesContainer.appendChild(a);
-  });
+  }
 }
 
 ordersSlider.addEventListener("input", updateUI);
@@ -157,5 +163,4 @@ categoryButtons.forEach((btn) => {
   });
 });
 
-// Initialize
 updateUI();
