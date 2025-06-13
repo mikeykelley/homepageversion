@@ -186,7 +186,7 @@ body {
 }
 
 #interactive-area.glow {
-  box-shadow: 0 0 15px 5px rgba(42, 42, 255, 0.5); /* soft royal blue glow */
+box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.6); /* soft zen pink glow */
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 8px;
 }
@@ -223,7 +223,6 @@ body {
   font-size: 0.95rem;
   border-left: 4px solid var(--zen-blue); /* Optional: differentiate from challenges */
 }
-
 
 /* Similar businesses */
 .similar-businesses-container {
