@@ -347,7 +347,7 @@ box-shadow: 0 0 15px 5px rgba(255, 189, 175, 0.6); /* soft zen pink glow */
 
 .divider {
   border: none;
-  height: 1px;
+  height: 2px;
   background: var(--zen-pink-standard);
   opacity: 0.3;
   margin: 24px 0;
