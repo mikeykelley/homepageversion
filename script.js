@@ -134,8 +134,8 @@ const quirksHeading = document.getElementById("quirksHeading");
 if (quirksHeading) {
   quirksHeading.textContent =
     selectedCategory === "Other"
-      ? "What we often hear from other brands"
-      : `What we often hear from ${selectedCategory} brands`;
+      ? "What we often hear from ecommerce brands"
+      : `What makes ${selectedCategory} fulfilment tricky?`;
 }
 
 (categoryQuirks[selectedCategory] || []).forEach(q => {
