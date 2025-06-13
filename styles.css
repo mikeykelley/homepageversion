@@ -197,6 +197,23 @@ body {
   border-left: 4px solid var(--zen-pink-standard);
 }
 
+.quirks-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.quirks-list li {
+  background: var(--zen-pink-light);
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  border-left: 4px solid var(--zen-blue); /* Optional: differentiate from challenges */
+}
+
+
 /* Similar businesses */
 .similar-businesses-container {
   display: flex;
