@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
       span.id = `challenge-${i}`;
       span.dataset.value = val;
-      li.innerHTML = `<strong>${["Delivery anxiety", "Time wasted on shipping", "Undercharging for delivery"][i]}:</strong> `;
+      li.innerHTML = `<strong>${["Manual fulfilment processes or poor fitting solutions", "Fulfilment errors", "Unambitious or lacklustre delivery experience"][i]}:</strong> `;
       li.appendChild(span);
       challengesContainer.appendChild(li);
       animateValue(span, prevVal, val);
