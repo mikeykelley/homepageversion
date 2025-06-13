@@ -179,7 +179,7 @@ body {
 }
 
 #interactive-area {
-  padding: 20px; /* adds space inside the box */
+  padding: 10px; /* adds space inside the box */
   border-radius: 8px; /* smooth corners */
   background: white; /* or whatever your background is */
   box-sizing: border-box; /* so padding doesn’t break layout */
