@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const step = (t) => {
       if (!startTime) startTime = t;
       const prog = Math.min((t - startTime) / duration, 1);
-      const value = Math.floor(start + (end - start) * prog);
+      const value = Math.floor(start + (end - startTime) * prog);
       el.textContent = `${prefix}${value.toLocaleString()}`;
       if (prog < 1) requestAnimationFrame(step);
     };
@@ -93,9 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const errorRateOptimised = 0.005;
         const costPerError = 50; // AOV
         val = Math.round((count * errorRateCurrent * costPerError) - (count * errorRateOptimised * costPerError));
-      } else {
-        // Challenge 3 or fallback: use multiplier
-        val = count * mult;
+      } else if (i === 2) {
+        // Challenge 3: Conversion uplift from better delivery experience
+        const aov = 50;
+        const baselineConversionRate = 0.03;
+        const upliftedConversionRate = baselineConversionRate * 1.1;
+        const visitors = count / baselineConversionRate;
+        const newOrders = visitors * upliftedConversionRate;
+        const extraOrders = Math.round(newOrders - count);
+        val = extraOrders * aov;
       }
 
       total += val;
@@ -104,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const span = document.createElement("span");
       span.id = `challenge-${i}`;
       span.dataset.value = val;
-      li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Lacklustre delivery experiences"][i]}:</strong> `;
+      li.innerHTML = `<strong>${["Manual or poor fitting fulfilment solutions", "Pick & Pack errors", "Conversion uplift from better delivery experience"][i]}:</strong> `;
       li.appendChild(span);
       challengesContainer.appendChild(li);
       animateValue(span, prevVal, val);
