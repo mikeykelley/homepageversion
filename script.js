@@ -62,11 +62,11 @@ const sizeLine = document.getElementById("size-of-problem");
 // --- Maps slider value (0–37) to actual order count ---
 function getOrderCount(sliderValue) {
   if (sliderValue <= 10) {
-    return sliderValue * 250; // 0–2500 in 250s
-  } else if (sliderValue <= 22) {
-    return 2500 + (sliderValue - 10) * 500; // 2500–10000 in 500s
+    return sliderValue * 250; // 0–2500 in 250s (0–10)
+  } else if (sliderValue <= 25) {
+    return 2500 + (sliderValue - 10) * 500; // 2500–10000 in 500s (11–25)
   } else {
-    return 10000 + (sliderValue - 22) * 1000; // 10000–25000 in 1000s
+    return 10000 + (sliderValue - 25) * 1000; // 10000–25000 in 1000s (26–40)
   }
 }
 
