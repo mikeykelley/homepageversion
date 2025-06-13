@@ -178,6 +178,7 @@ body {
   color: var(--zen-black);
   margin-top: 10px;
   margin-bottom: 16px;
+  display: none !important;
 }
 
 /* Challenges */
